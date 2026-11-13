@@ -26,7 +26,7 @@
 
   /* decorative CSS animations (card previews, marquee, network lines, status ping) only run while on screen */
   const aio = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle('paused', !e.isIntersecting)));
-  $$('.lab-card .pv, svg[data-nn], .marquee, .hero, .scroll-cue').forEach((el) => { el.classList.add('paused'); aio.observe(el); });
+  $$('.lab-card .pv, svg[data-nn], .marquee, .scroll-cue').forEach((el) => { el.classList.add('paused'); aio.observe(el); });
 
   /* ---------- reveal on scroll ---------- */
   const io = new IntersectionObserver((entries) => {
@@ -62,42 +62,7 @@
   }, { threshold: 0.6 });
   $$('[data-count]').forEach((el) => cio.observe(el));
 
-  /* ---------- hero field (blueprint dots reacting to cursor) ---------- */
-  const cv = $('#field'), ctx = cv.getContext('2d');
-  let W = 0, H = 0, dpr = 1, pts = [], mx = -9999, my = -9999, heroVisible = true, raf = 0;
-  const GAP = 30;
-  const build = () => {
-    dpr = Math.min(2, devicePixelRatio || 1);
-    W = cv.clientWidth; H = cv.clientHeight;
-    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    pts = [];
-    for (let y = GAP / 2; y < H; y += GAP) for (let x = GAP / 2; x < W; x += GAP) pts.push({ x, y, ox: x, oy: y });
-  };
-  const draw = (t) => {
-    ctx.clearRect(0, 0, W, H);
-    const scan = (t * 0.00012 % 1.3) * H;            // slow red scanline
-    for (const p of pts) {
-      const dx = p.ox - mx, dy = p.oy - my, d = Math.hypot(dx, dy), R = 220;
-      let tx = p.ox, ty = p.oy, hot = 0;
-      if (d < R) { const f = (1 - d / R); tx += dx / (d || 1) * f * 34; ty += dy / (d || 1) * f * 34; hot = f; }
-      p.x += (tx - p.x) * 0.12; p.y += (ty - p.y) * 0.12;
-      const s = Math.max(0, 1 - Math.abs(p.oy - scan) / 60);
-      const a = 0.22 + hot * 0.75 + s * 0.45;
-      ctx.fillStyle = (hot > 0.15 || s > 0.5) ? `rgba(255,43,28,${Math.min(1, a)})` : `rgba(255,255,255,${a})`;
-      const r = 1 + hot * 1.6;
-      ctx.fillRect(p.x - r / 2, p.y - r / 2, r, r);
-    }
-    if (live()) raf = requestAnimationFrame(draw);
-  };
-  // phones / touch / reduced motion: draw the field once, no animation loop (saves seconds of CPU on mobile)
-  const still = reduced || matchMedia('(max-width: 700px), (pointer: coarse)').matches;
-  const live = () => heroVisible && !still && !document.hidden;
-  const restart = () => { cancelAnimationFrame(raf); if (live()) raf = requestAnimationFrame(draw); };
-  build(); draw(0);
-  addEventListener('resize', () => { build(); if (still) draw(0); });
-  if (!still) addEventListener('pointermove', (e) => { const r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; }, { passive: true });
-  new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; restart(); }).observe(cv);
-  document.addEventListener('visibilitychange', restart);
+  /* hero flow field: see assets/field.js */
 
   /* ---------- lite YouTube embeds ---------- */
   $$('.yt[data-yt]').forEach((box) => {
@@ -150,7 +115,7 @@
   });
   $$('svg[data-wave]').forEach((svg) => {
     const path = el('path', { fill: 'none', stroke: '#0a0a0b', 'stroke-width': 1.4 }, svg);
-    const env = el('path', { fill: 'none', stroke: '#ff2b1c', 'stroke-width': 2 }, svg);
+    const env = el('path', { fill: 'none', stroke: '#e5132f', 'stroke-width': 2 }, svg);
     const draw = (t) => {
       let d = '', e = '';
       for (let x = 0; x <= 400; x += 3) {

@@ -715,7 +715,7 @@
       s('line', { x1: 30, x2: 380, y1: Y(0), y2: Y(0), stroke: 'rgba(255,255,255,.25)' }, cf);
       pts.forEach((v, y) => {
         s('rect', { x: X(y) - 14, width: 28, y: Math.min(Y(0), Y(v)), height: Math.max(1, Math.abs(Y(v) - Y(0))), fill: v < 0 ? '#ff2b1c' : '#f5f5f3', rx: 3 }, cf);
-        const t = s('text', { x: X(y), y: 148, 'text-anchor': 'middle', fill: '#9c9ca2', 'font-size': 10, 'font-family': 'JetBrains Mono, monospace' }, cf); t.textContent = 'Y' + y;
+        const t = s('text', { x: X(y), y: 148, 'text-anchor': 'middle', fill: '#9c9ca2', 'font-size': 10, 'font-family': 'Geist Mono, monospace' }, cf); t.textContent = 'Y' + y;
       });
     };
     upd();

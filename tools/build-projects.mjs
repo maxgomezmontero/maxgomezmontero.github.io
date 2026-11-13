@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'projects');
 const SITE = 'https://maxgomezmontero.github.io/';
-const V = '20261113g';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
+const V = '20261113i';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
 mkdirSync(OUT, { recursive: true });
 
 const lab = (key, tabs) => `<div class="lab-inline" data-lab-inline="${key}"${tabs ? ` data-tabs="${tabs}"` : ''}><p class="il-hint">Loading the interactive demo…</p></div>`;
@@ -36,7 +36,7 @@ const tour = (arr) => `<div class="tour">${arr.map(([name, media, what, why]) =>
 const ALL = [
   /* ---------------------------------------------------------------- */
   {
-    slug: 'projecttracker', cta: ['../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf', 'Applied AI résumé (PDF)'], track: 'Applied AI · project engineering', short: 'ProjectTracker',
+    slug: 'projecttracker', cta: ['../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf', 'Résumé · Applied AI (PDF)'], code: 'https://github.com/maxgomezmontero/projecttracker-core', track: 'Applied AI · project engineering', short: 'ProjectTracker',
     title: 'ProjectTracker',
     desc: 'The visual command center I run my projects from every day: project board, Today digest, a timeline per problem, 180-day schedule and flow maps, with rules-first email and ERP automation built in.',
     lead: 'The visual command center I run my projects from every day. A board for every job, a digest of what changed, a timeline of each problem, a 180-day schedule and a flow map of what is holding each project — with the email, milestone and drawing automation built in. I built it for my own job as a project engineer.',
@@ -75,6 +75,32 @@ const ALL = [
         '<b>Explain.</b> An optional LLM writes a ≤160-character factual summary of the thread. It never sets IDs, statuses or decisions.',
         '<b>Approve &amp; write.</b> Proposals land in an inbox (J/K to move, A to approve, X to discard). An approved ERP note is re-read, appended, confirmed, saved, re-read to verify, and backed up.',
       ])],
+      ['architecture', 'Architecture', `<figure class="arch-fig"><div class="arch-scroll"><svg viewBox="0 0 1000 450" role="img" aria-labelledby="arch-t arch-d">
+<title id="arch-t">ProjectTracker architecture</title>
+<desc id="arch-d">Outlook, the ERP and SharePoint feed a deterministic rules engine (email matcher, 13 milestone detectors, 44-criteria drawing check). Its decisions go to a review step where I approve them; approved items update the tracker views and are written to the ERP. An optional LLM only writes one-line summaries.</desc>
+<defs><marker id="arch-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="k" x="20" y="24">SOURCES · READ-ONLY</text>
+<rect class="bx" x="20" y="50" width="190" height="92" rx="10"/><text class="t" x="36" y="78">Outlook</text><text class="s" x="36" y="100">Mail exported</text><text class="s" x="36" y="118">every 2 hours</text>
+<rect class="bx" x="20" y="162" width="190" height="92" rx="10"/><text class="t" x="36" y="190">Acumatica ERP</text><text class="s" x="36" y="212">Daily refresh of</text><text class="s" x="36" y="230">opportunities and POs</text>
+<rect class="bx" x="20" y="274" width="190" height="92" rx="10"/><text class="t" x="36" y="302">SharePoint</text><text class="s" x="36" y="324">Project folders,</text><text class="s" x="36" y="342">layouts and drawings</text>
+<text class="k" x="270" y="24">RULES ENGINE · DETERMINISTIC</text>
+<rect class="grp" x="262" y="38" width="306" height="340" rx="14"/>
+<rect class="bx" x="280" y="54" width="270" height="96" rx="10"/><text class="t" x="296" y="82">Email → project matcher</text><text class="s" x="296" y="104">Weighted evidence, 9 signal types;</text><text class="s" x="296" y="122">every decision carries its evidence</text>
+<rect class="bx" x="280" y="162" width="270" height="96" rx="10"/><text class="t" x="296" y="190">13 milestone detectors</text><text class="s" x="296" y="212">PO accepted, submittals, ship date,</text><text class="s" x="296" y="230">new opportunity, site access…</text>
+<rect class="bx" x="280" y="270" width="270" height="96" rx="10"/><text class="t" x="296" y="298">44-criteria drawing check</text><text class="s" x="296" y="320">28 checked automatically from the</text><text class="s" x="296" y="338">drawing set, 16 flagged for a human</text>
+<rect class="dash" x="262" y="392" width="306" height="50" rx="10"/>
+<text class="t sm" x="280" y="414">LLM, optional</text><text class="s" x="280" y="432">Writes a one-line summary. Never decides.</text>
+<text class="k" x="612" y="24">REVIEW</text>
+<rect class="bx hi" x="612" y="98" width="190" height="196" rx="10"/><text class="t" x="628" y="126">I approve</text><text class="s" x="628" y="148">≥ 0.88: attached</text><text class="s" x="628" y="166">automatically</text><text class="s" x="628" y="184">0.45–0.88: review lane</text><text class="s" x="628" y="202">< 0.45: left unassigned</text><text class="s" x="628" y="220">Every ERP write: 1 click</text>
+<text class="k" x="830" y="24">OUTPUTS</text>
+<rect class="bx" x="830" y="50" width="150" height="130" rx="10"/><text class="t" x="846" y="78">Tracker views</text><text class="s" x="846" y="100">Board, Today digest,</text><text class="s" x="846" y="118">timelines, schedule,</text><text class="s" x="846" y="136">flow maps</text>
+<rect class="bx" x="830" y="214" width="150" height="130" rx="10"/><text class="t" x="846" y="242">ERP note</text><text class="s" x="846" y="264">Re-read, appended,</text><text class="s" x="846" y="282">saved, re-read to</text><text class="s" x="846" y="300">verify, backed up</text>
+<path class="ln" d="M210 96H262"/><path class="ln" d="M210 208H262"/><path class="ln" d="M210 320H262"/>
+<path class="ln" d="M568 196H612"/>
+<path class="ln" d="M802 150C818 150 814 115 830 115"/>
+<path class="ln" d="M802 245C818 245 814 279 830 279"/>
+<path class="ln dsh" d="M568 417H905V344"/>
+</svg></div><figcaption>How mail, ERP and drawings flow through the tool. Rules make every decision and show their evidence; the LLM only writes text; nothing reaches the ERP without my click.</figcaption></figure>`],
       ['decisions', 'Rules decide, the LLM writes, a human approves', decisions([
         ['Rules decide; the LLM only writes', 'Matching, milestones and drawing checks are rules with weights I can read and test. The LLM is used where language matters — summaries — not where correctness matters.'],
         ['A human approves every ERP write', 'The tool proposes, I decide. Every write is re-read and verified afterwards, with a backup of what was there before.'],
@@ -104,7 +130,7 @@ const ALL = [
     meta: [['Role', 'Project Engineer · engineering lead'], ['Team', 'Customers, sales, installers, OEM vendors'], ['When', 'Jan 2025 – present (intern Jan–May 2025, project engineer since Jun 2025)'], ['Tools', 'AutoCAD · FactoryCAD · Creo · Acumatica ERP'], ['Status', '54 opportunities · ~6 installs managed']],
     hero: `<div class="hero-duo"><img src="../img/drawings/paint-line-layout.webp" alt="Plan view of a paint line I laid out: conveyor loop, booth, load and unload zones, utility callouts" width="1800" height="666"><img src="../img/installs/large-equipment-booths.webp" alt="Two large-equipment paint booths on site, ready for start-up" width="1050" height="1400" loading="lazy"></div>`,
     heroCap: 'Left: an excerpt of one of my layout drawings. Right: two booths on site before start-up. Identifiers removed.',
-    cta: ['../Maxi_Gomez_Montero_Resume_Manufacturing.pdf', 'Manufacturing résumé (PDF)'],
+    cta: ['../Maxi_Gomez_Montero_Resume_Manufacturing.pdf', 'Résumé · Manufacturing (PDF)'],
     tldr: [
       'Every plant needs a finishing system sized to its parts, throughput, building and utilities — and every quote and drawing has to close scope gaps before anything is fabricated.',
       'Process selection, airflow and thermal sizing, layouts and equipment specs; coordinating vendors such as GFS, Rohner, Nordson and Clemco; reviewing drawings and submittals; on-site installs and start-ups.',
@@ -326,7 +352,7 @@ const P = ALL.filter((p) => !p.hidden);
 const nav = `<nav class="top" aria-label="Main"><div class="wrap">
   <a class="brand" href="../index.html"><i></i>Maxi Gomez Montero</a>
   <div class="navlinks"><a href="../index.html#work">All work</a><a href="../index.html#research">Research</a><a href="../index.html#experience">Experience</a><a href="../index.html#contact">Contact</a></div>
-  <div class="cvs"><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener"><span class="short">Eng&nbsp;</span>CV<span class="long">&nbsp;· Manufacturing</span><span class="sr-only"> résumé (PDF)</span> ↓</a><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener"><span class="short">AI&nbsp;</span>CV<span class="long">&nbsp;· Applied AI</span><span class="sr-only"> résumé (PDF)</span> ↓</a></div>
+  <div class="cvs"><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener"><span class="long">Résumé<i> · </i></span>Manufacturing<span class="sr-only"> résumé (PDF)</span> <span aria-hidden="true">↓</span></a><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener"><span class="long">Résumé<i> · </i></span>Applied AI<span class="sr-only"> résumé (PDF)</span> <span aria-hidden="true">↓</span></a></div>
 </div></nav>`;
 
 P.forEach((p, i) => {
@@ -347,14 +373,14 @@ P.forEach((p, i) => {
 <meta property="og:image" content="${SITE}assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Manufacturing engineer. AI builder. Same person. — Maxi Gomez Montero, Toronto/GTA">
+<meta property="og:image:alt" content="Maxi Gomez Montero — Manufacturing engineer who builds AI for the plant floor. Toronto/GTA, Canadian PR.">
 <meta property="og:site_name" content="Maxi Gomez Montero">
 <link rel="canonical" href="${SITE}projects/${p.slug}.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0a0a0b">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ff2b1c'/></svg>">
-<link rel="preload" href="../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#f4f4f1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23e5132f'/></svg>">
+<link rel="preload" href="../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/archivo-expanded-800-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/style.css?v=${V}">
 </head>
 <body class="case">
@@ -362,12 +388,15 @@ P.forEach((p, i) => {
 <div class="progress" aria-hidden="true"></div>
 ${nav}
 <main id="main">
-<header class="case-hero wrap">
+<header class="case-band">
+<canvas class="field" aria-hidden="true"></canvas>
+<div class="case-hero wrap">
   <a class="back" href="../index.html#work">← All work</a>
   <span class="label red">Case study · ${p.track}</span>
   <h1>${p.title}</h1>
-  <p class="case-lead">${p.lead}</p>${p.cta ? `<p class="case-cta"><a class="btn primary" href="${p.cta[0]}" target="_blank" rel="noopener">${p.cta[1]} <span class="arr">↓</span></a></p>` : ''}
+  <p class="case-lead">${p.lead}</p>${p.cta ? `<p class="case-cta"><a class="btn primary" href="${p.cta[0]}" target="_blank" rel="noopener">${p.cta[1]} <span class="arr">↓</span></a>${p.code ? ` <a class="btn" href="${p.code}" target="_blank" rel="noopener">Code on GitHub <span class="arr">↗</span></a>` : ''}</p>` : ''}
   <dl class="meta">${p.meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+</div>
 </header>
 <figure class="case-media wrap">${p.hero}<figcaption>${p.heroCap}</figcaption></figure>
 <section class="tldr wrap" aria-label="Summary">
@@ -385,11 +414,12 @@ ${p.sections.map(([id, t, body], j) => `    <section id="${id}"><h2><span class=
 </nav>
 </main>
 <footer class="case-foot wrap">
-  <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR · available January 2027</p>
+  <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR</p>
   <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
 </footer>
 ${/data-lab-inline/.test(p.hero + p.sections.map((s) => s[2]).join('')) ? `<script src="../assets/labs.js?v=${V}" defer></script>
 <script src="../assets/labs-plus.js?v=${V}" defer></script>` : ''}
+<script src="../assets/field.js?v=${V}" defer></script>
 <script src="../assets/case.js?v=${V}" defer></script>
 ${p.script || ''}
 </body>
@@ -435,13 +465,13 @@ NOTES.forEach((n, i) => {
 <meta property="og:image" content="${SITE}assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Manufacturing engineer. AI builder. Same person. — Maxi Gomez Montero, Toronto/GTA">
+<meta property="og:image:alt" content="Maxi Gomez Montero — Manufacturing engineer who builds AI for the plant floor. Toronto/GTA, Canadian PR.">
 <link rel="canonical" href="${SITE}notes/${n.slug}.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0a0a0b">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ff2b1c'/></svg>">
-<link rel="preload" href="../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#f4f4f1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23e5132f'/></svg>">
+<link rel="preload" href="../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/archivo-expanded-800-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/style.css?v=${V}">
 </head>
 <body class="case note">
@@ -449,11 +479,14 @@ NOTES.forEach((n, i) => {
 <div class="progress" aria-hidden="true"></div>
 ${nav}
 <main id="main">
-<header class="case-hero wrap">
+<header class="case-band">
+<canvas class="field" aria-hidden="true"></canvas>
+<div class="case-hero wrap">
   <a class="back" href="../index.html#think">← How I think</a>
   <span class="label red">Note · ${n.kicker}</span>
   <h1>${n.title}</h1>
   <p class="case-lead">${n.lead}</p>
+</div>
 </header>
 <article class="note-body wrap case-body">${n.body}
   ${rel ? `<p class="case-links">${rel}</p>` : ''}
@@ -464,9 +497,10 @@ ${nav}
 </nav>
 </main>
 <footer class="case-foot wrap">
-  <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR · available January 2027</p>
+  <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR</p>
   <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
 </footer>
+<script src="../assets/field.js?v=${V}" defer></script>
 <script src="../assets/case.js?v=${V}" defer></script>
 </body>
 </html>

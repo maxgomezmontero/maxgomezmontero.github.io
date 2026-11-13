@@ -104,7 +104,7 @@
       };
       const label = (txt, x, y, z, w = 15, color = '#f5f5f3') => {
         const c = document.createElement('canvas'); c.width = 512; c.height = 96;
-        const k = c.getContext('2d'); k.font = '500 46px "JetBrains Mono", Consolas, monospace'; k.fillStyle = color; k.textAlign = 'center'; k.textBaseline = 'middle'; k.fillText(txt, 256, 50);
+        const k = c.getContext('2d'); k.font = '500 46px "Geist Mono", Consolas, monospace'; k.fillStyle = color; k.textAlign = 'center'; k.textBaseline = 'middle'; k.fillText(txt, 256, 50);
         const sp = new T.Sprite(new T.SpriteMaterial({ map: new T.CanvasTexture(c), transparent: true, depthTest: false }));
         sp.scale.set(w, w * 96 / 512, 1); sp.position.set(x, y, z); g.add(sp); return sp;
       };
@@ -258,17 +258,17 @@
     const dpr = Math.min(2, devicePixelRatio || 1); cv.width = 1000 * dpr; cv.height = 420 * dpr; ctx.scale(dpr, dpr);
     let A = mkLine(false), B = mkLine(true);
     const drawLine = (ln, y, title) => {
-      ctx.font = '500 12px "JetBrains Mono", Consolas, monospace'; ctx.fillStyle = '#9c9ca2'; ctx.textAlign = 'left'; ctx.fillText(title, 10, y - 78);
+      ctx.font = '500 12px "Geist Mono", Consolas, monospace'; ctx.fillStyle = '#9c9ca2'; ctx.textAlign = 'left'; ctx.fillText(title, 10, y - 78);
       const bw = 92, gap = (1000 - 20 - bw * 8) / 7;
       STEPS.forEach((n, i) => {
         const x = 10 + i * (bw + gap), st = ln.st[i];
         ctx.fillStyle = st.blocked > 0 ? '#2a0f0c' : '#17171a'; ctx.strokeStyle = st.blocked > 0 ? '#ff2b1c' : 'rgba(255,255,255,.25)'; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.roundRect(x, y, bw, 54, 8); ctx.fill(); ctx.stroke();
         if (st.unit) { ctx.fillStyle = '#f5f5f3'; ctx.fillRect(x + 8, y + 40, (bw - 16) * (1 - Math.max(0, st.left)), 4); }
-        ctx.fillStyle = '#e9e9ea'; ctx.font = '12px "Inter Tight", Arial, sans-serif'; ctx.textAlign = 'center'; ctx.fillText(n, x + bw / 2, y + 22);
-        if (st.blocked > 0) { ctx.fillStyle = '#ff5a4d'; ctx.font = '10px "JetBrains Mono", monospace'; ctx.fillText('waiting', x + bw / 2, y + 36); }
+        ctx.fillStyle = '#e9e9ea'; ctx.font = '12px "Geist", Arial, sans-serif'; ctx.textAlign = 'center'; ctx.fillText(n, x + bw / 2, y + 22);
+        if (st.blocked > 0) { ctx.fillStyle = '#ff5a4d'; ctx.font = '10px "Geist Mono", monospace'; ctx.fillText('waiting', x + bw / 2, y + 36); }
         // queue in front of the step, stacked upward; finished batch waits to the right
-        const dots = (cnt, cx, col) => { for (let k = 0; k < Math.min(cnt, 18); k++) { ctx.fillStyle = col; ctx.beginPath(); ctx.arc(cx + (k % 3) * 11, y - 10 - Math.floor(k / 3) * 11, 4, 0, 7); ctx.fill(); } if (cnt > 18) { ctx.fillStyle = '#ff5a4d'; ctx.font = '10px "JetBrains Mono", monospace'; ctx.fillText('+' + (cnt - 18), cx + 11, y - 80); } };
+        const dots = (cnt, cx, col) => { for (let k = 0; k < Math.min(cnt, 18); k++) { ctx.fillStyle = col; ctx.beginPath(); ctx.arc(cx + (k % 3) * 11, y - 10 - Math.floor(k / 3) * 11, 4, 0, 7); ctx.fill(); } if (cnt > 18) { ctx.fillStyle = '#ff5a4d'; ctx.font = '10px "Geist Mono", monospace'; ctx.fillText('+' + (cnt - 18), cx + 11, y - 80); } };
         dots(ln.q[i].length, x + 6, ln.q[i].length > 3 ? '#ff2b1c' : '#f5f5f3');
         dots(st.out.length, x + bw - 30, '#9c9ca2');
         if (i < 7) { ctx.strokeStyle = ln.pull ? '#3ddc84' : '#55555c'; ctx.beginPath(); ctx.moveTo(x + bw + 4, y + 27); ctx.lineTo(x + bw + gap - 4, y + 27); ctx.stroke(); }
