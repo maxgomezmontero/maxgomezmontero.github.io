@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'projects');
+const SITE = 'https://maxgomezmontero.github.io/';
+const V = '20261113';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
 mkdirSync(OUT, { recursive: true });
 
 const lab = (key, tabs) => `<div class="lab-inline" data-lab-inline="${key}"${tabs ? ` data-tabs="${tabs}"` : ''}><p class="il-hint">Loading the interactive demo…</p></div>`;
@@ -15,6 +17,13 @@ const results = (arr) => `<div class="results">${arr.map(([b, s]) => `<div><b>${
 const video = (src, poster, cap, loop = true) => `<figure>${loop
   ? `<video muted loop playsinline preload="none" data-loop data-src="../img/planta/${src}" poster="../img/planta/${poster}" aria-label="${cap}"></video>`
   : `<video controls playsinline preload="none" src="../img/planta/${src}" poster="../img/planta/${poster}" aria-label="${cap}"></video>`}<figcaption>${cap}</figcaption></figure>`;
+
+// "Beyond work" helpers: lite YouTube embeds (thumbnail first, see case.js), stills and muted loops from img/beyond/
+const yt = (id, title, extra = '') => `<div class="yt" data-yt="${id}" data-title="${title}"${extra}></div>`;
+const still = (src, alt, cap) => `<figure><img src="../img/beyond/${src}" alt="${alt}" loading="lazy" width="960" height="540"><figcaption>${cap}</figcaption></figure>`;
+const loopB = (src, poster, cap) => `<figure><video muted loop playsinline preload="none" data-loop data-src="../img/beyond/${src}" poster="../img/beyond/${poster}" aria-label="${cap}"></video><figcaption>${cap}</figcaption></figure>`;
+const rally = ({ facts, body, video, media }) => `<dl class="rally-facts">${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>${body}
+  <div class="rally-media"><div class="rally-video">${video}<p class="label">Full pitch on YouTube · in Spanish</p></div><div class="rally-stills">${media}</div></div>`;
 
 const ALL = [
   /* ---------------------------------------------------------------- */
@@ -61,7 +70,7 @@ const ALL = [
     title: 'Industrial equipment projects, sketch to start-up',
     desc: 'Engineering lead on paint and powder finishing lines for EV, heavy-equipment and building-products plants: 54 opportunities, USD 21M quoted.',
     lead: 'Engineering lead on paint and powder finishing lines — booths, cure ovens, air make-up units, wash systems and conveyors — for EV, heavy-equipment and building-products plants.',
-    meta: [['Role', 'Project Engineer · engineering lead'], ['Team', 'Customers, sales, installers, OEM vendors'], ['When', 'Jan 2025 – present'], ['Tools', 'AutoCAD · FactoryCAD · Creo · Acumatica ERP'], ['Status', '54 opportunities · 5+ installs']],
+    meta: [['Role', 'Project Engineer · engineering lead'], ['Team', 'Customers, sales, installers, OEM vendors'], ['When', 'Jan 2025 – present (intern Jan–May 2025, project engineer since Jun 2025)'], ['Tools', 'AutoCAD · FactoryCAD · Creo · Acumatica ERP'], ['Status', '54 opportunities · 5+ installs']],
     hero: lab('engineering', '3D line'),
     heroCap: '3D model of a paint line built from the dimensions on my own layout drawings. Drag to orbit.',
     tldr: [
@@ -214,6 +223,53 @@ const ALL = [
 })();
 </script>`,
   },
+  /* ---------------------------------------------------------------- */
+  {
+    slug: 'beyond-work', track: 'Initiative · speaking', short: 'Beyond work',
+    title: 'Beyond work: on stage and pitching ideas',
+    desc: 'Graduate commencement speaker at Bradley University (2025) and three Latin American Innovation Rally pitches (2020, 2021, 2026), including a 1st place at provincial level.',
+    lead: 'Alongside engineering, I keep volunteering for the part of a project many engineers avoid: standing up and explaining it. Graduate commencement speaker at Bradley University, and three Latin American Innovation Rally pitches with my teams.',
+    meta: [['Role', 'Commencement speaker · rally team member'], ['Where', 'Bradley University (Peoria, IL) · Tucumán, Argentina'], ['When', '2020 – 2026'], ['Languages', 'English (speech) · Spanish (rallies)'], ['Status', 'Side activities, alongside my main job']],
+    hero: yt('m2OsEzYm8Uo', 'Graduate commencement speech — Bradley University, Spring 2025', ' data-start="1376" data-end="1824"'),
+    heroCap: 'Bradley University, Spring 2025 Master’s &amp; Doctoral Commencement · in English · plays the speech only (22:56 – 30:24, about 7 minutes).',
+    tldrHeads: ['Why it’s here', 'What I did', 'Result'],
+    tldr: [
+      'Engineering work gets approved when someone can explain it clearly. These are the times I chose to do that in front of an audience, outside my job.',
+      'Gave the graduate commencement speech at Bradley University, and pitched three ideas with my teams in the Latin American Innovation Rally: a wheelchair motor kit, a domestic-violence alert concept and a smart cane.',
+      'Spoke for the Spring 2025 master’s and doctoral graduates; 1st place at provincial level in the 2021 rally; participated in 2020 and 2026.',
+    ],
+    sections: [
+      ['speech', 'Commencement speech', `<div class="role-box"><p><b>Graduate Commencement Speaker, Bradley University · May 2025.</b> I spoke at the Spring 2025 Master’s &amp; Doctoral Commencement, graduating with an M.S. in Manufacturing Engineering (GPA 4.0) and the Marjorie Reynolds Award for academic excellence.</p></div>
+        <p><b>What it was about:</b> from Tucumán to Bradley — looking back to understand the path and forward to keep going; gratitude to the people and the community behind us; what I learned by teaching as a TA (“when you’re teaching, you end up learning even more from your students”); and a call to my fellow graduates: <b>don’t be afraid to try.</b></p><p>The video at the top of this page plays only my speech (about 7 minutes, in English).</p>`],
+      ['rally', 'The innovation rallies', `<p>The Latin American Innovation Rally is a competition where teams pitch a solution to a challenge in a short video, about two minutes long. I took part three times, with teams from Tucumán, Argentina. All three videos are in Spanish; the stills below are taken from them.</p>
+        <p class="conf">These were competition entries, not companies. None of them is a venture I’m running.</p>`],
+      ['empujon', '2026 · EMPUJÓN', rally({
+        facts: [['Team', 'Norte Disruptivo'], ['Result', 'Participation'], ['Video', 'in Spanish · ~2 min']],
+        body: `<p><b>The idea:</b> a kit that motorises the wheelchair a person already has, using motors recovered from discarded appliances — the pitch shows drills, treadmills, washing machines and hoverboards. It has three parts: an <b>EMP-1 port</b> fixed to the chair without welding or drilling, a <b>motor module</b> built around the recovered motor, and a <b>battery and control</b> unit made from recovered cells, with a BMS and sensors. Modules click into the port in seconds, without tools.</p>
+          <p>The pitch also covers a chain from donor to user (collection, a workshop that triages modules, a “bank” of modules) and a companion app.</p>
+          <div class="results">${[['−78%', 'cost vs the cheapest new motorised chair'], ['1 port', 'for drills, treadmills, washers and hoverboards'], ['4', 'neural networks that check, map and anticipate failures'], ['3 parts', 'port, motor module, battery &amp; control']].map(([b, s]) => `<div><b>${b}</b><span>${s}</span></div>`).join('')}</div>
+          <p class="note-small">Figures as stated in the pitch. They are the team’s pitch numbers, not measured results.</p>`,
+        video: yt('SDo8r4xjVNw', 'Latin American Innovation Rally 2026 — Norte Disruptivo — EMPUJÓN'),
+        media: `${loopB('empujon-loop.mp4', 'empujon-loop-poster.webp', 'The motor module slides onto the EMP-1 port and locks. CAD animation from the pitch.')}
+          ${still('empujon-chain.webp', 'Pitch slide: chain from donor to collection, workshop, module bank and user, with the pitch figures', '“From the trash to the street”: the chain and the pitch figures.')}`,
+      })],
+      ['stopit', '2021 · STOP IT', rally({
+        facts: [['Team', 'Innovación Picante'], ['Result', '<b class="red">1st place, provincial level</b>'], ['Video', 'in Spanish · ~2 min']],
+        body: `<p><b>The idea:</b> a technology-based solution to address domestic violence. A tiny sensor detects the body’s stress response (an adrenaline spike) and the STOP IT device alerts an emergency operator. Our team from Tucumán won <b>1st place at the provincial level</b>.</p>`,
+        video: yt('h0UK8pPf_hI', 'Latin American Innovation Rally 2021 — Innovación Picante — STOP IT'),
+        media: `${still('stopit-logo.webp', 'STOP IT logo: a red hand with a figure inside', 'The STOP IT identity.')}
+          ${still('stopit-sketch.webp', 'Whiteboard sketch: a tiny sensor next to a needle tip, a family and an adrenaline spike', 'Whiteboard explainer from the pitch.')}`,
+      })],
+      ['guideup', '2020 · GuideUp', rally({
+        facts: [['Team', 'Innovación Picante'], ['Result', 'Participation'], ['Video', 'in Spanish · ~2 min']],
+        body: `<p><b>The idea:</b> GuideUp, a smart white cane for people who are blind or have low vision, paired with a phone app that uses GPS and Bluetooth.</p>`,
+        video: yt('guIcYbjlHuE', 'Latin American Innovation Rally 2020 — Innovación Picante — GuideUp'),
+        media: `${still('guideup-logo.webp', 'GuideUp logo with a figure walking with a white cane', 'The GuideUp identity.')}
+          ${still('guideup-cane.webp', 'Drawings of the GuideUp cane and its handle', 'Concept drawings of the cane and its handle.')}`,
+      })],
+      ['why', 'What this says about how I work', `<ul><li><b>I explain technical ideas to people who aren’t engineers</b>, in English and in Spanish, in a few minutes.</li><li><b>I pick up problems nobody assigned me</b> and work them through with a team, from the idea to something people can see.</li><li><b>Engineering stays the day job.</b> My main work is in <a href="industrial-projects.html">industrial projects</a> and the <a href="projecttracker.html">software I build for them</a>.</li></ul>`],
+    ],
+  },
 ];
 
 // PLANTA is kept out of the public site for now (positioning decision, 2026-11-13).
@@ -221,7 +277,7 @@ const P = ALL.filter((p) => !p.hidden);
 const nav = `<nav class="top" aria-label="Main"><div class="wrap">
   <a class="brand" href="../index.html"><i></i>Maxi Gomez Montero</a>
   <div class="navlinks"><a href="../index.html#work">All work</a><a href="../index.html#research">Research</a><a href="../index.html#experience">Experience</a><a href="../index.html#contact">Contact</a></div>
-  <div class="cvs"><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Manufacturing</span><span class="short">&nbsp;Mfg</span> ↓</a><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Applied AI</span><span class="short">&nbsp;AI</span> ↓</a></div>
+  <div class="cvs"><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Manufacturing</span><span class="short">&nbsp;Mfg</span><span class="sr-only"> résumé (PDF)</span> ↓</a><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Applied AI</span><span class="short">&nbsp;AI</span><span class="sr-only"> résumé (PDF)</span> ↓</a></div>
 </div></nav>`;
 
 P.forEach((p, i) => {
@@ -231,21 +287,26 @@ P.forEach((p, i) => {
 <html lang="en" data-base="../">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add('js')</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${p.title.replace(/&amp;/g, '&')} — Maxi Gomez Montero</title>
 <meta name="description" content="${p.desc}">
 <meta property="og:title" content="${p.title.replace(/&amp;/g, '&')} — Maxi Gomez Montero">
 <meta property="og:description" content="${p.desc}">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://maxgomezmontero.github.io/projects/${p.slug}.html">
-<meta property="og:image" content="https://maxgomezmontero.github.io/assets/og.png">
+<meta property="og:url" content="${SITE}projects/${p.slug}.html">
+<meta property="og:image" content="${SITE}assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Manufacturing engineer. AI builder. Same person. — Maxi Gomez Montero, Toronto/GTA">
+<meta property="og:site_name" content="Maxi Gomez Montero">
+<link rel="canonical" href="${SITE}projects/${p.slug}.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a0a0b">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ff2b1c'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="preload" href="../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/style.css?v=${V}">
 </head>
 <body class="case">
 <a class="skip" href="#main">Skip to content</a>
@@ -261,9 +322,7 @@ ${nav}
 </header>
 <figure class="case-media wrap">${p.hero}<figcaption>${p.heroCap}</figcaption></figure>
 <section class="tldr wrap" aria-label="Summary">
-  <div><h2>Problem</h2><p>${p.tldr[0]}</p></div>
-  <div><h2>What I did</h2><p>${p.tldr[1]}</p></div>
-  <div><h2>Result</h2><p>${p.tldr[2]}</p></div>
+  ${(p.tldrHeads || ['Problem', 'What I did', 'Result']).map((h, k) => `<div><h2>${h}</h2><p>${p.tldr[k]}</p></div>`).join('\n  ')}
 </section>
 <div class="case-grid wrap">
   <nav class="toc" aria-label="On this page">${toc}</nav>
@@ -280,9 +339,9 @@ ${p.sections.map(([id, t, body], j) => `    <section id="${id}"><h2><span class=
   <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR · available January 2027</p>
   <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
 </footer>
-<script src="../assets/labs.js"></script>
-<script src="../assets/labs-plus.js"></script>
-<script src="../assets/case.js"></script>
+<script src="../assets/labs.js?v=${V}" defer></script>
+<script src="../assets/labs-plus.js?v=${V}" defer></script>
+<script src="../assets/case.js?v=${V}" defer></script>
 ${p.script || ''}
 </body>
 </html>
@@ -290,4 +349,26 @@ ${p.script || ''}
   writeFileSync(join(OUT, `${p.slug}.html`), html);
   console.log('wrote', p.slug);
 });
-writeFileSync(join(OUT, 'index.json'), JSON.stringify(P.map(({ slug, title, track, desc }) => ({ slug, title, track, desc })), null, 2));
+// project list as data (not named index.json: GitHub Pages would serve it as /projects/)
+writeFileSync(join(OUT, 'projects.json'), JSON.stringify(P.map(({ slug, title, track, desc }) => ({ slug, title, track, desc })), null, 2));
+// /projects/ itself: send visitors to the work section of the home page
+writeFileSync(join(OUT, 'index.html'), `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Projects — Maxi Gomez Montero</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="${SITE}#work">
+<meta http-equiv="refresh" content="0; url=../index.html#work">
+</head>
+<body><p><a href="../index.html#work">See all projects →</a></p></body>
+</html>
+`);
+// sitemap: home + every public case page (hidden pages such as PLANTA are never listed)
+const today = new Date().toISOString().slice(0, 10);
+writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${[SITE, ...P.map((p) => `${SITE}projects/${p.slug}.html`)].map((u) => `  <url><loc>${u}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+</urlset>
+`);
+console.log('wrote projects.json, projects/index.html, sitemap.xml');

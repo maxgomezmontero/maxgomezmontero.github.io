@@ -1,5 +1,5 @@
 /* Deeper demos, added on top of labs.js (load after it, before main.js):
-   - engineering: 3D walk-around of a paint line (three.js, lazy-loaded from a CDN only when the tab opens)
+   - engineering: 3D walk-around of a paint line (three.js vendored in assets/vendor/, imported only when the 3D view nears the viewport)
    - lean: push vs pull flow simulation
    - tracker: step-by-step replay of one email
    - research: Taguchi DOE + neural-network explorer (synthetic data, method only)
@@ -12,7 +12,17 @@
   const s = (tag, attrs = {}, parent) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); parent && parent.appendChild(n); return n; };
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const wait = (ms) => new Promise((r) => setTimeout(r, reduced ? 0 : ms));
-  const THREE_URL = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js';
+  // three.js r160, vendored (MIT). Resolved against the page so it works from / and /projects/.
+  const THREE_URL = new URL((document.documentElement.dataset.base || '') + 'assets/vendor/three.module.min.js?v=0.160.0', document.baseURI).href;
+  // resolves once the element is near the viewport, after the page has finished loading
+  const nearView = (el) => new Promise((res) => {
+    const go = () => {
+      if (!('IntersectionObserver' in window)) return res();
+      const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); res(); } }, { rootMargin: '150px 0px' });
+      io.observe(el);
+    };
+    if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
+  });
 
   /* ======================================================
      1. 3D paint line — from the published layout excerpts:
@@ -72,7 +82,7 @@
     };
     select = (i) => showSpot(i); showSpot(0);
 
-    import(THREE_URL).then((T) => {
+    nearView(stage).then(() => (alive ? import(THREE_URL) : Promise.reject(new Error('closed')))).then((T) => {
       if (!alive) return;
       const renderer = new T.WebGLRenderer({ canvas, antialias: true, alpha: true });
       renderer.setPixelRatio(Math.min(devicePixelRatio || 1, innerWidth < 700 ? 1.5 : 2));
@@ -198,7 +208,7 @@
       };
       loadEl.remove(); raf = requestAnimationFrame(frame);
       dispose = () => { dispose = () => {}; select = () => {}; ro.disconnect(); renderer.setAnimationLoop(null); renderer.dispose(); renderer.forceContextLoss(); scene.traverse((o) => { o.geometry && o.geometry.dispose(); o.material && (o.material.map && o.material.map.dispose(), o.material.dispose()); }); };
-    }).catch(() => { if (alive) { loadEl.textContent = '3D could not load here (it needs WebGL and a connection to the three.js CDN). The Drawings tab shows the same system in 2D.'; loadEl.classList.add('err'); } });
+    }).catch(() => { if (alive) { loadEl.textContent = '3D could not load here (it needs WebGL). The Drawings tab shows the same system in 2D.'; loadEl.classList.add('err'); } });
     return () => { alive = false; cancelAnimationFrame(raf); raf = 0; dispose(); };
   };
 
@@ -234,7 +244,7 @@
     const view = h(`<div>
       <div class="panel-head"><div><h4 style="margin:0">Same eight steps, two ways to run them</h4><p class="sub">Top: push, batches of 3, parts missing at the wrong moment. Bottom: one-piece flow in a cell, pulled by kanban.</p></div>
         <div style="display:flex;gap:8px"><button class="sbtn" data-play>Run ▶</button><button class="sbtn ghost" data-reset>Reset</button></div></div>
-      <div class="line-scroll"><canvas class="flow-cv" width="1000" height="420" role="img" aria-label="Animated comparison of work in process piling up under push and staying low under pull"></canvas></div>
+      <div class="line-scroll"><canvas class="flow-cv" width="1000" height="420" role="img" aria-label="Animated comparison of work in process piling up under push and staying low under pull"></canvas></div><p class="swipe-hint" aria-hidden="true">Swipe sideways to see both lines →</p>
       <div class="lab-grid two" style="grid-template-columns:1fr 1fr;margin-top:16px">
         <div class="panel"><h4>Current state · push</h4><div class="readout" style="grid-template-columns:repeat(3,1fr);margin-top:10px">
           <div><b data-a="wip">0</b><span>units of WIP now</span></div><div><b data-a="done">0</b><span>units finished</span></div><div><b data-a="lt">—</b><span>avg. time in system</span></div></div></div>

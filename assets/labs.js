@@ -463,7 +463,7 @@
   const finSim = (root) => {
     const view = h(`<div>
       <div class="panel-head"><div><h4 style="margin:0">Line simulator</h4><p class="sub">A generic powder-coating line. Click any station; move the sliders.</p></div></div>
-      <div class="line-scroll"><svg class="line-svg" role="group" aria-label="Generic finishing line"></svg></div>
+      <div class="line-scroll"><svg class="line-svg" role="group" aria-label="Generic finishing line"></svg></div><p class="swipe-hint" aria-hidden="true">Swipe sideways to see the whole line →</p>
       <div class="calc">
         <div class="panel">
           <div class="slider"><label for="spd">Line speed</label><output data-o="spd"></output><input id="spd" type="range" min="2" max="20" step="0.5" value="8"></div>

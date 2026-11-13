@@ -22,12 +22,13 @@
     });
   };
   walk(h1);
-  $$('.w > span', h1).forEach((s, i) => { s.style.transitionDelay = (0.15 + i * 0.07) + 's'; });
-  $$('.hero .fade-up').forEach((el, i) => { el.style.transitionDelay = (0.45 + i * 0.12) + 's'; });
-  setTimeout(() => {
+  // short delays: the hero copy is the LCP element (on phones CSS skips the animation entirely)
+  $$('.w > span', h1).forEach((s, i) => { s.style.transitionDelay = (0.05 + i * 0.05) + 's'; });
+  $$('.hero .fade-up').forEach((el, i) => { el.style.transitionDelay = (0.15 + i * 0.08) + 's'; });
+  requestAnimationFrame(() => {
     h1.classList.add('in');
     $$('.hero .fade-up').forEach((el) => el.classList.add('in'));
-  }, 60);
+  });
 
   /* ---------- nav + progress ---------- */
   const nav = $('nav.top'), bar = $('.progress');
@@ -44,7 +45,11 @@
     }
   };
   addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  requestAnimationFrame(onScroll);   // first read after the first layout, not during it
+
+  /* decorative CSS animations (card previews, marquee, network lines, status ping) only run while on screen */
+  const aio = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle('paused', !e.isIntersecting)));
+  $$('.lab-card .pv, svg[data-nn], .marquee, .hero, .scroll-cue').forEach((el) => { el.classList.add('paused'); aio.observe(el); });
 
   /* ---------- reveal on scroll ---------- */
   const io = new IntersectionObserver((entries) => {
@@ -105,16 +110,17 @@
       const r = 1 + hot * 1.6;
       ctx.fillRect(p.x - r / 2, p.y - r / 2, r, r);
     }
-    if (heroVisible && !reduced) raf = requestAnimationFrame(draw);
+    if (live()) raf = requestAnimationFrame(draw);
   };
+  // phones / touch / reduced motion: draw the field once, no animation loop (saves seconds of CPU on mobile)
+  const still = reduced || matchMedia('(max-width: 700px), (pointer: coarse)').matches;
+  const live = () => heroVisible && !still && !document.hidden;
+  const restart = () => { cancelAnimationFrame(raf); if (live()) raf = requestAnimationFrame(draw); };
   build(); draw(0);
-  addEventListener('resize', () => { build(); if (reduced) draw(0); });
-  addEventListener('pointermove', (e) => { const r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; }, { passive: true });
-  new IntersectionObserver(([e]) => {
-    heroVisible = e.isIntersecting;
-    cancelAnimationFrame(raf);
-    if (heroVisible && !reduced) raf = requestAnimationFrame(draw);
-  }).observe(cv);
+  addEventListener('resize', () => { build(); if (still) draw(0); });
+  if (!still) addEventListener('pointermove', (e) => { const r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; }, { passive: true });
+  new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; restart(); }).observe(cv);
+  document.addEventListener('visibilitychange', restart);
 
   /* ---------- lite YouTube embeds ---------- */
   $$('.yt[data-yt]').forEach((box) => {
@@ -135,6 +141,18 @@
     });
     box.appendChild(b);
   });
+
+  /* "Watch me present" in the hero: scroll to the speech and start it (the click is the user gesture) */
+  $$('[data-play-speech]').forEach((a) => a.addEventListener('click', (e) => {
+    const box = document.getElementById('speech');
+    if (!box) return;
+    e.preventDefault();
+    box.classList.add('in');
+    box.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+    const play = box.querySelector('.yt button');
+    if (play) play.click();
+    history.replaceState(null, '', '#speech');
+  }));
 
   /* ---------- research visuals ---------- */
   const NS = 'http://www.w3.org/2000/svg';

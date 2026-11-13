@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add('js')</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maxi Gomez Montero — Manufacturing Engineer & AI Builder</title>
 <meta name="description" content="Manufacturing engineer who leads industrial equipment projects from sketch to start-up and builds AI software that saves engineering teams hundreds of hours. Toronto/GTA · Canadian PR · available January 2027.">
@@ -12,13 +13,15 @@
 <meta property="og:image" content="https://maxgomezmontero.github.io/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Manufacturing engineer. AI builder. Same person. — Maxi Gomez Montero, Toronto/GTA, Canadian PR, available January 2027">
+<meta property="og:site_name" content="Maxi Gomez Montero">
+<link rel="canonical" href="https://maxgomezmontero.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a0a0b">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ff2b1c'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css?v=20261113">
 </head>
 <body>
 <a class="skip" href="#hire">Skip to content</a>
@@ -37,8 +40,8 @@
       <a href="#contact">Contact</a>
     </div>
     <div class="cvs">
-      <a class="chip-btn" href="Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener" aria-label="Manufacturing résumé (PDF)">CV<span class="long">&nbsp;· Manufacturing</span><span class="short">&nbsp;Mfg</span> ↓</a>
-      <a class="chip-btn" href="Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener" aria-label="Applied AI résumé (PDF)">CV<span class="long">&nbsp;· Applied AI</span><span class="short">&nbsp;AI</span> ↓</a>
+      <a class="chip-btn" href="Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Manufacturing</span><span class="short">&nbsp;Mfg</span><span class="sr-only"> résumé (PDF)</span> ↓</a>
+      <a class="chip-btn" href="Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Applied AI</span><span class="short">&nbsp;AI</span><span class="sr-only"> résumé (PDF)</span> ↓</a>
     </div>
   </div>
 </nav>
@@ -48,17 +51,21 @@
   <div class="wrap">
     <div class="meta fade-up">
       <span class="label">Manufacturing Engineering <span class="red">×</span> Applied AI</span>
-      <span class="label">43.65° N · 79.38° W — Toronto / GTA</span>
+      <span class="label coords">43.65° N · 79.38° W — Toronto / GTA</span>
     </div>
     <h1 id="headline">Manufacturing engineer.<br><em>AI builder.</em><br>Same person.</h1>
     <div class="hero-bottom">
-      <p class="lead fade-up">Project Engineer at Dove Equipment / ICAFe: I lead industrial equipment projects from first sketch to start-up — and I build the software that takes the busywork off engineering teams, starting with my own. M.S. in Manufacturing Engineering (4.0 GPA), co-author of a peer-reviewed ML paper, working in English, Spanish and French.</p>
+      <div class="fade-up">
+        <p class="lead">Project Engineer at Dove Equipment / ICAFe. I lead industrial equipment projects from first sketch to start-up, and I build the software that takes the busywork off engineering teams, starting with my own.</p>
+        <ul class="creds" aria-label="Credentials"><li>M.S. Manufacturing Eng. · 4.0 GPA</li><li>Peer-reviewed ML paper</li><li>English · Spanish · French</li></ul>
+      </div>
       <div class="hero-side fade-up">
         <span class="status">Canadian PR · Toronto/GTA · Available January 2027</span>
         <div class="actions">
           <a class="btn primary" href="#work">See the work <span class="arr">→</span></a>
           <a class="btn ghost" href="#hire">Two ways to hire me</a>
         </div>
+        <a class="watch-talk" href="#speech" data-play-speech><span class="pl" aria-hidden="true"></span><span><b>Watch me present</b><small>Graduate commencement speech · 7 min · English</small></span></a>
       </div>
     </div>
   </div>
@@ -159,13 +166,13 @@
 
       <article class="lab-card reveal" id="p-industrial">
         <div class="pv" aria-hidden="true">
-          <img class="pv-draw" src="img/drawings/paint-line-layout.webp" alt="" loading="lazy">
+          <img class="pv-draw" src="img/drawings/paint-line-layout-sm.webp" alt="" loading="lazy" decoding="async">
         </div>
         <div class="body">
-          <div class="top"><span class="label">Track A · Project engineering · Jan 2025 – present</span><span class="badge-data real">Lab: 3D from real drawings</span></div>
+          <div class="top"><span class="label">Track A · Project engineering · Jan 2025 – present (intern Jan–May 2025, project engineer since Jun 2025)</span><span class="badge-data real">Lab: 3D from real drawings</span></div>
           <h3>Industrial equipment projects, sketch to start-up</h3>
           <dl class="facts">
-            <div><dt>My role</dt><dd>Project Engineer at Dove Equipment / ICAFe (engineering intern Jan – May 2025); engineering lead on 54 opportunities.</dd></div>
+            <div><dt>My role</dt><dd>Project Engineer at Dove Equipment / ICAFe (intern Jan–May 2025, project engineer since Jun 2025); engineering lead on 54 opportunities.</dd></div>
             <div><dt>What I did</dt><dd>Process selection, airflow and thermal sizing, layouts and specs for booths, ovens, air make-up units, washers and conveyors; then vendors, installers and start-up on site.</dd></div>
             <div><dt>Result</dt><dd><b>USD 21M quoted</b>; <b>10 of 23</b> decided projects won (USD 4.85M); 5+ installations and start-ups, including a multi-booth paint line for an EV manufacturer.</dd></div>
           </dl>
@@ -283,10 +290,10 @@
       <div class="item"><div class="date">Sep 2023</div><div><b>Industrial Engineering degree — National University of Tucumán</b><p>Argentina · Final project: Industry 4.0 WMS/TMS logistics transformation</p></div></div>
     </div>
     <div class="skills reveal" aria-label="Skills">
-      <div><h4>Manufacturing</h4><p>Project engineering, process design, layout planning, lean and time studies, commissioning, CNC, wire-EDM, injection molding, PLCs, SOPs</p></div>
-      <div><h4>Tools</h4><p>AutoCAD, FactoryCAD, Creo, Acumatica ERP, SharePoint, Power BI, Excel</p></div>
-      <div><h4>AI, software &amp; data</h4><p>Python, SQL, LLM integration, AI-assisted development (Claude Code), Electron, React/TypeScript, SQLite, Git; neural networks, regression, Taguchi DOE</p></div>
-      <div><h4>Languages</h4><p>Spanish (native) · English (CELPIP CLB 10) · French (TEF Canada NCLC 7+)</p></div>
+      <div><h3>Manufacturing</h3><p>Project engineering, process design, layout planning, lean and time studies, commissioning, CNC, wire-EDM, injection molding, PLCs, SOPs</p></div>
+      <div><h3>Tools</h3><p>AutoCAD, FactoryCAD, Creo, Acumatica ERP, SharePoint, Power BI, Excel</p></div>
+      <div><h3>AI, software &amp; data</h3><p>Python, SQL, LLM integration, AI-assisted development (Claude Code), Electron, React/TypeScript, SQLite, Git; neural networks, regression, Taguchi DOE</p></div>
+      <div><h3>Languages</h3><p>Spanish (native) · English (CELPIP CLB 10) · French (TEF Canada NCLC 7+)</p></div>
     </div>
   </div>
 </section>
@@ -301,7 +308,7 @@
       </div>
     </div>
 
-    <div class="feature reveal">
+    <div class="feature reveal" id="speech">
       <div class="yt" data-yt="m2OsEzYm8Uo" data-start="1376" data-end="1824" data-title="Graduate commencement speech — Bradley University, Spring 2025"></div>
       <div>
         <span class="label">May 2025 · Bradley University · in English</span>
@@ -314,7 +321,7 @@
     <div class="stage-grid">
       <div class="reveal">
         <div class="yt" data-yt="SDo8r4xjVNw" data-title="Latin American Innovation Rally 2026 — Norte Disruptivo — EMPUJÓN"></div>
-        <div class="vcap"><span class="label">2026 · in Spanish</span><h4>Innovation Rally — “Norte Disruptivo · EMPUJÓN”</h4><p>Latin American Innovation Rally</p></div>
+        <div class="vcap"><span class="label">2026 · in Spanish</span><h4>Innovation Rally — “Norte Disruptivo · EMPUJÓN”</h4><p>A kit that motorises an existing wheelchair with motors recovered from discarded appliances.</p></div>
       </div>
       <div class="reveal">
         <div class="yt" data-yt="h0UK8pPf_hI" data-title="Latin American Innovation Rally 2021 — Innovación Picante"></div>
@@ -322,9 +329,10 @@
       </div>
       <div class="reveal">
         <div class="yt" data-yt="guIcYbjlHuE" data-title="Latin American Innovation Rally 2020 — Innovación Picante"></div>
-        <div class="vcap"><span class="label">2020 · in Spanish</span><h4>Innovation Rally — “Innovación Picante”</h4><p>Latin American Innovation Rally</p></div>
+        <div class="vcap"><span class="label">2020 · in Spanish</span><h4>Innovation Rally — “Innovación Picante”</h4><p>GuideUp: a smart white cane paired with a phone app.</p></div>
       </div>
     </div>
+    <p class="stage-more reveal"><a class="btn" href="projects/beyond-work.html">The speech and all three rally pitches, with what each idea was <span class="arr" aria-hidden="true">→</span></a></p>
   </div>
 </section>
 
@@ -361,8 +369,7 @@
   <div class="lab-note"></div>
 </dialog>
 
-<script src="assets/labs.js"></script>
-<script src="assets/labs-plus.js"></script>
-<script src="assets/main.js"></script>
+<!-- the home page links to the case pages; it does not need the lab code (labs.js / labs-plus.js) -->
+<script src="assets/main.js?v=20261113" defer></script>
 </body>
 </html>

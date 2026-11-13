@@ -55,7 +55,12 @@
       tabsEl.appendChild(b);
     });
     if (tabs.length < 2) tabsEl.hidden = true;
-    show(0);
+    // lab panels use <h4> (they were written for the home-page dialog); on case pages they sit right
+    // under the page h1 (hero demo) or a section h2, so expose them one level below that
+    const level = box.closest('.case-body') ? '3' : '2';
+    const relevel = () => $$('h4:not([aria-level])', body).forEach((x) => x.setAttribute('aria-level', level));
+    new MutationObserver(relevel).observe(body, { childList: true, subtree: true });
+    show(0); relevel();
   };
   // mount each lab only when it scrolls near the viewport (keeps 3D and canvases off until needed)
   let pending = $$('[data-lab-inline]');
@@ -68,6 +73,27 @@
   };
   addEventListener('scroll', check, { passive: true });
   check();
+
+  /* lite YouTube embeds: thumbnail first, iframe only on click (same as main.js on the home page) */
+  $$('.yt[data-yt]').forEach((box) => {
+    const id = box.dataset.yt, title = box.dataset.title || 'Video';
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Play video: ' + title);
+    b.innerHTML = `<img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy"><span class="play"></span>`;
+    b.addEventListener('click', () => {
+      const q = new URLSearchParams({ autoplay: 1, rel: 0, modestbranding: 1 });
+      if (box.dataset.start) q.set('start', box.dataset.start);
+      if (box.dataset.end) q.set('end', box.dataset.end);
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${id}?${q}`;
+      f.title = title;
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      f.allowFullscreen = true;
+      box.replaceChildren(f);
+    });
+    box.appendChild(b);
+  });
 
   /* videos: play muted loops only while visible */
   const vio = new IntersectionObserver((es) => es.forEach((e) => {
