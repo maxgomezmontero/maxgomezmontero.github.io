@@ -983,3 +983,16 @@ a.open { text-decoration: none; }
 .notfound .actions { margin-top: 8px; }
 /* main.js marks decorative areas .paused while they are off screen */
 .paused, .paused *, .paused *::before, .paused *::after { animation-play-state: paused !important; }
+
+/* v9: notes */
+.note-body { padding: 0 32px 96px; max-width: 920px; }
+.note-body .decisions, .note-body .steps { margin: 18px 0 28px; }
+.note-body h2 { margin-top: 44px; }
+.think { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.think a { display: block; border: 1px solid var(--line2); border-radius: 18px; padding: 26px; text-decoration: none; background: var(--bg2); transition: border-color .3s var(--ease), background .3s var(--ease); }
+.think a:hover { border-color: var(--red); background: var(--red-soft); }
+.think h3 { font-size: 22px; letter-spacing: -.02em; margin: 10px 0 8px; line-height: 1.2; }
+.think p { margin: 0; color: var(--muted); font-size: 15px; }
+.think .open { display: inline-block; margin-top: 14px; color: var(--red); font-weight: 600; }
+@media (max-width: 1000px) { .think { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .note-body { padding: 0 20px 72px; } }

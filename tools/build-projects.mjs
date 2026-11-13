@@ -1,6 +1,7 @@
 // Generates the static case-study pages in /projects from the data below.
 // Run:  node tools/build-projects.mjs      (output is plain HTML; the site itself has no build step)
 import { writeFileSync, mkdirSync } from 'node:fs';
+import { NOTES } from './notes-data.mjs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -364,11 +365,74 @@ writeFileSync(join(OUT, 'index.html'), `<!DOCTYPE html>
 <body><p><a href="../index.html#work">See all projects →</a></p></body>
 </html>
 `);
+// "How I think" notes -> /notes/<slug>.html
+const NOUT = join(ROOT, 'notes');
+mkdirSync(NOUT, { recursive: true });
+const byslug = Object.fromEntries(P.map((p) => [p.slug, p]));
+NOTES.forEach((n, i) => {
+  const prev = NOTES[(i - 1 + NOTES.length) % NOTES.length], next = NOTES[(i + 1) % NOTES.length];
+  const rel = (n.related || []).filter(([s]) => byslug[s]).map(([s, label]) => `<a href="../projects/${s}.html">${label} →</a>`).join('');
+  const html = `<!DOCTYPE html>
+<html lang="en" data-base="../">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${n.title} — Maxi Gomez Montero</title>
+<meta name="description" content="${n.desc}">
+<meta property="og:title" content="${n.title} — Maxi Gomez Montero">
+<meta property="og:description" content="${n.desc}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="${SITE}notes/${n.slug}.html">
+<meta property="og:image" content="${SITE}assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Manufacturing engineer. AI builder. Same person. — Maxi Gomez Montero, Toronto/GTA">
+<link rel="canonical" href="${SITE}notes/${n.slug}.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ff2b1c'/></svg>">
+<link rel="preload" href="../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/style.css?v=${V}">
+</head>
+<body class="case note">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+${nav}
+<main id="main">
+<header class="case-hero wrap">
+  <a class="back" href="../index.html#think">← How I think</a>
+  <span class="label red">Note · ${n.kicker}</span>
+  <h1>${n.title}</h1>
+  <p class="case-lead">${n.lead}</p>
+</header>
+<article class="note-body wrap case-body">${n.body}
+  ${rel ? `<p class="case-links">${rel}</p>` : ''}
+</article>
+<nav class="case-next wrap" aria-label="More notes">
+  <a href="${prev.slug}.html"><span class="label">← Previous note</span><b>${prev.title}</b></a>
+  <a class="nx" href="${next.slug}.html"><span class="label">Next note →</span><b>${next.title}</b></a>
+</nav>
+</main>
+<footer class="case-foot wrap">
+  <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR · available January 2027</p>
+  <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+</footer>
+<script src="../assets/case.js?v=${V}" defer></script>
+</body>
+</html>
+`;
+  writeFileSync(join(NOUT, `${n.slug}.html`), html);
+  console.log('wrote note', n.slug);
+});
+writeFileSync(join(NOUT, 'index.html'), `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Notes — Maxi Gomez Montero</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=../index.html#think"></head><body><p><a href="../index.html#think">How I think →</a></p></body></html>
+`);
 // sitemap: home + every public case page (hidden pages such as PLANTA are never listed)
 const today = new Date().toISOString().slice(0, 10);
 writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${[SITE, ...P.map((p) => `${SITE}projects/${p.slug}.html`)].map((u) => `  <url><loc>${u}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+${[SITE, ...P.map((p) => `${SITE}projects/${p.slug}.html`), ...NOTES.map((n) => `${SITE}notes/${n.slug}.html`)].map((u) => `  <url><loc>${u}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
 </urlset>
 `);
 console.log('wrote projects.json, projects/index.html, sitemap.xml');

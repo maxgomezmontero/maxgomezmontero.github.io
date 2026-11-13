@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where AI belongs in a plant — and where it doesn’t — Maxi Gomez Montero</title>
+<meta name="description" content="Rules decide, the LLM writes, a human approves: how I split the work between deterministic logic, language models and people in industrial workflows.">
+<meta property="og:title" content="Where AI belongs in a plant — and where it doesn’t — Maxi Gomez Montero">
+<meta property="og:description" content="Rules decide, the LLM writes, a human approves: how I split the work between deterministic logic, language models and people in industrial workflows.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://maxgomezmontero.github.io/notes/where-ai-belongs.html">
+<meta property="og:image" content="https://maxgomezmontero.github.io/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Manufacturing engineer. AI builder. Same person. — Maxi Gomez Montero, Toronto/GTA">
+<link rel="canonical" href="https://maxgomezmontero.github.io/notes/where-ai-belongs.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ff2b1c'/></svg>">
+<link rel="preload" href="../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/style.css?v=20261113">
+</head>
+<body class="case note">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+<nav class="top" aria-label="Main"><div class="wrap">
+  <a class="brand" href="../index.html"><i></i>Maxi Gomez Montero</a>
+  <div class="navlinks"><a href="../index.html#work">All work</a><a href="../index.html#research">Research</a><a href="../index.html#experience">Experience</a><a href="../index.html#contact">Contact</a></div>
+  <div class="cvs"><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Manufacturing</span><span class="short">&nbsp;Mfg</span><span class="sr-only"> résumé (PDF)</span> ↓</a><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Applied AI</span><span class="short">&nbsp;AI</span><span class="sr-only"> résumé (PDF)</span> ↓</a></div>
+</div></nav>
+<main id="main">
+<header class="case-hero wrap">
+  <a class="back" href="../index.html#think">← How I think</a>
+  <span class="label red">Note · AI on the plant floor</span>
+  <h1>Where AI belongs in a plant — and where it doesn’t</h1>
+  <p class="case-lead">A plant runs on decisions that someone must be able to trace: which job an email belongs to, whether a drawing can be released, what goes into the ERP. That shapes where I let AI in.</p>
+</header>
+<article class="note-body wrap case-body">
+<p>When I started automating my own project-engineering work, the temptation was obvious: give every email and every drawing to a language model and let it sort things out. I didn’t, and the reason is not that LLMs are bad. It’s that different parts of the job carry very different costs when they go wrong.</p>
+<h2>Three kinds of work</h2>
+<div class="decisions">
+  <div><span class="why">Rules</span><h3>Decisions with a cost</h3><p>Filing an email to the wrong project, releasing a drawing with the wrong hook load, writing the wrong date into the ERP. These need logic I can read, test and explain in one line.</p></div>
+  <div><span class="why">LLM</span><h3>Messy language a person will read</h3><p>Summarising a long thread into one factual line, drafting a note, pulling the gist out of a vendor email. Here an LLM is excellent, and a human reads the result anyway.</p></div>
+  <div><span class="why">Human</span><h3>Writes that are hard to undo</h3><p>Anything that changes a system of record. The tool proposes; I approve. Every write is re-read and verified afterwards.</p></div>
+  <div><span class="why">Measure</span><h3>Before moving the line</h3><p>A task moves from “human approves” to “automatic” only after it has been measured against decisions already made by hand.</p></div>
+</div>
+<h2>What that looks like in practice</h2>
+<p>In <a href="../projects/projecttracker.html">ProjectTracker</a>, emails are matched to projects with 9 weighted evidence signals (a project number in the subject counts for much more than a client’s name), 13 deterministic detectors catch milestones like an accepted order or a changed ship date, and layout drawings are checked against 44 criteria. The LLM only writes a ≤160-character summary of each thread. It never sets an ID, a status or a decision. Nothing reaches the ERP without my click.</p>
+<h2>My rule of thumb</h2>
+<ul>
+  <li><b>If the logic can be written down and a wrong answer is expensive, write the rule.</b> It’s cheaper to test, and you can explain it to a manager.</li>
+  <li><b>If the input is messy language and a person will read the output, use the LLM.</b></li>
+  <li><b>If the action is hard to undo, keep a human in the loop</b> — and make approving fast (one keystroke), or people will route around it.</li>
+  <li><b>Let the model decide only where you have measured it</b> and its mistakes are cheap and reversible.</li>
+</ul>
+<p>None of this is anti-AI. It’s the same thinking any process engineer applies to a new machine on the line: put it where it’s strong, guard it where it’s weak, and measure before you trust it.</p>
+  <p class="case-links"><a href="../projects/projecttracker.html">ProjectTracker case study →</a></p>
+</article>
+<nav class="case-next wrap" aria-label="More notes">
+  <a href="ai-meets-hardware.html"><span class="label">← Previous note</span><b>AI meets hardware</b></a>
+  <a class="nx" href="measure-against-past-decisions.html"><span class="label">Next note →</span><b>Measure AI against your own past decisions</b></a>
+</nav>
+</main>
+<footer class="case-foot wrap">
+  <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR · available January 2027</p>
+  <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+</footer>
+<script src="../assets/case.js?v=20261113" defer></script>
+</body>
+</html>
