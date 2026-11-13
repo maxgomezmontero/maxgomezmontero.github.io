@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'projects');
 const SITE = 'https://maxgomezmontero.github.io/';
-const V = '20261113j';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
+const V = '20261113k';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
 mkdirSync(OUT, { recursive: true });
 
 const lab = (key, tabs) => `<div class="lab-inline" data-lab-inline="${key}"${tabs ? ` data-tabs="${tabs}"` : ''}><p class="il-hint">Loading the interactive demo…</p></div>`;
@@ -39,8 +39,8 @@ const ALL = [
     slug: 'projecttracker', cta: ['../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf', 'Résumé · Applied AI (PDF)'], code: 'https://github.com/maxgomezmontero/projecttracker-core', track: 'Applied AI · project engineering', short: 'ProjectTracker',
     title: 'ProjectTracker',
     desc: 'The visual command center I run my projects from every day: project board, Today digest, a timeline per problem, 180-day schedule and flow maps, with rules-first email and ERP automation built in.',
-    lead: 'The visual command center I run my projects from every day. A board for every job, a digest of what changed, a timeline of each problem, a 180-day schedule and a flow map of what is holding each project — with the email, milestone and drawing automation built in. I built it for my own job as a project engineer.',
-    meta: [['Role', 'Sole designer &amp; developer'], ['Team', 'Me, building with AI coding agents (Claude Code)'], ['When', 'Jun 2026 – present'], ['Stack', 'Electron · JavaScript · Outlook · Acumatica ERP · SharePoint'], ['Status', 'In daily use']],
+    lead: 'The visual command center I run my projects from every day. A board for every job, a digest of what changed, a timeline of each problem, a 180-day schedule and a flow map of what is holding each project — with the email, milestone and drawing automation built in. I built it on my own, for my own job as a project engineer: when the work needs a tool, I build it.',
+    meta: [['Role', 'Sole designer &amp; developer'], ['Built for', 'My own daily work as a project engineer'], ['When', 'Jun 2026 – present'], ['Stack', 'Electron · JavaScript · Outlook · Acumatica ERP · SharePoint'], ['Status', 'In daily use']],
     hero: `<div class="frame light"><video muted loop playsinline preload="none" data-loop data-src="${T}loop-story.mp4" poster="${T}loop-story-poster.webp" aria-label="ProjectTracker: the project board, then one project opened on its Story timeline" width="1280" height="800"></video></div>`,
     heroCap: 'Board → open a project → its Story: one lane per problem, colour = who has the ball. Recorded in the app running on fictional sample data; the real tool and its data are private.',
     tldr: [
@@ -66,7 +66,7 @@ const ALL = [
         ])}`],
       ['context', 'Context', `<p>As a project engineer I lead the engineering on <b>54 opportunities (USD 21M quoted)</b>. The information for each one is spread across Outlook threads, the Acumatica ERP and SharePoint folders full of layouts, vendor drawings and quotes. Keeping the ERP current and catching mismatches between documents was manual, slow and easy to get wrong.</p>
         <p>Constraints I designed around: mail and ERP are read-only unless I approve a change, nothing may be written silently, and every decision the tool makes has to be explainable to me in one line.</p>`],
-      ['role', 'My role', `<div class="role-box"><p><b>Everything, end to end.</b> I scoped the problem from my own workload, designed the matching rules and detectors, built the desktop app with AI coding agents, wired it to Outlook, the ERP and SharePoint, and measured it against my own past decisions.</p></div>`],
+      ['role', 'My role', `<div class="role-box"><p><b>Everything, end to end.</b> I scoped the problem from my own workload, designed the matching rules and detectors, built the desktop app, wired it to Outlook, the ERP and SharePoint, and measured it against my own past decisions.</p></div>`],
       ['approach', 'How the automation works', steps([
         '<b>Ingest.</b> Mail is exported read-only every 2 hours; the ERP is refreshed read-only once a day; project folders and drawings are read from SharePoint.',
         '<b>Match.</b> Each email is scored against every project with 9 evidence signals — project number in the subject (0.97), ERP opportunity ID (0.90), known thread (0.88) … client name in the subject (0.55) — plus 0.12 for each extra kind of evidence. Below 0.45 it is ignored.',
@@ -217,7 +217,7 @@ const ALL = [
     title: 'Restaurant accounting &amp; analytics app',
     desc: 'A Windows desktop app that unifies POS PDFs, three delivery portals and paper receipts into payroll, reconciliation and menu margins. In daily use since Oct 2026.',
     lead: 'A Windows desktop app that turns a restaurant’s scattered sales data — POS ticket PDFs, three delivery portals and paper receipts — into payroll, cash reconciliation, monthly close and menu margins.',
-    meta: [['Role', 'Designer &amp; developer'], ['Team', 'Me, building with AI coding agents'], ['When', 'Aug 2026 – present'], ['Stack', 'Electron · React · TypeScript · SQLite · OCR'], ['Status', 'In daily use since Oct 2026']],
+    meta: [['Role', 'Designer &amp; developer'], ['Built for', 'A restaurant’s owner and accountant'], ['When', 'Aug 2026 – present'], ['Stack', 'Electron · React · TypeScript · SQLite · OCR'], ['Status', 'In daily use since Oct 2026']],
     hero: lab('restaurant', 'Unify sales'),
     heroCap: 'Import five sample sources into one ledger. Invented menu and orders; the restaurant’s data is private.',
     tldr: [
@@ -339,7 +339,7 @@ const ALL = [
           <li><b>Tests that enforce the teaching.</b> Besides unit tests, the suite checks that no question asks for something the learner hasn’t been taught yet, that every skill is evidenced by at least two items, and that episodes mix item types.</li>
           <li><b>Offline-first.</b> Progress is saved locally with export/import and versioned save migrations; it runs fully without a network.</li>
           <li><b>Delivery.</b> Windows desktop build with Electron, a student edition without teacher tools, and SCORM 1.2 / cmi5 export for school learning platforms.</li>
-          <li><b>Built with AI coding agents</b> — the same way I build my other tools — with a headless capture pipeline that records the footage on this page frame by frame.</li>
+          <li><b>Headless capture pipeline</b> that records the footage on this page frame by frame.</li>
         </ul>`],
       ['scale', 'By the numbers', results([['68', 'interactive 3D simulators'], ['93', 'courses · 321 lessons'], ['4,242', 'assessment items'], ['~2,700', 'automated test cases']])],
       ['learning', 'Learning design', `<ul><li><b>Mastery gating at 80%</b> with varied retries, spaced review of what you missed, and an explanation on every wrong answer.</li><li><b>Safety is never optional:</b> bypassing an interlock or skipping lockout/tagout is a serious violation.</li><li><b>Your country, your codes, your units:</b> United States, Canada, Mexico and Argentina; SI and imperial side by side. English text with full Spanish, and a glossary of 916 terms in English, Spanish and French.</li></ul>`],

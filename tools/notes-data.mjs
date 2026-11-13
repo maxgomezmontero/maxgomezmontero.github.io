@@ -89,7 +89,7 @@ export const NOTES = [
   <div><span class="why">Research</span><h3>Quality, predicted while cutting</h3><p>In our <a href="../projects/wire-edm-research.html">peer-reviewed study</a>, a neural network predicts wire-EDM surface roughness from 12 features of the machine controller’s own voltage, current and feed-rate signals — so a part can be judged during the cut instead of measured afterwards.</p></div>
   <div><span class="why">Work</span><h3>Equipment drawings, checked before steel is cut</h3><p>My drawing checks compare layouts against quotes and vendor drawings — hook loads, ceiling heights, electrical scope — before a booth or an oven is fabricated. A mismatch caught on paper is cheap; caught on site, it isn’t.</p></div>
   <div><span class="why">Initiative</span><h3>Recovered motors, new mobility</h3><p>In the <a href="../projects/beyond-work.html">2026 innovation rally</a> our team pitched EMPUJÓN: a kit that motorises a person’s existing wheelchair with motors recovered from discarded appliances, plus sensors and models to check, map and anticipate failures.</p></div>
-  <div><span class="why">Building</span><h3>One engineer, real software</h3><p>With AI coding agents I’ve shipped two production desktop apps used every day. The barrier between “engineer with an idea” and “working tool” has never been lower.</p></div>
+  <div><span class="why">Building</span><h3>One engineer, real software</h3><p>I’ve shipped two desktop apps that are used every day. When the person who does the job builds the tool, the tool fits the job.</p></div>
 </div>
 <h2>What it takes</h2>
 <ul>

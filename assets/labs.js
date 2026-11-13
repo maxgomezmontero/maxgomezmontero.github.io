@@ -247,7 +247,7 @@
             <div><b>1,697</b><span>equipment items indexed from 620 archived projects</span></div>
             <div><b>44</b><span>drawing criteria checked automatically</span></div>
           </div></div>
-        <div class="panel"><h4>Stack</h4><p class="sub">Built with AI-assisted development (Claude Code)</p>
+        <div class="panel"><h4>Stack</h4><p class="sub">Designed and built by me, for my own work</p>
           <div class="stack"><span>Electron</span><span>JavaScript</span><span>Node tests</span><span>PowerShell + Outlook COM</span><span>pdf.js</span><span>DWG → DXF</span><span>three.js</span><span>Acumatica ERP</span><span>SharePoint REST</span></div>
           <p class="sub" style="margin:16px 0 0">Why rules first: every decision is explainable and testable, accuracy is measured against a year of real mail, and the LLM is used where language matters — writing summaries — not where correctness matters.</p></div>
       </div></div>`));
@@ -382,7 +382,7 @@
             <div><b>5</b><span>data sources unified</span></div>
           </div></div>
         <div class="panel"><h4>Stack</h4><p class="sub">Windows desktop app</p>
-          <div class="stack"><span>Electron</span><span>React</span><span>TypeScript</span><span>SQLite</span><span>OCR</span><span>Claude Code</span></div>
+          <div class="stack"><span>Electron</span><span>React</span><span>TypeScript</span><span>SQLite</span><span>OCR</span></div>
           <p class="sub" style="margin:16px 0 0">Client data stays private. This lab uses an invented menu and invented orders.</p></div>
       </div></div>`));
   };
