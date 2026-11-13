@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maximiliano Gomez Montero — Manufacturing & Applied AI Engineer</title>
+<meta name="description" content="Manufacturing engineer building applied AI for industrial workflows. Portfolio of Maximiliano (Maxi) Gomez Montero.">
+<style>
+  :root {
+    --ink: #1c1f23; --muted: #5b636d; --line: #e3e6ea; --bg: #fbfbf9; --card: #ffffff;
+    --accent: #c4501b; --accent-soft: #fbeee7; --tag: #eef1f4;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: "Inter", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; font-size: 16px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+  nav { position: sticky; top: 0; background: rgba(251,251,249,.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); z-index: 10; }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+  nav .brand { font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+  nav .links a { color: var(--muted); margin-left: 22px; font-size: 14px; }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+
+  header { padding: 88px 0 56px; }
+  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+  h1 { font-size: clamp(34px, 5vw, 48px); line-height: 1.12; letter-spacing: -.025em; margin: 0 0 20px; }
+  .lead { font-size: 19px; color: var(--muted); max-width: 680px; margin: 0 0 28px; }
+  .status { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; background: var(--accent-soft); color: #8a3511; padding: 6px 12px; border-radius: 999px; margin-bottom: 28px; }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-block; padding: 10px 18px; border-radius: 8px; font-size: 15px; font-weight: 600; border: 1px solid var(--ink); color: var(--ink); }
+  .btn.primary { background: var(--ink); color: #fff; }
+  .btn:hover { text-decoration: none; opacity: .88; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin: 8px 0 72px; }
+  .stat { background: var(--card); padding: 20px; }
+  .stat b { display: block; font-size: 26px; letter-spacing: -.02em; }
+  .stat span { font-size: 13px; color: var(--muted); }
+
+  section { padding: 0 0 72px; }
+  h2 { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 24px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+
+  .project { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px; margin-bottom: 20px; }
+  .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .project h3 { font-size: 21px; letter-spacing: -.015em; margin: 0; }
+  .project .when { font-size: 13px; color: var(--muted); white-space: nowrap; }
+  .project .kicker { color: var(--muted); margin: 4px 0 18px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid3 h4 { font-size: 12px; text-transform: uppercase; letter-spacing: .07em; color: var(--accent); margin: 0 0 6px; }
+  .grid3 p, .grid3 ul { margin: 0; font-size: 15px; }
+  .grid3 ul { padding-left: 18px; }
+  .tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tags span { font-size: 12px; background: var(--tag); padding: 3px 9px; border-radius: 6px; color: #3b434c; }
+  .note { font-size: 13px; color: var(--muted); margin-top: 14px; font-style: italic; }
+
+  .pub { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .pub:last-child { border-bottom: 0; }
+  .pub .venue { font-style: italic; }
+  .pub .badge { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 2px 8px; border-radius: 5px; margin-right: 8px; }
+  .badge.pub-ok { background: #e6f2ea; color: #23633a; }
+  .badge.review { background: #fff4d6; color: #7a5a00; }
+
+  .timeline .item { display: grid; grid-template-columns: 170px 1fr; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .timeline .item:last-child { border-bottom: 0; }
+  .timeline .date { color: var(--muted); font-size: 14px; }
+  .timeline b { display: block; }
+  .timeline p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+
+  .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 32px; }
+  .skills h4 { margin: 0 0 4px; font-size: 15px; }
+  .skills p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0 56px; }
+  footer h2 { border: 0; padding: 0; }
+  .contact { font-size: 20px; }
+  .contact a { margin-right: 24px; }
+  .small { color: var(--muted); font-size: 13px; margin-top: 28px; }
+
+  @media (max-width: 720px) {
+    nav .links { display: none; }
+    header { padding: 56px 0 40px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .grid3, .skills { grid-template-columns: 1fr; }
+    .timeline .item { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#">Maxi Gomez Montero</a>
+    <div class="links">
+      <a href="#work">Work</a>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Manufacturing Engineering × Applied AI</p>
+  <h1>I build tools that make industrial engineering teams faster.</h1>
+  <p class="lead">I'm Maximiliano (Maxi) Gomez Montero, a manufacturing engineer who designs industrial finishing systems for EV and heavy-equipment plants and builds AI-assisted software for the people who run them. M.S. in Manufacturing Engineering (GPA 4.0), published ML researcher, trilingual (English, Spanish, French).</p>
+  <div class="status">Canadian Permanent Resident · Toronto/GTA · Available January 2027</div>
+  <div class="actions">
+    <a class="btn primary" href="#work">See my work</a>
+    <a class="btn" href="Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank">Résumé — Applied AI</a>
+    <a class="btn" href="Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank">Résumé — Manufacturing</a>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stat"><b>54</b><span>finishing-system opportunities led (USD 21M quoted)</span></div>
+  <div class="stat"><b>2</b><span>production desktop apps shipped and in daily use</span></div>
+  <div class="stat"><b>~340 h</b><span>per year saved by my workflow tool</span></div>
+  <div class="stat"><b>1</b><span>peer-reviewed ML paper (Springer), 1 under review</span></div>
+</div>
+
+<section id="work">
+  <h2>Selected work</h2>
+
+  <article class="project">
+    <div class="project-head">
+      <h3>ProjectTracker — engineering workflow automation</h3>
+      <span class="when">Jun 2026 – present · Dove Equipment / ICAFe</span>
+    </div>
+    <p class="kicker">A desktop app that runs a project engineer's day: email, ERP, drawings and deadlines in one place.</p>
+    <div class="grid3">
+      <div>
+        <h4>Problem</h4>
+        <p>Managing ~20–25 live projects meant hours each week matching emails to jobs, updating the ERP by hand and catching drawing errors late.</p>
+      </div>
+      <div>
+        <h4>What I built</h4>
+        <ul>
+          <li>Integration with Outlook, Acumatica ERP and SharePoint</li>
+          <li>Email-to-project matching and milestone detection (rules + LLM reading of threads) across ~145 emails/week</li>
+          <li>Automated drawing QA (44-criteria check) and drawing-vs-quote cross-checks</li>
+          <li>Index of 1,697 equipment items from 620 archived projects</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Results</h4>
+        <ul>
+          <li>94% agreement with past manual decisions</li>
+          <li>Caught real errors before release (e.g. 350 vs 500 lb hook load)</li>
+          <li>~7.3 h/week saved (~340 h/year)</li>
+          <li>Every ERP write is human-approved</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tags"><span>Electron</span><span>Node.js</span><span>LLM integration</span><span>Claude Code</span><span>ERP / SharePoint APIs</span><span>Human-in-the-loop</span></div>
+    <p class="note">Internal company tool: source code and real project data are confidential. Screenshots use sample data.</p>
+  </article>
+
+  <article class="project">
+    <div class="project-head">
+      <h3>Restaurant accounting & analytics system</h3>
+      <span class="when">Aug 2026 – present · Independent project</span>
+    </div>
+    <p class="kicker">A Windows app that turns a restaurant's scattered sales data into payroll, reconciliation and menu decisions.</p>
+    <div class="grid3">
+      <div>
+        <h4>Problem</h4>
+        <p>Sales lived in POS ticket PDFs, three delivery portals and paper receipts, so monthly close and menu costing were slow and manual.</p>
+      </div>
+      <div>
+        <h4>What I built</h4>
+        <ul>
+          <li>Import of POS PDFs and DoorDash / UberEats / GrubHub CSVs</li>
+          <li>Receipt OCR, payroll, cash reconciliation, monthly close</li>
+          <li>Menu analytics: cost per dish, margin by item, trends</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Results</h4>
+        <ul>
+          <li>In use by the restaurant since Oct 2026</li>
+          <li>Excel/PDF reporting</li>
+          <li>Auto-updating releases with cloud sync</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tags"><span>Electron</span><span>React</span><span>TypeScript</span><span>SQLite</span><span>OCR</span><span>Claude Code</span></div>
+  </article>
+
+  <article class="project">
+    <div class="project-head">
+      <h3>Industrial finishing systems engineering</h3>
+      <span class="when">Jan 2025 – present · Dove Equipment / ICAFe</span>
+    </div>
+    <p class="kicker">Paint and powder booths, cure ovens, air make-up units, wash systems and conveyors for EV, heavy-equipment and building-products plants.</p>
+    <div class="grid3">
+      <div>
+        <h4>Scope</h4>
+        <p>Engineering lead from first sketch to start-up: process selection, airflow and thermal sizing, layouts, equipment specs and quotes.</p>
+      </div>
+      <div>
+        <h4>How</h4>
+        <ul>
+          <li>Coordinate customers, sales, installers and OEM vendors (GFS, Rohner, Nordson, Clemco)</li>
+          <li>Review drawings and submittals for scope and capacity gaps</li>
+          <li>On-site installations, burner and line start-ups</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Results</h4>
+        <ul>
+          <li>54 opportunities, USD 21M quoted</li>
+          <li>10 of 23 decided projects won (USD 4.85M)</li>
+          <li>5+ installations, incl. a multi-booth paint line for an EV maker</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tags"><span>AutoCAD</span><span>FactoryCAD</span><span>Process design</span><span>Commissioning</span><span>Vendor management</span></div>
+  </article>
+
+  <article class="project">
+    <div class="project-head">
+      <h3>Lean implementation in paint-system assembly</h3>
+      <span class="when">2024 · Bradley University</span>
+    </div>
+    <p class="kicker">Mapped the assembly workflow and its waste (muda), redesigned the layout and designed a dedicated work cell for fluid-system builds.</p>
+    <div class="tags"><span>Lean</span><span>Layout planning</span><span>Process mapping</span></div>
+  </article>
+
+  <article class="project">
+    <div class="project-head">
+      <h3>Industry 4.0 logistics transformation</h3>
+      <span class="when">2023 · National University of Tucumán</span>
+    </div>
+    <p class="kicker">Industrial Engineering final project: led a WMS/TMS digital transformation of order-to-delivery workflows, raising perfect deliveries by 15%.</p>
+    <div class="tags"><span>WMS / TMS</span><span>Process reengineering</span></div>
+  </article>
+</section>
+
+<section id="research">
+  <h2>Research</h2>
+  <div class="pub">
+    <span class="badge pub-ok">Published</span>
+    <b>Development of an ANN-based online surface roughness prediction (ANN-OSRP) system in wire electrical discharge machining processes.</b><br>
+    Chen, J., <b>Gomez Montero, M. A.</b>, &amp; Yu, S. (2026). <span class="venue">Neural Computing and Applications</span>, 38(4), 87. Springer.<br>
+    <span style="color:var(--muted)">A neural network that predicts wire-EDM surface roughness in real time from three machine-controller signals, with ~95.8% average accuracy, after Taguchi optimization of cutting parameters.</span>
+  </div>
+  <div class="pub">
+    <span class="badge review">Under review</span>
+    <b>Vibration-based prediction of surface roughness and perpendicularity in CNC milling.</b><br>
+    <span class="venue">International Journal on Interactive Design and Manufacturing (IJIDeM)</span>.<br>
+    <span style="color:var(--muted)">Python ML models that estimate part quality from machine vibration data, so quality can be checked during machining instead of after.</span>
+  </div>
+</section>
+
+<section id="experience">
+  <h2>Experience & education</h2>
+  <div class="timeline">
+    <div class="item"><div class="date">Jun 2025 – present</div><div><b>Project Engineer — Dove Equipment / ICAFe</b><p>East Peoria, IL · Engineering Intern Jan – May 2025</p></div></div>
+    <div class="item"><div class="date">Jan 2024 – May 2025</div><div><b>Graduate Teaching Assistant — Bradley University</b><p>Machining, injection molding and Excel/Power BI labs</p></div></div>
+    <div class="item"><div class="date">Apr – Dec 2023</div><div><b>Logistics Analyst — ABC Distributions</b><p>Tucumán, Argentina · Time studies and digital sales tools</p></div></div>
+    <div class="item"><div class="date">May 2025</div><div><b>M.S. Manufacturing Engineering — Bradley University</b><p>GPA 4.0 · Graduate Commencement Speaker · Marjorie Reynolds Award</p></div></div>
+    <div class="item"><div class="date">Sep 2023</div><div><b>Industrial Engineering — National University of Tucumán</b><p>Argentina</p></div></div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div><h4>AI & software</h4><p>Python, SQL, LLM integration, AI-assisted development (Claude Code), Electron, React/TypeScript, SQLite, Git</p></div>
+    <div><h4>ML & data</h4><p>Neural networks, regression, feature selection, Taguchi DOE, model validation, Power BI, Excel</p></div>
+    <div><h4>Manufacturing</h4><p>Finishing systems, process design, layout planning, lean and time studies, commissioning, CNC, wire-EDM, PLCs</p></div>
+    <div><h4>Languages</h4><p>Spanish (native) · English (CELPIP CLB 10) · French (TEF Canada NCLC 7+)</p></div>
+  </div>
+</section>
+
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p class="contact">
+      <a href="mailto:maxigmontero@gmail.com">maxigmontero@gmail.com</a>
+      <a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank">LinkedIn</a>
+    </p>
+    <p class="small">Also: assistant soccer coach (US Soccer grassroots license) · 1st place, Latin American Innovation Rally 2021 (provincial level).</p>
+  </div>
+</footer>
+
+</body>
+</html>
