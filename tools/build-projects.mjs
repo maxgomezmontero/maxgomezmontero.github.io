@@ -61,6 +61,14 @@ const ALL = [
       ])],
       ['results', 'Results', `${results([['~7.3 h', 'saved per week (~340 h/year)'], ['94%', 'agreement with my past manual decisions'], ['1,697', 'equipment items indexed from 620 projects'], ['44', 'drawing criteria checked automatically']])}
         <p>Errors caught before a drawing was released include an order-number typo, a <b>350 vs 500 lb hook-load</b> mismatch and a ceiling-height mismatch.</p>`],
+      ['evaluation', 'How I evaluated it', `<p>I didn’t trust the tool until it had been measured against real mail and real decisions. Three checks, each answering a different question:</p>
+        ${results([['63% → 95%', 'email-to-project accuracy, first version vs. current'], ['1 / 141', 'approved proposals filed to the wrong project'], ['8,771', 'emails (one year) replayed to benchmark the detectors'], ['94%', 'agreement with my past manual decisions']])}
+        <ul>
+          <li><b>Iterating on real history.</b> Each version of the matching rules was replayed against threads I had already filed by hand. Accuracy went from 63% in the first version to 95%.</li>
+          <li><b>Benchmarking the detectors on a full year.</b> I replayed 8,771 emails through the milestone detectors and checked every hit; for example, order acknowledgements 9/9, new opportunities 12/12 and site-access requests 13/13 were caught.</li>
+          <li><b>Auditing real use.</b> After it went live I audited what I had approved: 1 of 141 approved proposals had been filed to the wrong project.</li>
+        </ul>
+        <p>The method is written up as a note: <a href="../notes/measure-against-past-decisions.html">Measure AI against your own past decisions →</a></p>`],
       ['try', 'Try it', lab('tracker', 'Inbox triage,Board,Drawing QA,How it’s built')],
       ['confidential', 'Confidentiality', '<p class="conf">ProjectTracker is a tool I use at work. Its source code and real project data are private. Everything above runs on invented sample data that mirrors the real logic.</p>'],
     ],

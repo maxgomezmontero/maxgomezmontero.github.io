@@ -44,7 +44,7 @@ export const NOTES = [
   <li><b>Sort the disagreements.</b> Some are tool errors; some reveal that the original decision was inconsistent. Both are useful.</li>
   <li><b>Fix the rules, re-run, repeat.</b> Only then let a task run in shadow mode, and only after that let it act — with a human approving writes.</li>
 </ol>
-<p>For <a href="../projects/projecttracker.html">ProjectTracker</a> that gave me <b>94% agreement with my past manual decisions</b>, and every ERP write still goes through an approval and a read-back.</p>
+<p>For <a href="../projects/projecttracker.html">ProjectTracker</a> that loop took email-to-project accuracy from <b>63% in the first version to 95%</b>, and gave <b>94% agreement with my past manual decisions</b>. I benchmarked the milestone detectors by replaying <b>8,771 emails</b> — a full year of my inbox — and after go-live I audited what I had approved: <b>1 of 141</b> approved proposals had gone to the wrong project. Every ERP write still goes through an approval and a read-back.</p>
 <h2>Not all errors cost the same</h2>
 <p>The same idea runs through my <a href="../projects/wire-edm-research.html">wire-EDM research</a>. Predicting surface roughness is not the goal; deciding whether to accept a part is. So we judged the network on its decisions: accepting a bad part (Type I) is far worse than flagging a good one for re-measurement (Type II). On the test set the network made <b>zero Type I errors</b>.</p>
 <p>In email triage it’s the same: filing a message to the wrong project silently is worse than sending it to a review queue. Good automation is designed around that asymmetry, not around a single accuracy number.</p>
