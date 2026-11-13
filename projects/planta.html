@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PLANTA — a 3D plant simulator for learning industrial engineering — Maxi Gomez Montero</title>
+<meta name="description" content="A side project: a walkable 3D industrial plant with 68 interactive simulators, where you learn industrial engineering by running equipment and troubleshooting faults. Built in TypeScript, React and three.js.">
+<meta property="og:title" content="PLANTA — a 3D plant simulator for learning industrial engineering — Maxi Gomez Montero">
+<meta property="og:description" content="A side project: a walkable 3D industrial plant with 68 interactive simulators, where you learn industrial engineering by running equipment and troubleshooting faults. Built in TypeScript, React and three.js.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://maxgomezmontero.github.io/projects/planta.html">
+<meta property="og:image" content="https://maxgomezmontero.github.io/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Manufacturing engineer. AI builder. Same person. — Maxi Gomez Montero, Toronto/GTA">
+<meta property="og:site_name" content="Maxi Gomez Montero">
+<link rel="canonical" href="https://maxgomezmontero.github.io/projects/planta.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ff2b1c'/></svg>">
+<link rel="preload" href="../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/style.css?v=20261113f">
+</head>
+<body class="case">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+<nav class="top" aria-label="Main"><div class="wrap">
+  <a class="brand" href="../index.html"><i></i>Maxi Gomez Montero</a>
+  <div class="navlinks"><a href="../index.html#work">All work</a><a href="../index.html#research">Research</a><a href="../index.html#experience">Experience</a><a href="../index.html#contact">Contact</a></div>
+  <div class="cvs"><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener"><span class="short">Eng&nbsp;</span>CV<span class="long">&nbsp;· Manufacturing</span><span class="sr-only"> résumé (PDF)</span> ↓</a><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener"><span class="short">AI&nbsp;</span>CV<span class="long">&nbsp;· Applied AI</span><span class="sr-only"> résumé (PDF)</span> ↓</a></div>
+</div></nav>
+<main id="main">
+<header class="case-hero wrap">
+  <a class="back" href="../index.html#work">← All work</a>
+  <span class="label red">Case study · Side project · 3D simulation</span>
+  <h1>PLANTA — a 3D plant simulator for learning industrial engineering</h1>
+  <p class="case-lead">A side project I started to understand real industry more visually: the problems I kept running into day after day on the job, rebuilt as a walkable 3D plant where you run the equipment, chase a fault upstream and learn by troubleshooting. Every plant, company and person in it is fictional.</p>
+  <dl class="meta"><div><dt>Role</dt><dd>Sole designer &amp; developer</dd></div><div><dt>Type</dt><dd>Personal side project</dd></div><div><dt>Stack</dt><dd>TypeScript · React · three.js</dd></div><div><dt>Scale</dt><dd>68 simulators · 93 courses</dd></div><div><dt>Status</dt><dd>In development</dd></div></dl>
+</header>
+<figure class="case-media wrap"><div class="frame"><video controls muted playsinline preload="metadata" src="../img/planta-v2/planta-highlight.mp4" poster="../img/planta-v2/sugar-mill-flyover-poster.webp" aria-label="PLANTA highlight reel"></video></div><figcaption>40-second highlight captured from the current build. No sound. All plants, companies and people are fictional.</figcaption></figure>
+<section class="tldr wrap" aria-label="Summary">
+  <div><h2>Why</h2><p>Every day on the job I met problems school never showed me: why a burner locks out, why parts come out of the oven tacky, why the alarm in one unit starts three units upstream. I wanted to see them, not just read about them.</p></div>
+  <div><h2>What I built</h2><p>Five walkable plants — sugar mill, citrus processing, foundry &amp; heavy manufacturing, car assembly and industrial finishing — with 68 interactive 3D simulators, 93 courses and a teacher mode that plants faults.</p></div>
+  <div><h2>Engineering</h2><p>Strict TypeScript, React and three.js; process and physics models as pure, tested functions; ~2,700 automated tests; every piece of content schema-validated; offline-first; LMS export (SCORM / cmi5).</p></div>
+</section>
+<div class="case-grid wrap">
+  <nav class="toc" aria-label="On this page"><a href="#inside">Inside the simulator</a><a href="#teacher">Teacher mode: plant a fault</a><a href="#built">How it’s built</a><a href="#scale">By the numbers</a><a href="#learning">Learning design</a><a href="#context">Context</a></nav>
+  <div class="case-body">
+    <section id="inside"><h2><span class="num">01</span>Inside the simulator</h2><div class="gallery">
+        <figure><video muted loop playsinline preload="none" data-loop data-src="../img/planta-v2/sugar-mill-flyover.mp4" poster="../img/planta-v2/sugar-mill-flyover-poster.webp" aria-label="Sugar mill flyover: cane yard, milling, boiler house and the rest of the plant."></video><figcaption>Sugar mill flyover: cane yard, milling, boiler house and the rest of the plant.</figcaption></figure>
+        <figure><video muted loop playsinline preload="none" data-loop data-src="../img/planta-v2/control-room-night-shift.mp4" poster="../img/planta-v2/control-room-night-shift-poster.webp" aria-label="Night shift in the control room: live process panels of the whole mill."></video><figcaption>Night shift in the control room: live process panels of the whole mill.</figcaption></figure>
+        <figure><video muted loop playsinline preload="none" data-loop data-src="../img/planta-v2/build-mode-sugar-mill.mp4" poster="../img/planta-v2/build-mode-sugar-mill-poster.webp" aria-label="Build mode: lay out a plant, link the units in order and start it up with a live mass balance."></video><figcaption>Build mode: lay out a plant, link the units in order and start it up with a live mass balance.</figcaption></figure>
+        <figure><video muted loop playsinline preload="none" data-loop data-src="../img/planta-v2/lab-car-assembly-line.mp4" poster="../img/planta-v2/lab-car-assembly-line-poster.webp" aria-label="Car final assembly: stations, takt and the jobs-per-hour board."></video><figcaption>Car final assembly: stations, takt and the jobs-per-hour board.</figcaption></figure>
+        <figure><video muted loop playsinline preload="none" data-loop data-src="../img/planta-v2/lab-sugar-milling-tandem.mp4" poster="../img/planta-v2/lab-sugar-milling-tandem-poster.webp" aria-label="Milling tandem simulator: extraction, imbibition and mill loads."></video><figcaption>Milling tandem simulator: extraction, imbibition and mill loads.</figcaption></figure>
+        <figure><video muted loop playsinline preload="none" data-loop data-src="../img/planta-v2/lab-steel-foundry-melt-shop.mp4" poster="../img/planta-v2/lab-steel-foundry-melt-shop-poster.webp" aria-label="Foundry melt shop simulator."></video><figcaption>Foundry melt shop simulator.</figcaption></figure>
+        </div></section>
+    <section id="teacher"><h2><span class="num">02</span>Teacher mode: plant a fault</h2><div class="decisions"><div><span class="why">How it works</span><h3>The teacher hides the fault</h3><p>Pick a fault from a catalogue grouped by industry — for example “imbibition left low” or “worn shredder hammers” — and hand students a code. Each student troubleshoots from the symptoms alone, and the teacher gets a step-by-step report of what they checked.</p></div><figure style="margin:0"><img src="../img/planta-v2/still-teacher-planted-fault.webp" alt="Teacher screen: choosing a fault to plant in the sugar mill" loading="lazy" width="1280" height="720" style="width:100%;border-radius:14px;border:1px solid var(--line)"></figure></div></section>
+    <section id="built"><h2><span class="num">03</span>How it’s built</h2><ul>
+          <li><b>Content is data.</b> Courses, items and plants are JSON validated by zod schemas in the test suite; adding a course or a plant never touches engine code.</li>
+          <li><b>Simulation layer as pure functions.</b> 76 process and physics modules written as plain TypeScript, with their simplifications stated at the top of each file — testable without any UI.</li>
+          <li><b>Tests that enforce the teaching.</b> Besides unit tests, the suite checks that no question asks for something the learner hasn’t been taught yet, that every skill is evidenced by at least two items, and that episodes mix item types.</li>
+          <li><b>Offline-first.</b> Progress is saved locally with export/import and versioned save migrations; it runs fully without a network.</li>
+          <li><b>Delivery.</b> Windows desktop build with Electron, a student edition without teacher tools, and SCORM 1.2 / cmi5 export for school learning platforms.</li>
+          <li><b>Built with AI coding agents</b> — the same way I build my other tools — with a headless capture pipeline that records the footage on this page frame by frame.</li>
+        </ul></section>
+    <section id="scale"><h2><span class="num">04</span>By the numbers</h2><div class="results"><div><b>68</b><span>interactive 3D simulators</span></div><div><b>93</b><span>courses · 321 lessons</span></div><div><b>4,242</b><span>assessment items</span></div><div><b>~2,700</b><span>automated test cases</span></div></div></section>
+    <section id="learning"><h2><span class="num">05</span>Learning design</h2><ul><li><b>Mastery gating at 80%</b> with varied retries, spaced review of what you missed, and an explanation on every wrong answer.</li><li><b>Safety is never optional:</b> bypassing an interlock or skipping lockout/tagout is a serious violation.</li><li><b>Your country, your codes, your units:</b> United States, Canada, Mexico and Argentina; SI and imperial side by side. English text with full Spanish, and a glossary of 916 terms in English, Spanish and French.</li></ul></section>
+    <section id="context"><h2><span class="num">06</span>Context</h2><p class="conf">A personal side project, built on my own computer in my spare time. It is not affiliated with any employer. Every plant, company and person in it is fictional.</p></section>
+  </div>
+</div>
+<nav class="case-next wrap" aria-label="More projects">
+  <a href="industrial-projects.html"><span class="label">← Previous</span><b>Industrial projects</b></a>
+  <a class="nx" href="lean-2k-assembly.html"><span class="label">Next →</span><b>Lean redesign</b></a>
+</nav>
+</main>
+<footer class="case-foot wrap">
+  <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR · available January 2027</p>
+  <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+</footer>
+<script src="../assets/labs.js?v=20261113f" defer></script>
+<script src="../assets/labs-plus.js?v=20261113f" defer></script>
+<script src="../assets/case.js?v=20261113f" defer></script>
+
+</body>
+</html>

@@ -4,31 +4,8 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
-  /* ---------- headline: split into words ---------- */
-  const h1 = $('#headline');
-  const walk = (node) => {
-    [...node.childNodes].forEach((n) => {
-      if (n.nodeType === 3) {
-        const frag = document.createDocumentFragment();
-        n.textContent.split(/(\s+)/).forEach((part) => {
-          if (!part) return;
-          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
-          const w = document.createElement('span'); w.className = 'w';
-          const i = document.createElement('span'); i.textContent = part;
-          w.appendChild(i); frag.appendChild(w);
-        });
-        n.replaceWith(frag);
-      } else if (n.nodeType === 1) walk(n);
-    });
-  };
-  walk(h1);
-  // short delays: the hero copy is the LCP element (on phones CSS skips the animation entirely)
-  $$('.w > span', h1).forEach((s, i) => { s.style.transitionDelay = (0.05 + i * 0.05) + 's'; });
-  $$('.hero .fade-up').forEach((el, i) => { el.style.transitionDelay = (0.15 + i * 0.08) + 's'; });
-  requestAnimationFrame(() => {
-    h1.classList.add('in');
-    $$('.hero .fade-up').forEach((el) => el.classList.add('in'));
-  });
+  /* ---------- hero: reveal the supporting copy at once (the headline itself never animates) ---------- */
+  $$('.hero .fade-up').forEach((el) => el.classList.add('in'));
 
   /* ---------- nav + progress ---------- */
   const nav = $('nav.top'), bar = $('.progress');

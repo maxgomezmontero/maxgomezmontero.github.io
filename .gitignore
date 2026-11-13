@@ -1,3 +1,16 @@
 .claude/
 img/planta/
-img/planta-v2/
+img/planta-v2/*.webm
+img/planta-v2/*.jpg
+img/planta-v2/*.md
+img/planta-v2/manifest.json
+CLAUDE.md
+img/planta-v2/lab-citrus-pasteurizer-evaporator*
+img/planta-v2/still-car-plant-aerial.webp
+img/planta-v2/still-citrus-plant.webp
+img/planta-v2/still-foundry-melt-shop.webp
+img/planta-v2/still-milling-tandem.webp
+img/planta-v2/still-steel-works.webp
+img/tracker/board.webp
+img/tracker/flow-diagram.webp
+img/tracker/inbox.webp

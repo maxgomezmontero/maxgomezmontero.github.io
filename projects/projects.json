@@ -2,14 +2,20 @@
   {
     "slug": "projecttracker",
     "title": "ProjectTracker",
-    "track": "Applied AI",
-    "desc": "A rules-first desktop co-pilot that files a project engineer’s email, flags milestones, checks drawings and queues ERP updates for approval."
+    "track": "Applied AI · project engineering",
+    "desc": "The visual command center I run my projects from every day: project board, Today digest, a timeline per problem, 180-day schedule and flow maps, with rules-first email and ERP automation built in."
   },
   {
     "slug": "industrial-projects",
     "title": "Industrial equipment projects, sketch to start-up",
     "track": "Manufacturing",
     "desc": "Engineering lead on paint and powder finishing lines for EV, heavy-equipment and building-products plants: 54 opportunities, USD 21M quoted."
+  },
+  {
+    "slug": "planta",
+    "title": "PLANTA — a 3D plant simulator for learning industrial engineering",
+    "track": "Side project · 3D simulation",
+    "desc": "A side project: a walkable 3D industrial plant with 68 interactive simulators, where you learn industrial engineering by running equipment and troubleshooting faults. Built in TypeScript, React and three.js."
   },
   {
     "slug": "lean-2k-assembly",

@@ -541,7 +541,7 @@
         <div><b>54</b><span>opportunities led</span></div>
         <div><b>USD 21M</b><span>quoted</span></div>
         <div><b>10 / 23</b><span>decided projects won (USD 4.85M)</span></div>
-        <div><b>5+</b><span>installations and start-ups supported, incl. a multi-booth paint line for an EV manufacturer</span></div>
+        <div><b>~6</b><span>installations and start-ups managed on site, incl. a multi-booth paint line for an EV manufacturer</span></div>
       </div>
     </div>`);
     root.appendChild(view);
@@ -566,6 +566,10 @@
     ['booth-back-elevation', 'Same booths, colour-coded', 'Booth shell, doors, fans and ductwork separated by layer so each trade reads its own scope.'],
     ['blast-system-layout', 'Blast booth + media recovery', 'Plan view of an abrasive-blast system with a media-recovery floor, dust collection and utility drops.'],
     ['paint-system-elevation', 'Paint system — elevation', 'Enclosed-track conveyor, booth and air make-up unit against deck and truss heights, with stack clearances.'],
+    ['powder-line-plan', 'Powder line — blast, powder, cure', 'A full powder-coating line in plan: blast booth, powder booth and cure oven in sequence on the building grid, with every utility drop tagged.'],
+    ['paint-booth-elevations', 'Paint booth — side & front elevations', 'Conveyor centerline, hook-slot width and height, part opening, working and chamber depths, duct termination and roof heights.'],
+    ['powder-booth-section', 'Powder booth — section A-A', 'Inside the enclosure: compressed and breathing-air piping, powder hoppers, filter regulators and what is “by others”.'],
+    ['mix-room-paint-system', 'Mix room + paint booth + AMU', 'A complete small paint system: mix room, paint booth, air make-up unit and a looping conveyor fitted between gas tanks, storage and an exterior wall.'],
   ];
   const finDrawings = (root) => {
     const view = h(`<div>

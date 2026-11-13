@@ -101,5 +101,7 @@
     if (e.isIntersecting) { if (v.dataset.src && !v.src) v.src = v.dataset.src; v.play && v.play().catch(() => {}); }
     else v.pause && v.pause();
   }), { threshold: 0.25 });
+  // reduced motion: no autoplay; show the poster with controls so the loop can still be played on request
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) $$('video[data-loop]').forEach((v) => vio.observe(v));
+  else $$('video[data-loop]').forEach((v) => { v.controls = true; v.src = v.dataset.src; });
 })();

@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'projects');
 const SITE = 'https://maxgomezmontero.github.io/';
-const V = '20261113c';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
+const V = '20261113f';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
 mkdirSync(OUT, { recursive: true });
 
 const lab = (key, tabs) => `<div class="lab-inline" data-lab-inline="${key}"${tabs ? ` data-tabs="${tabs}"` : ''}><p class="il-hint">Loading the interactive demo…</p></div>`;
@@ -20,32 +20,54 @@ const video = (src, poster, cap, loop = true) => `<figure>${loop
   : `<video controls playsinline preload="none" src="../img/planta/${src}" poster="../img/planta/${poster}" aria-label="${cap}"></video>`}<figcaption>${cap}</figcaption></figure>`;
 
 // "Beyond work" helpers: lite YouTube embeds (thumbnail first, see case.js), stills and muted loops from img/beyond/
+const vp2 = (name, cap) => `<figure><video muted loop playsinline preload="none" data-loop data-src="../img/planta-v2/${name}.mp4" poster="../img/planta-v2/${name}-poster.webp" aria-label="${cap}"></video><figcaption>${cap}</figcaption></figure>`;
 const yt = (id, title, extra = '') => `<div class="yt" data-yt="${id}" data-title="${title}"${extra}></div>`;
 const still = (src, alt, cap) => `<figure><img src="../img/beyond/${src}" alt="${alt}" loading="lazy" width="960" height="540"><figcaption>${cap}</figcaption></figure>`;
 const loopB = (src, poster, cap) => `<figure><video muted loop playsinline preload="none" data-loop data-src="../img/beyond/${src}" poster="../img/beyond/${poster}" aria-label="${cap}"></video><figcaption>${cap}</figcaption></figure>`;
 const rally = ({ facts, body, video, media }) => `<dl class="rally-facts">${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>${body}
   <div class="rally-media"><div class="rally-video">${video}<p class="label">Full pitch on YouTube · in Spanish</p></div><div class="rally-stills">${media}</div></div>`;
 
+// ProjectTracker tour: screenshots and muted loops from img/tracker/ (the app running on fictional sample data)
+const T = '../img/tracker/';
+const tourShot = (src, alt) => `<a class="shot" href="${T}${src}.webp" target="_blank" rel="noopener" aria-label="${alt} (full size)"><img src="${T}${src}.webp" alt="${alt}" loading="lazy" decoding="async" width="1600" height="1000"></a>`;
+const tourLoop = (src, alt) => `<div class="shot"><video muted loop playsinline preload="none" data-loop data-src="${T}${src}.mp4" poster="${T}${src}-poster.webp" aria-label="${alt}" width="1280" height="800"></video><span class="rec">Loop</span></div>`;
+const tour = (arr) => `<div class="tour">${arr.map(([name, media, what, why]) => `<figure>${media}<figcaption><b>${name}</b><span class="what">${what}</span><span class="why"><i>Why it helps</i>${why}</span></figcaption></figure>`).join('')}</div>`;
+
 const ALL = [
   /* ---------------------------------------------------------------- */
   {
-    slug: 'projecttracker', track: 'Applied AI', short: 'ProjectTracker',
+    slug: 'projecttracker', track: 'Applied AI · project engineering', short: 'ProjectTracker',
     title: 'ProjectTracker',
-    desc: 'A rules-first desktop co-pilot that files a project engineer’s email, flags milestones, checks drawings and queues ERP updates for approval.',
-    lead: 'A desktop co-pilot that files a project engineer’s email, flags milestones, checks layout drawings and queues ERP updates for one-click approval. I built it for my own job; I use it every day.',
+    desc: 'The visual command center I run my projects from every day: project board, Today digest, a timeline per problem, 180-day schedule and flow maps, with rules-first email and ERP automation built in.',
+    lead: 'The visual command center I run my projects from every day. A board for every job, a digest of what changed, a timeline of each problem, a 180-day schedule and a flow map of what is holding each project — with the email, milestone and drawing automation built in. I built it for my own job as a project engineer.',
     meta: [['Role', 'Sole designer &amp; developer'], ['Team', 'Me, building with AI coding agents (Claude Code)'], ['When', 'Jun 2026 – present'], ['Stack', 'Electron · JavaScript · Outlook · Acumatica ERP · SharePoint'], ['Status', 'In daily use']],
-    hero: lab('tracker', 'Replay one email'),
-    heroCap: 'Replay of one sample email going from inbox to ERP note. Sample data; the real tool and its data are private.',
+    hero: `<div class="frame light"><video muted loop playsinline preload="none" data-loop data-src="${T}loop-story.mp4" poster="${T}loop-story-poster.webp" aria-label="ProjectTracker: the project board, then one project opened on its Story timeline" width="1280" height="800"></video></div>`,
+    heroCap: 'Board → open a project → its Story: one lane per problem, colour = who has the ball. Recorded in the app running on fictional sample data; the real tool and its data are private.',
     tldr: [
-      'Running ~20–25 live projects meant hours each week matching ~145 emails to jobs, updating the ERP by hand and catching drawing errors late.',
-      'A rules-first app: weighted-evidence email matching, 13 milestone detectors, a 44-criteria drawing check and human-approved ERP writes. The LLM only writes one-line summaries.',
+      'Running ~20–25 live projects meant information spread across Outlook, the ERP and SharePoint: hours each week matching ~145 emails to jobs, updating the ERP by hand and catching drawing errors late.',
+      'A desktop command center — board, Today digest, Story timelines, 180-day schedule, flow maps, equipment ledger — fed by rules-first automation that files email, detects milestones and checks drawings. I approve every ERP write; the LLM only writes one-line summaries.',
       '~7.3 h saved per week (~340 h/year), 94% agreement with my past manual decisions, and real drawing errors caught before release.',
     ],
     sections: [
+      ['tour', 'Tour', `<p>These are the screens I work in all day. Every screenshot and loop below is the real app running on <b>fictional sample data</b> — invented companies, people, job numbers and amounts. Click a screenshot to see it full size.</p>
+        ${tour([
+          ['Projects board', tourLoop('loop-board', 'Dragging a project card from Quoted to In Progress on the board'), 'Every job as a card in its stage column, with its current phase and next step, value, days since the last news and my next action. Drag a card to change its stage; the strip on top flags updates that are late.', 'I see all my jobs at once, and the ones going quiet stand out before a customer has to ask.'],
+          ['Today', tourShot('today', 'Today view: since-you-left digest, my actions, waiting on others and stalled projects'), 'A “since you left” digest of new mail, due dates and logged updates, then my actions, what I am waiting on (customer, vendor or teammate, and for how many days) and projects with no news in 14 days.', 'My morning starts from what changed and who owes what, not from a full inbox.'],
+          ['Project window', tourShot('project', 'Project window with phase stepper, next step box, activity log and scope and pricing'), 'One job on one screen: the phase stepper from lead to aftermarket, the next step with who it waits on, the activity log of notes, actions and waiting-on items (each linked to its source), and scope &amp; pricing.', 'Everything about a job is in one place, and every line says where it came from.'],
+          ['Story timeline', tourShot('story', 'Story timeline: one swimlane per problem, coloured by who has the ball, with a today line'), 'One lane per problem, from its first mail to its last, coloured by who has the ball — me, the team, the customer or a vendor — with a dot per mail and a today line.', 'In a status meeting I can show how long a problem has been open and who it is waiting on.'],
+          ['Inbox', tourLoop('loop-inbox', 'Triaging the inbox with the keyboard: J to move, A to approve, X to discard'), 'Mail already matched to its project. Problems come as issue cards (cause, who it waits on, next step, consequences such as a return visit); everything else is one proposed line per message. J/K to move, A to approve, X to discard.', 'Triage takes minutes, and nothing reaches the project record or the ERP without my approval.'],
+          ['Schedule', tourShot('schedule', 'Schedule: 180 days week by week with ship, install, start-up and training bars and install clash alerts'), 'The next 180 days, week by week: shipments, installs, start-ups, training and site visits, read from the Gantt, mail notices and my notes. Two installs in the same week raise a clash alert.', 'A clash between two installs shows up weeks ahead, while it can still be moved.'],
+          ['Project flow', tourShot('flow', 'Project flow list: each project’s phases as dots, its next step and what is holding it'), 'Every project’s phases as a row of dots, the next step and its owner, and what is holding it, with the initials of who it waits on.', 'One glance tells me which job is blocked and by whom.'],
+          ['Flow map', tourLoop('loop-flow', 'Opening one project’s flow map and moving between its phases with the arrow keys'), 'One project as a map: phases as columns, each step with its owner, site work in parallel, and the open items hanging off the step they hold. Arrow keys fly between phases.', 'A long email history becomes a map I can walk my manager or a new teammate through.'],
+          ['Equipment ledger', tourShot('equipment', 'Equipment ledger: searching a crossdraft booth by working size, with similar equipment from past projects'), 'Every equipment record from past projects, searchable by type and working size (“crossdraft 40x14x12”), with the full spec sheet and similar equipment from other jobs. The real one holds 1,697 items from 620 projects.', '“Have we built this before?” takes seconds, so a quote starts from real past jobs.'],
+          ['Insights', tourShot('insights', 'Insights: open pipeline, win rate, projects by stage and top customers'), 'Open pipeline, win rate, open actions, projects by stage and top customers, across every project on the board.', 'I know what I am carrying and where it sits, without building a spreadsheet.'],
+          ['Control center', tourShot('control-center', 'Control center slide listing projects in progress with their phase dots and open items'), 'Slides for a screen left open during the day: projects in progress, the next 45 days, new mail, what needs attention, pipeline and who holds the open items.', 'The week stays visible without opening anything.'],
+          ['System overview', tourShot('system-overview', 'System overview: the program drawn as a finishing line, with data sources feeding stations'), 'The program drawn as a finishing line, for presenting: mail, ERP, project folders and the archive feed stations such as “sort the mail”, “find the step”, “plan 180 days” and “check the layout”.', 'I explain the software the same way I explain a paint line.'],
+        ])}`],
       ['context', 'Context', `<p>As a project engineer I lead the engineering on <b>54 opportunities (USD 21M quoted)</b>. The information for each one is spread across Outlook threads, the Acumatica ERP and SharePoint folders full of layouts, vendor drawings and quotes. Keeping the ERP current and catching mismatches between documents was manual, slow and easy to get wrong.</p>
         <p>Constraints I designed around: mail and ERP are read-only unless I approve a change, nothing may be written silently, and every decision the tool makes has to be explainable to me in one line.</p>`],
       ['role', 'My role', `<div class="role-box"><p><b>Everything, end to end.</b> I scoped the problem from my own workload, designed the matching rules and detectors, built the desktop app with AI coding agents, wired it to Outlook, the ERP and SharePoint, and measured it against my own past decisions.</p></div>`],
-      ['approach', 'How it works', steps([
+      ['approach', 'How the automation works', steps([
         '<b>Ingest.</b> Mail is exported read-only every 2 hours; the ERP is refreshed read-only once a day; project folders and drawings are read from SharePoint.',
         '<b>Match.</b> Each email is scored against every project with 9 evidence signals — project number in the subject (0.97), ERP opportunity ID (0.90), known thread (0.88) … client name in the subject (0.55) — plus 0.12 for each extra kind of evidence. Below 0.45 it is ignored.',
         '<b>Detect.</b> 13 deterministic detectors spot milestones: order accepted, submittals, ship date (read from the vendor PDF), new opportunity, site access and more.',
@@ -53,7 +75,7 @@ const ALL = [
         '<b>Explain.</b> An optional LLM writes a ≤160-character factual summary of the thread. It never sets IDs, statuses or decisions.',
         '<b>Approve &amp; write.</b> Proposals land in an inbox (J/K to move, A to approve, X to discard). An approved ERP note is re-read, appended, confirmed, saved, re-read to verify, and backed up.',
       ])],
-      ['decisions', 'Key decisions', decisions([
+      ['decisions', 'Rules decide, the LLM writes, a human approves', decisions([
         ['Rules decide; the LLM only writes', 'Matching, milestones and drawing checks are rules with weights I can read and test. The LLM is used where language matters — summaries — not where correctness matters.'],
         ['A human approves every ERP write', 'The tool proposes, I decide. Every write is re-read and verified afterwards, with a backup of what was there before.'],
         ['Measure against my own history', 'Accuracy is reported as agreement with decisions I had already made by hand (94%), not as a self-reported model score.'],
@@ -69,8 +91,8 @@ const ALL = [
           <li><b>Auditing real use.</b> After it went live I audited what I had approved: 1 of 141 approved proposals had been filed to the wrong project.</li>
         </ul>
         <p>The method is written up as a note: <a href="../notes/measure-against-past-decisions.html">Measure AI against your own past decisions →</a></p>`],
-      ['try', 'Try it', lab('tracker', 'Inbox triage,Board,Drawing QA,How it’s built')],
-      ['confidential', 'Confidentiality', '<p class="conf">ProjectTracker is a tool I use at work. Its source code and real project data are private. Everything above runs on invented sample data that mirrors the real logic.</p>'],
+      ['try', 'Try parts of it', `<p>Small interactive rebuilds of pieces of the tool, running in your browser on sample data: replay one email from inbox to ERP note, triage an inbox, move cards on a board, run the drawing check, and see how it is built.</p>${lab('tracker', 'Replay one email,Inbox triage,Board,Drawing QA,How it’s built')}`],
+      ['confidential', 'Confidentiality', '<p class="conf">ProjectTracker is a tool I built and use at work. Its source code and real project data are private. The screenshots and loops come from the app running on fictional sample data — invented companies, people, emails, job numbers and amounts, with company branding removed. The interactive labs are rebuilds on sample data that mirror the real logic.</p>'],
     ],
   },
   /* ---------------------------------------------------------------- */
@@ -79,56 +101,72 @@ const ALL = [
     title: 'Industrial equipment projects, sketch to start-up',
     desc: 'Engineering lead on paint and powder finishing lines for EV, heavy-equipment and building-products plants: 54 opportunities, USD 21M quoted.',
     lead: 'Engineering lead on paint and powder finishing lines — booths, cure ovens, air make-up units, wash systems and conveyors — for EV, heavy-equipment and building-products plants.',
-    meta: [['Role', 'Project Engineer · engineering lead'], ['Team', 'Customers, sales, installers, OEM vendors'], ['When', 'Jan 2025 – present (intern Jan–May 2025, project engineer since Jun 2025)'], ['Tools', 'AutoCAD · FactoryCAD · Creo · Acumatica ERP'], ['Status', '54 opportunities · 5+ installs']],
+    meta: [['Role', 'Project Engineer · engineering lead'], ['Team', 'Customers, sales, installers, OEM vendors'], ['When', 'Jan 2025 – present (intern Jan–May 2025, project engineer since Jun 2025)'], ['Tools', 'AutoCAD · FactoryCAD · Creo · Acumatica ERP'], ['Status', '54 opportunities · ~6 installs managed']],
     hero: lab('engineering', '3D line'),
     heroCap: '3D model of a paint line built from the dimensions on my own layout drawings. Drag to orbit.',
     tldr: [
       'Every plant needs a finishing system sized to its parts, throughput, building and utilities — and every quote and drawing has to close scope gaps before anything is fabricated.',
       'Process selection, airflow and thermal sizing, layouts and equipment specs; coordinating vendors such as GFS, Rohner, Nordson and Clemco; reviewing drawings and submittals; on-site installs and start-ups.',
-      '54 opportunities led (USD 21M quoted); 10 of 23 decided projects won (USD 4.85M); 5+ installations, including a multi-booth paint line for an EV manufacturer.',
+      '54 opportunities led (USD 21M quoted); 10 of 23 decided projects won (USD 4.85M); managed ~6 on-site installations and start-ups, including a multi-booth paint line for an EV manufacturer.',
     ],
     sections: [
-      ['drawings', 'Drawings I produce', `<p>Excerpts from my layout drawings: system layouts, elevations and the utilities schedule the plant has to provide. Customer names, title blocks and equipment identifiers are removed.</p>${lab('engineering', 'Drawings')}`],
-      ['role', 'My role', `<div class="role-box"><p><b>Engineering lead from first sketch to start-up.</b> I turn a customer’s parts, finish and volume into a process, size the equipment, draw the layout, write the specs, coordinate the OEM vendors and installers, and support installation and start-up on site.</p><p>I manage ~20–25 concurrent opportunities at a time.</p></div>`],
+      ['drawings', 'Drawings I produce', `<p>Ten excerpts from layout drawings I produced across five projects — paint lines, powder lines, blast systems, mix rooms and the utilities each plant has to provide. Pick a drawing; click it to open full size. Customer names, title blocks and equipment identifiers are removed.</p>${lab('engineering', 'Drawings')}`],
+      ['site', 'On site: installation &amp; start-up', `<p>Drawings end on a concrete floor. I have managed about six on-site installations and start-ups: coordinating the installers and the on-site schedule, tracking progress, running the punch list and bringing burners and lines up at start-up. Below are some of those sites — booths, conveyor structures and air make-up units. Customer signage and people’s faces are blurred.</p>
+        <div class="gallery photos">
+          <figure><img src="../img/installs/large-equipment-booths.webp" alt="Two large-equipment paint booths with roof exhaust stacks, ready for start-up." loading="lazy" width="1050" height="1400"><figcaption>Two large-equipment paint booths with roof exhaust stacks, ready for start-up.</figcaption></figure>
+          <figure><img src="../img/installs/start-up-on-site.webp" alt="Start-up day: booth, conveyor and paint equipment being commissioned." loading="lazy" width="1050" height="1400"><figcaption>Start-up day: booth, conveyor and paint equipment being commissioned.</figcaption></figure>
+          <figure><img src="../img/installs/booth-and-conveyor-structure.webp" alt="Booth and the steel structure that carries the overhead conveyor, mid-install." loading="lazy" width="1050" height="1400"><figcaption>Booth and the steel structure that carries the overhead conveyor, mid-install.</figcaption></figure>
+          <figure><img src="../img/installs/booth-install-in-progress.webp" alt="Booth panels up, exhaust ducting through the roof, conveyor structure next." loading="lazy" width="1050" height="1400"><figcaption>Booth panels up, exhaust ducting through the roof, conveyor structure next.</figcaption></figure>
+          <figure><img src="../img/installs/air-make-up-unit.webp" alt="Air make-up unit outside the exterior wall, ducted into the booth." loading="lazy" width="1050" height="1400"><figcaption>Air make-up unit outside the exterior wall, ducted into the booth.</figcaption></figure>
+          <figure><img src="../img/installs/open-face-booth.webp" alt="Open-face booth with its filter wall, installed inside an existing building." loading="lazy" width="1050" height="1400"><figcaption>Open-face booth with its filter wall, installed inside an existing building.</figcaption></figure>
+          <figure><img src="../img/installs/enclosed-booth-wood-products.webp" alt="Enclosed booth for a building-products finisher, in production." loading="lazy" width="1050" height="1400"><figcaption>Enclosed booth for a building-products finisher, in production.</figcaption></figure>
+        </div>`],
+      ['role', 'My role', `<div class="role-box"><p><b>Engineering lead from first sketch to start-up.</b> I turn a customer’s parts, finish and volume into a process, size the equipment, draw the layout, write the specs, coordinate the OEM vendors, and manage installation and start-up on site.</p><p>I manage ~20–25 concurrent opportunities at a time.</p></div>`],
       ['approach', 'How a project runs', lab('engineering', 'Sketch to start-up')],
       ['checks', 'What I check before release', `<p>Most expensive mistakes are scope gaps between documents. Before a layout goes out I check, among other things:</p>
         <ul><li><b>Hook load</b> on the drawing vs. what the conveyor was quoted for.</li><li><b>Ceiling and truss heights</b> against stacks, ducts and the air make-up unit.</li><li><b>Electrical scope</b> — what we supply and what is “by others”.</li><li>A <b>utilities chart</b> with every connection the plant must provide: exhaust and fresh-air CFM, electrical, compressed and breathing air, gas.</li></ul>
         <p>Those checks are also what I automated in <a href="projecttracker.html">ProjectTracker</a>’s 44-criteria drawing review.</p>`],
       ['simulator', 'Throughput &amp; cure, in numbers', `<p>A generic line to play with: line speed and part spacing set throughput; conveyor length in the oven sets dwell time, which has to meet the coating’s cure schedule.</p>${lab('engineering', 'Line simulator')}`],
-      ['results', 'Results', results([['54', 'opportunities led'], ['USD 21M', 'quoted'], ['10 / 23', 'decided projects won (USD 4.85M)'], ['5+', 'installations and start-ups']])],
+      ['results', 'Results', results([['54', 'opportunities led'], ['USD 21M', 'quoted'], ['10 / 23', 'decided projects won (USD 4.85M)'], ['~6', 'installations &amp; start-ups managed on site']])],
       ['confidential', 'Confidentiality', '<p class="conf">Customers are described generically. Drawings are partial excerpts with identifiers removed; the 3D model and simulator are illustrative, not a customer’s line.</p>'],
     ],
   },
   /* ---------------------------------------------------------------- */
   {
-    slug: 'planta', hidden: true, track: 'Founder · 3D simulation', short: 'PLANTA',
-    title: 'PLANTA — plant engineering, learned on the floor',
-    desc: 'A 3D plant-engineering simulator I am building as founder of Tecnelio: run the machines, chase a fault upstream, build your own line.',
-    lead: 'A 3D plant-engineering simulator I’m building as founder of Tecnelio. You run the machines, chase a fault three units upstream, and build your own line — the physics are real.',
-    meta: [['Role', 'Founder, Tecnelio'], ['Product', 'Planta — 3D plant simulator'], ['For', 'Technical schools, universities, plant training teams'], ['Regions', 'US · Canada · Mexico · Argentina'], ['Status', 'Early access']],
-    hero: `<div class="frame">${video('trailer.mp4', 'trailer.jpg', 'Planta trailer', false).replace('<figure>', '').replace(/<figcaption>.*<\/figcaption><\/figure>/, '')}</div>`,
-    heroCap: 'Planta trailer. Every plant, company and character in the game is fictional.',
+    slug: 'planta', track: 'Side project · 3D simulation', short: 'PLANTA (side project)',
+    title: 'PLANTA — a 3D plant simulator for learning industrial engineering',
+    desc: 'A side project: a walkable 3D industrial plant with 68 interactive simulators, where you learn industrial engineering by running equipment and troubleshooting faults. Built in TypeScript, React and three.js.',
+    lead: 'A side project I started to understand real industry more visually: the problems I kept running into day after day on the job, rebuilt as a walkable 3D plant where you run the equipment, chase a fault upstream and learn by troubleshooting. Every plant, company and person in it is fictional.',
+    meta: [['Role', 'Sole designer &amp; developer'], ['Type', 'Personal side project'], ['Stack', 'TypeScript · React · three.js'], ['Scale', '68 simulators · 93 courses'], ['Status', 'In development']],
+    hero: `<div class="frame"><video controls muted playsinline preload="metadata" src="../img/planta-v2/planta-highlight.mp4" poster="../img/planta-v2/sugar-mill-flyover-poster.webp" aria-label="PLANTA highlight reel"></video></div>`,
+    heroCap: '40-second highlight captured from the current build. No sound. All plants, companies and people are fictional.',
+    tldrHeads: ['Why', 'What I built', 'Engineering'],
     tldr: [
-      'School teaches the formula; a plant asks why. New engineers meet faults whose cause sits three units upstream — and nobody trains that.',
-      'Founded Tecnelio and am building Planta: living 3D plants, a connected control-room shift, a build-your-own-line mode and faults that teachers plant for students to find.',
-      'In early access for schools, plants and engineers, with each country’s codes and units — SI and imperial side by side.',
+      'Every day on the job I met problems school never showed me: why a burner locks out, why parts come out of the oven tacky, why the alarm in one unit starts three units upstream. I wanted to see them, not just read about them.',
+      'Five walkable plants — sugar mill, citrus processing, foundry &amp; heavy manufacturing, car assembly and industrial finishing — with 68 interactive 3D simulators, 93 courses and a teacher mode that plants faults.',
+      'Strict TypeScript, React and three.js; process and physics models as pure, tested functions; ~2,700 automated tests; every piece of content schema-validated; offline-first; LMS export (SCORM / cmi5).',
     ],
     sections: [
-      ['why', 'Why I built it', `<div class="role-box"><p>“On the job I kept running into the gaps school left: why the burner locks out, what the drive fault really means, why the parts come out of the oven tacky. Planta is what I wish I’d had in my first year.”</p></div>`],
-      ['modes', 'Four ways to play', `<div class="gallery">
-        ${video('p-live.mp4', 'p-live.jpg', '01 · Live — plants that are alive: trucks arrive, steam rises, night falls, it rains.')}
-        ${video('p-shift.mp4', 'p-shift.jpg', '02 · Shift — the whole plant connected: a problem upstream shows up downstream.')}
-        ${video('p-build.mp4', 'p-build.jpg', '03 · Build — pick equipment, connect it, start it up. Undersize one unit and the line tells you.')}
-        </div><p><b>04 · Class.</b> A teacher hides a fault in a machine and hands out a code; students find it with no hints, and the teacher gets a report of every step.</p>`],
-      ['plants', 'The plants', `<div class="gallery">
-        ${video('flyover-ingenio.webm', 'flyover-ingenio.jpg', 'Sugar mill in full harvest')}
-        ${video('flyover-automotriz.webm', 'flyover-automotriz.jpg', 'Car assembly plant')}
-        ${video('sim-boiler.webm', 'sim-boiler.jpg', 'Boiler simulator')}
-        ${video('sim-foundry.webm', 'sim-foundry.jpg', 'Foundry simulator')}
-        ${video('sim-packline.webm', 'sim-packline.jpg', 'Packing line simulator')}
-        </div><p>Sugar, citrus, heavy manufacturing, automotive and industrial finishing — the industries I’ve worked around, rebuilt as fictional plants.</p>`],
-      ['design', 'Learning design', `<ul><li><b>Learn by doing, then by explaining.</b> Every mistake comes with the reason behind it.</li><li><b>Move on only when you’ve got it.</b> What you missed comes back until it sticks.</li><li><b>Safety is never optional.</b> Bypass an interlock and the shift is over.</li><li><b>Your country, your codes, your units.</b> United States, Canada, Mexico and Argentina; SI and imperial side by side.</li></ul>`],
-      ['role', 'My role', `<div class="role-box"><p><b>Founder.</b> Product, the engineering behind each plant and its faults, and the learning design. Planta is a Tecnelio product.</p></div>`],
+      ['inside', 'Inside the simulator', `<div class="gallery">
+        ${vp2('sugar-mill-flyover', 'Sugar mill flyover: cane yard, milling, boiler house and the rest of the plant.')}
+        ${vp2('control-room-night-shift', 'Night shift in the control room: live process panels of the whole mill.')}
+        ${vp2('build-mode-sugar-mill', 'Build mode: lay out a plant, link the units in order and start it up with a live mass balance.')}
+        ${vp2('lab-car-assembly-line', 'Car final assembly: stations, takt and the jobs-per-hour board.')}
+        ${vp2('lab-sugar-milling-tandem', 'Milling tandem simulator: extraction, imbibition and mill loads.')}
+        ${vp2('lab-steel-foundry-melt-shop', 'Foundry melt shop simulator.')}
+        </div>`],
+      ['teacher', 'Teacher mode: plant a fault', `<div class="decisions"><div><span class="why">How it works</span><h3>The teacher hides the fault</h3><p>Pick a fault from a catalogue grouped by industry — for example “imbibition left low” or “worn shredder hammers” — and hand students a code. Each student troubleshoots from the symptoms alone, and the teacher gets a step-by-step report of what they checked.</p></div><figure style="margin:0"><img src="../img/planta-v2/still-teacher-planted-fault.webp" alt="Teacher screen: choosing a fault to plant in the sugar mill" loading="lazy" width="1280" height="720" style="width:100%;border-radius:14px;border:1px solid var(--line)"></figure></div>`],
+      ['built', 'How it’s built', `<ul>
+          <li><b>Content is data.</b> Courses, items and plants are JSON validated by zod schemas in the test suite; adding a course or a plant never touches engine code.</li>
+          <li><b>Simulation layer as pure functions.</b> 76 process and physics modules written as plain TypeScript, with their simplifications stated at the top of each file — testable without any UI.</li>
+          <li><b>Tests that enforce the teaching.</b> Besides unit tests, the suite checks that no question asks for something the learner hasn’t been taught yet, that every skill is evidenced by at least two items, and that episodes mix item types.</li>
+          <li><b>Offline-first.</b> Progress is saved locally with export/import and versioned save migrations; it runs fully without a network.</li>
+          <li><b>Delivery.</b> Windows desktop build with Electron, a student edition without teacher tools, and SCORM 1.2 / cmi5 export for school learning platforms.</li>
+          <li><b>Built with AI coding agents</b> — the same way I build my other tools — with a headless capture pipeline that records the footage on this page frame by frame.</li>
+        </ul>`],
+      ['scale', 'By the numbers', results([['68', 'interactive 3D simulators'], ['93', 'courses · 321 lessons'], ['4,242', 'assessment items'], ['~2,700', 'automated test cases']])],
+      ['learning', 'Learning design', `<ul><li><b>Mastery gating at 80%</b> with varied retries, spaced review of what you missed, and an explanation on every wrong answer.</li><li><b>Safety is never optional:</b> bypassing an interlock or skipping lockout/tagout is a serious violation.</li><li><b>Your country, your codes, your units:</b> United States, Canada, Mexico and Argentina; SI and imperial side by side. English text with full Spanish, and a glossary of 916 terms in English, Spanish and French.</li></ul>`],
+      ['context', 'Context', '<p class="conf">A personal side project, built on my own computer in my spare time. It is not affiliated with any employer. Every plant, company and person in it is fictional.</p>'],
     ],
   },
   /* ---------------------------------------------------------------- */
@@ -286,7 +324,7 @@ const P = ALL.filter((p) => !p.hidden);
 const nav = `<nav class="top" aria-label="Main"><div class="wrap">
   <a class="brand" href="../index.html"><i></i>Maxi Gomez Montero</a>
   <div class="navlinks"><a href="../index.html#work">All work</a><a href="../index.html#research">Research</a><a href="../index.html#experience">Experience</a><a href="../index.html#contact">Contact</a></div>
-  <div class="cvs"><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Manufacturing</span><span class="short">&nbsp;Mfg</span><span class="sr-only"> résumé (PDF)</span> ↓</a><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Applied AI</span><span class="short">&nbsp;AI</span><span class="sr-only"> résumé (PDF)</span> ↓</a></div>
+  <div class="cvs"><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener"><span class="short">Eng&nbsp;</span>CV<span class="long">&nbsp;· Manufacturing</span><span class="sr-only"> résumé (PDF)</span> ↓</a><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener"><span class="short">AI&nbsp;</span>CV<span class="long">&nbsp;· Applied AI</span><span class="sr-only"> résumé (PDF)</span> ↓</a></div>
 </div></nav>`;
 
 P.forEach((p, i) => {
