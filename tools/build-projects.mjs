@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'projects');
 const SITE = 'https://maxgomezmontero.github.io/';
-const V = '20261113';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
+const V = '20261113c';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
 mkdirSync(OUT, { recursive: true });
 
 const lab = (key, tabs) => `<div class="lab-inline" data-lab-inline="${key}"${tabs ? ` data-tabs="${tabs}"` : ''}><p class="il-hint">Loading the interactive demo…</p></div>`;
