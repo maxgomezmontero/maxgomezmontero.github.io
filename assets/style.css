@@ -1073,3 +1073,16 @@ a.open { text-decoration: none; }
   .cvs .chip-btn { padding: 6px 8px; }
   .qw-grid { margin: 0 -20px; padding: 0 20px 6px; scroll-padding-left: 20px; }
 }
+
+/* v12: first-week fixes */
+.hero-duo { display: grid; grid-template-columns: 2.2fr 1fr; gap: 12px; background: transparent; }
+.hero-duo img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; border: 1px solid var(--line2); background: #fff; }
+.hero-duo img + img { object-position: center 70%; background: #000; }
+.case-cta { margin: -12px 0 32px; }
+.navlinks a { white-space: nowrap; }
+@media (max-width: 1200px) { .navlinks { display: none; } }
+.lab-grid { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+.lab-tabs[hidden] { display: none; }
+@media (max-width: 1000px) { .lab-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 700px) { .hero-duo { grid-template-columns: 1fr; } .hero-duo img + img { aspect-ratio: 4/3; } }
+.il-body table.ledger { display: block; max-width: 100%; overflow-x: auto; }

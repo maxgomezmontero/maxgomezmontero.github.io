@@ -533,7 +533,7 @@
   ];
   const finRole = (root) => {
     const view = h(`<div>
-      <h4 style="margin:0 0 6px">From first sketch to start-up</h4>
+      <h4 style="margin:0 0 6px">From first concept to start-up</h4>
       <p class="sub">What I do at each stage of a project, as engineering lead.</p>
       <div class="stages"></div>
       <div class="panel"><div class="stage-detail"></div></div>
@@ -788,12 +788,12 @@
       ],
     },
     engineering: {
-      title: 'Industrial equipment projects, sketch to start-up',
+      title: 'Industrial equipment projects, concept to start-up',
       data: 'real drawing excerpts + generic simulator',
       note: 'Drawings are partial excerpts of layouts I produced, with customer names, title blocks and equipment identifiers removed. The line simulator is generic and illustrative, not a real project.',
       tabs: [
         { name: 'Drawings', render: finDrawings, hint: 'What you’re looking at: excerpts from layout drawings I produced. Try this: pick a thumbnail; click the big image to open it full size.' },
-        { name: 'Sketch to start-up', render: finRole, hint: 'What you’re looking at: what I do at each stage of a project. Try this: click a stage.' },
+        { name: 'Concept to start-up', render: finRole, hint: 'What you’re looking at: what I do at each stage of a project. Try this: click a stage.' },
         { name: 'Line simulator', render: finSim, hint: 'What you’re looking at: a generic conveyorized coating line. Try this: move the sliders and watch throughput and oven time; click a station to see what it does.' },
       ],
     },

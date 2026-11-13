@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'projects');
 const SITE = 'https://maxgomezmontero.github.io/';
-const V = '20261113f';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
+const V = '20261113g';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
 mkdirSync(OUT, { recursive: true });
 
 const lab = (key, tabs) => `<div class="lab-inline" data-lab-inline="${key}"${tabs ? ` data-tabs="${tabs}"` : ''}><p class="il-hint">Loading the interactive demo…</p></div>`;
@@ -36,7 +36,7 @@ const tour = (arr) => `<div class="tour">${arr.map(([name, media, what, why]) =>
 const ALL = [
   /* ---------------------------------------------------------------- */
   {
-    slug: 'projecttracker', track: 'Applied AI · project engineering', short: 'ProjectTracker',
+    slug: 'projecttracker', cta: ['../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf', 'Applied AI résumé (PDF)'], track: 'Applied AI · project engineering', short: 'ProjectTracker',
     title: 'ProjectTracker',
     desc: 'The visual command center I run my projects from every day: project board, Today digest, a timeline per problem, 180-day schedule and flow maps, with rules-first email and ERP automation built in.',
     lead: 'The visual command center I run my projects from every day. A board for every job, a digest of what changed, a timeline of each problem, a 180-day schedule and a flow map of what is holding each project — with the email, milestone and drawing automation built in. I built it for my own job as a project engineer.',
@@ -98,12 +98,13 @@ const ALL = [
   /* ---------------------------------------------------------------- */
   {
     slug: 'industrial-projects', track: 'Manufacturing', short: 'Industrial projects',
-    title: 'Industrial equipment projects, sketch to start-up',
+    title: 'Industrial equipment projects, concept to start-up',
     desc: 'Engineering lead on paint and powder finishing lines for EV, heavy-equipment and building-products plants: 54 opportunities, USD 21M quoted.',
     lead: 'Engineering lead on paint and powder finishing lines — booths, cure ovens, air make-up units, wash systems and conveyors — for EV, heavy-equipment and building-products plants.',
     meta: [['Role', 'Project Engineer · engineering lead'], ['Team', 'Customers, sales, installers, OEM vendors'], ['When', 'Jan 2025 – present (intern Jan–May 2025, project engineer since Jun 2025)'], ['Tools', 'AutoCAD · FactoryCAD · Creo · Acumatica ERP'], ['Status', '54 opportunities · ~6 installs managed']],
-    hero: lab('engineering', '3D line'),
-    heroCap: '3D model of a paint line built from the dimensions on my own layout drawings. Drag to orbit.',
+    hero: `<div class="hero-duo"><img src="../img/drawings/paint-line-layout.webp" alt="Plan view of a paint line I laid out: conveyor loop, booth, load and unload zones, utility callouts" width="1800" height="666"><img src="../img/installs/large-equipment-booths.webp" alt="Two large-equipment paint booths on site, ready for start-up" width="1050" height="1400" loading="lazy"></div>`,
+    heroCap: 'Left: an excerpt of one of my layout drawings. Right: two booths on site before start-up. Identifiers removed.',
+    cta: ['../Maxi_Gomez_Montero_Resume_Manufacturing.pdf', 'Manufacturing résumé (PDF)'],
     tldr: [
       'Every plant needs a finishing system sized to its parts, throughput, building and utilities — and every quote and drawing has to close scope gaps before anything is fabricated.',
       'Process selection, airflow and thermal sizing, layouts and equipment specs; coordinating vendors such as GFS, Rohner, Nordson and Clemco; reviewing drawings and submittals; on-site installs and start-ups.',
@@ -121,54 +122,18 @@ const ALL = [
           <figure><img src="../img/installs/open-face-booth.webp" alt="Open-face booth with its filter wall, installed inside an existing building." loading="lazy" width="1050" height="1400"><figcaption>Open-face booth with its filter wall, installed inside an existing building.</figcaption></figure>
           <figure><img src="../img/installs/enclosed-booth-wood-products.webp" alt="Enclosed booth for a building-products finisher, in production." loading="lazy" width="1050" height="1400"><figcaption>Enclosed booth for a building-products finisher, in production.</figcaption></figure>
         </div>`],
-      ['role', 'My role', `<div class="role-box"><p><b>Engineering lead from first sketch to start-up.</b> I turn a customer’s parts, finish and volume into a process, size the equipment, draw the layout, write the specs, coordinate the OEM vendors, and manage installation and start-up on site.</p><p>I manage ~20–25 concurrent opportunities at a time.</p></div>`],
-      ['approach', 'How a project runs', lab('engineering', 'Sketch to start-up')],
+      ['role', 'My role', `<div class="role-box"><p><b>Engineering lead from concept to start-up.</b> I turn a customer’s parts, finish and volume into a process, size the equipment, draw the layout, write the specs, coordinate the OEM vendors, and manage installation and start-up on site.</p><p>I manage ~20–25 concurrent opportunities at a time.</p></div>`],
+      ['approach', 'How a project runs', lab('engineering', 'Concept to start-up')],
       ['checks', 'What I check before release', `<p>Most expensive mistakes are scope gaps between documents. Before a layout goes out I check, among other things:</p>
         <ul><li><b>Hook load</b> on the drawing vs. what the conveyor was quoted for.</li><li><b>Ceiling and truss heights</b> against stacks, ducts and the air make-up unit.</li><li><b>Electrical scope</b> — what we supply and what is “by others”.</li><li>A <b>utilities chart</b> with every connection the plant must provide: exhaust and fresh-air CFM, electrical, compressed and breathing air, gas.</li></ul>
         <p>Those checks are also what I automated in <a href="projecttracker.html">ProjectTracker</a>’s 44-criteria drawing review.</p>`],
+      ['model3d', 'The line in 3D', `<p>A 3D model built from the dimensions on my layout drawings. Drag to orbit, pick a component, change the line speed.</p>${lab('engineering', '3D line')}`],
       ['simulator', 'Throughput &amp; cure, in numbers', `<p>A generic line to play with: line speed and part spacing set throughput; conveyor length in the oven sets dwell time, which has to meet the coating’s cure schedule.</p>${lab('engineering', 'Line simulator')}`],
       ['results', 'Results', results([['54', 'opportunities led'], ['USD 21M', 'quoted'], ['10 / 23', 'decided projects won (USD 4.85M)'], ['~6', 'installations &amp; start-ups managed on site']])],
       ['confidential', 'Confidentiality', '<p class="conf">Customers are described generically. Drawings are partial excerpts with identifiers removed; the 3D model and simulator are illustrative, not a customer’s line.</p>'],
     ],
   },
   /* ---------------------------------------------------------------- */
-  {
-    slug: 'planta', track: 'Side project · 3D simulation', short: 'PLANTA (side project)',
-    title: 'PLANTA — a 3D plant simulator for learning industrial engineering',
-    desc: 'A side project: a walkable 3D industrial plant with 68 interactive simulators, where you learn industrial engineering by running equipment and troubleshooting faults. Built in TypeScript, React and three.js.',
-    lead: 'A side project I started to understand real industry more visually: the problems I kept running into day after day on the job, rebuilt as a walkable 3D plant where you run the equipment, chase a fault upstream and learn by troubleshooting. Every plant, company and person in it is fictional.',
-    meta: [['Role', 'Sole designer &amp; developer'], ['Type', 'Personal side project'], ['Stack', 'TypeScript · React · three.js'], ['Scale', '68 simulators · 93 courses'], ['Status', 'In development']],
-    hero: `<div class="frame"><video controls muted playsinline preload="metadata" src="../img/planta-v2/planta-highlight.mp4" poster="../img/planta-v2/sugar-mill-flyover-poster.webp" aria-label="PLANTA highlight reel"></video></div>`,
-    heroCap: '40-second highlight captured from the current build. No sound. All plants, companies and people are fictional.',
-    tldrHeads: ['Why', 'What I built', 'Engineering'],
-    tldr: [
-      'Every day on the job I met problems school never showed me: why a burner locks out, why parts come out of the oven tacky, why the alarm in one unit starts three units upstream. I wanted to see them, not just read about them.',
-      'Five walkable plants — sugar mill, citrus processing, foundry &amp; heavy manufacturing, car assembly and industrial finishing — with 68 interactive 3D simulators, 93 courses and a teacher mode that plants faults.',
-      'Strict TypeScript, React and three.js; process and physics models as pure, tested functions; ~2,700 automated tests; every piece of content schema-validated; offline-first; LMS export (SCORM / cmi5).',
-    ],
-    sections: [
-      ['inside', 'Inside the simulator', `<div class="gallery">
-        ${vp2('sugar-mill-flyover', 'Sugar mill flyover: cane yard, milling, boiler house and the rest of the plant.')}
-        ${vp2('control-room-night-shift', 'Night shift in the control room: live process panels of the whole mill.')}
-        ${vp2('build-mode-sugar-mill', 'Build mode: lay out a plant, link the units in order and start it up with a live mass balance.')}
-        ${vp2('lab-car-assembly-line', 'Car final assembly: stations, takt and the jobs-per-hour board.')}
-        ${vp2('lab-sugar-milling-tandem', 'Milling tandem simulator: extraction, imbibition and mill loads.')}
-        ${vp2('lab-steel-foundry-melt-shop', 'Foundry melt shop simulator.')}
-        </div>`],
-      ['teacher', 'Teacher mode: plant a fault', `<div class="decisions"><div><span class="why">How it works</span><h3>The teacher hides the fault</h3><p>Pick a fault from a catalogue grouped by industry — for example “imbibition left low” or “worn shredder hammers” — and hand students a code. Each student troubleshoots from the symptoms alone, and the teacher gets a step-by-step report of what they checked.</p></div><figure style="margin:0"><img src="../img/planta-v2/still-teacher-planted-fault.webp" alt="Teacher screen: choosing a fault to plant in the sugar mill" loading="lazy" width="1280" height="720" style="width:100%;border-radius:14px;border:1px solid var(--line)"></figure></div>`],
-      ['built', 'How it’s built', `<ul>
-          <li><b>Content is data.</b> Courses, items and plants are JSON validated by zod schemas in the test suite; adding a course or a plant never touches engine code.</li>
-          <li><b>Simulation layer as pure functions.</b> 76 process and physics modules written as plain TypeScript, with their simplifications stated at the top of each file — testable without any UI.</li>
-          <li><b>Tests that enforce the teaching.</b> Besides unit tests, the suite checks that no question asks for something the learner hasn’t been taught yet, that every skill is evidenced by at least two items, and that episodes mix item types.</li>
-          <li><b>Offline-first.</b> Progress is saved locally with export/import and versioned save migrations; it runs fully without a network.</li>
-          <li><b>Delivery.</b> Windows desktop build with Electron, a student edition without teacher tools, and SCORM 1.2 / cmi5 export for school learning platforms.</li>
-          <li><b>Built with AI coding agents</b> — the same way I build my other tools — with a headless capture pipeline that records the footage on this page frame by frame.</li>
-        </ul>`],
-      ['scale', 'By the numbers', results([['68', 'interactive 3D simulators'], ['93', 'courses · 321 lessons'], ['4,242', 'assessment items'], ['~2,700', 'automated test cases']])],
-      ['learning', 'Learning design', `<ul><li><b>Mastery gating at 80%</b> with varied retries, spaced review of what you missed, and an explanation on every wrong answer.</li><li><b>Safety is never optional:</b> bypassing an interlock or skipping lockout/tagout is a serious violation.</li><li><b>Your country, your codes, your units:</b> United States, Canada, Mexico and Argentina; SI and imperial side by side. English text with full Spanish, and a glossary of 916 terms in English, Spanish and French.</li></ul>`],
-      ['context', 'Context', '<p class="conf">A personal side project, built on my own computer in my spare time. It is not affiliated with any employer. Every plant, company and person in it is fictional.</p>'],
-    ],
-  },
   /* ---------------------------------------------------------------- */
   {
     slug: 'lean-2k-assembly', track: 'Manufacturing · Lean', short: 'Lean redesign',
@@ -317,6 +282,43 @@ const ALL = [
       ['why', 'What this says about how I work', `<ul><li><b>I explain technical ideas to people who aren’t engineers</b>, in English and in Spanish, in a few minutes.</li><li><b>I pick up problems nobody assigned me</b> and work them through with a team, from the idea to something people can see.</li><li><b>Engineering stays the day job.</b> My main work is in <a href="industrial-projects.html">industrial projects</a> and the <a href="projecttracker.html">software I build for them</a>.</li></ul>`],
     ],
   },
+  {
+    slug: 'planta', track: 'Side project · 3D simulation', short: 'PLANTA (side project)',
+    title: 'PLANTA — a 3D plant simulator for learning industrial engineering',
+    desc: 'A side project: a walkable 3D industrial plant with 68 interactive simulators, where you learn industrial engineering by running equipment and troubleshooting faults. Built in TypeScript, React and three.js.',
+    lead: 'A side project I started to understand real industry more visually: the problems I kept running into day after day on the job, rebuilt as a walkable 3D plant where you run the equipment, chase a fault upstream and learn by troubleshooting. Every plant, company and person in it is fictional.',
+    meta: [['Role', 'Sole designer &amp; developer'], ['Type', 'Personal side project'], ['Stack', 'TypeScript · React · three.js'], ['Scale', '68 simulators · 93 courses'], ['Status', 'In development']],
+    hero: `<div class="frame"><video controls muted playsinline preload="metadata" src="../img/planta-v2/planta-highlight.mp4" poster="../img/planta-v2/sugar-mill-flyover-poster.webp" aria-label="PLANTA highlight reel"></video></div>`,
+    heroCap: '40-second highlight captured from the current build. No sound. All plants, companies and people are fictional.',
+    tldrHeads: ['Why', 'What I built', 'Engineering'],
+    tldr: [
+      'Every day on the job I met problems school never showed me: why a burner locks out, why parts come out of the oven tacky, why the alarm in one unit starts three units upstream. I wanted to see them, not just read about them.',
+      'Five walkable plants — sugar mill, citrus processing, foundry &amp; heavy manufacturing, car assembly and industrial finishing — with 68 interactive 3D simulators, 93 courses and a teacher mode that plants faults.',
+      'Strict TypeScript, React and three.js; process and physics models as pure, tested functions; ~2,700 automated tests; every piece of content schema-validated; offline-first; LMS export (SCORM / cmi5).',
+    ],
+    sections: [
+      ['inside', 'Inside the simulator', `<div class="gallery">
+        ${vp2('sugar-mill-flyover', 'Sugar mill flyover: cane yard, milling, boiler house and the rest of the plant.')}
+        ${vp2('control-room-night-shift', 'Night shift in the control room: live process panels of the whole mill.')}
+        ${vp2('build-mode-sugar-mill', 'Build mode: lay out a plant, link the units in order and start it up with a live mass balance.')}
+        ${vp2('lab-car-assembly-line', 'Car final assembly: stations, takt and the jobs-per-hour board.')}
+        ${vp2('lab-sugar-milling-tandem', 'Milling tandem simulator: extraction, imbibition and mill loads.')}
+        ${vp2('lab-steel-foundry-melt-shop', 'Foundry melt shop simulator.')}
+        </div>`],
+      ['teacher', 'Teacher mode: plant a fault', `<div class="decisions"><div><span class="why">How it works</span><h3>The teacher hides the fault</h3><p>Pick a fault from a catalogue grouped by industry — for example “imbibition left low” or “worn shredder hammers” — and hand students a code. Each student troubleshoots from the symptoms alone, and the teacher gets a step-by-step report of what they checked.</p></div><figure style="margin:0"><img src="../img/planta-v2/still-teacher-planted-fault.webp" alt="Teacher screen: choosing a fault to plant in the sugar mill" loading="lazy" width="1280" height="720" style="width:100%;border-radius:14px;border:1px solid var(--line)"></figure></div>`],
+      ['built', 'How it’s built', `<ul>
+          <li><b>Content is data.</b> Courses, items and plants are JSON validated by zod schemas in the test suite; adding a course or a plant never touches engine code.</li>
+          <li><b>Simulation layer as pure functions.</b> 76 process and physics modules written as plain TypeScript, with their simplifications stated at the top of each file — testable without any UI.</li>
+          <li><b>Tests that enforce the teaching.</b> Besides unit tests, the suite checks that no question asks for something the learner hasn’t been taught yet, that every skill is evidenced by at least two items, and that episodes mix item types.</li>
+          <li><b>Offline-first.</b> Progress is saved locally with export/import and versioned save migrations; it runs fully without a network.</li>
+          <li><b>Delivery.</b> Windows desktop build with Electron, a student edition without teacher tools, and SCORM 1.2 / cmi5 export for school learning platforms.</li>
+          <li><b>Built with AI coding agents</b> — the same way I build my other tools — with a headless capture pipeline that records the footage on this page frame by frame.</li>
+        </ul>`],
+      ['scale', 'By the numbers', results([['68', 'interactive 3D simulators'], ['93', 'courses · 321 lessons'], ['4,242', 'assessment items'], ['~2,700', 'automated test cases']])],
+      ['learning', 'Learning design', `<ul><li><b>Mastery gating at 80%</b> with varied retries, spaced review of what you missed, and an explanation on every wrong answer.</li><li><b>Safety is never optional:</b> bypassing an interlock or skipping lockout/tagout is a serious violation.</li><li><b>Your country, your codes, your units:</b> United States, Canada, Mexico and Argentina; SI and imperial side by side. English text with full Spanish, and a glossary of 916 terms in English, Spanish and French.</li></ul>`],
+      ['context', 'Context', '<p class="conf">A personal side project, built on my own computer in my spare time. It is not affiliated with any employer. Every plant, company and person in it is fictional.</p>'],
+    ],
+  },
 ];
 
 // PLANTA is kept out of the public site for now (positioning decision, 2026-11-13).
@@ -364,7 +366,7 @@ ${nav}
   <a class="back" href="../index.html#work">← All work</a>
   <span class="label red">Case study · ${p.track}</span>
   <h1>${p.title}</h1>
-  <p class="case-lead">${p.lead}</p>
+  <p class="case-lead">${p.lead}</p>${p.cta ? `<p class="case-cta"><a class="btn primary" href="${p.cta[0]}" target="_blank" rel="noopener">${p.cta[1]} <span class="arr">↓</span></a></p>` : ''}
   <dl class="meta">${p.meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
 </header>
 <figure class="case-media wrap">${p.hero}<figcaption>${p.heroCap}</figcaption></figure>
@@ -386,8 +388,8 @@ ${p.sections.map(([id, t, body], j) => `    <section id="${id}"><h2><span class=
   <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR · available January 2027</p>
   <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
 </footer>
-<script src="../assets/labs.js?v=${V}" defer></script>
-<script src="../assets/labs-plus.js?v=${V}" defer></script>
+${/data-lab-inline/.test(p.hero + p.sections.map((s) => s[2]).join('')) ? `<script src="../assets/labs.js?v=${V}" defer></script>
+<script src="../assets/labs-plus.js?v=${V}" defer></script>` : ''}
 <script src="../assets/case.js?v=${V}" defer></script>
 ${p.script || ''}
 </body>

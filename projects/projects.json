@@ -7,15 +7,9 @@
   },
   {
     "slug": "industrial-projects",
-    "title": "Industrial equipment projects, sketch to start-up",
+    "title": "Industrial equipment projects, concept to start-up",
     "track": "Manufacturing",
     "desc": "Engineering lead on paint and powder finishing lines for EV, heavy-equipment and building-products plants: 54 opportunities, USD 21M quoted."
-  },
-  {
-    "slug": "planta",
-    "title": "PLANTA — a 3D plant simulator for learning industrial engineering",
-    "track": "Side project · 3D simulation",
-    "desc": "A side project: a walkable 3D industrial plant with 68 interactive simulators, where you learn industrial engineering by running equipment and troubleshooting faults. Built in TypeScript, React and three.js."
   },
   {
     "slug": "lean-2k-assembly",
@@ -46,5 +40,11 @@
     "title": "Beyond work: on stage and pitching ideas",
     "track": "Initiative · speaking",
     "desc": "Graduate commencement speaker at Bradley University (2025) and three Latin American Innovation Rally pitches (2020, 2021, 2026), including a 1st place at provincial level."
+  },
+  {
+    "slug": "planta",
+    "title": "PLANTA — a 3D plant simulator for learning industrial engineering",
+    "track": "Side project · 3D simulation",
+    "desc": "A side project: a walkable 3D industrial plant with 68 interactive simulators, where you learn industrial engineering by running equipment and troubleshooting faults. Built in TypeScript, React and three.js."
   }
 ]
