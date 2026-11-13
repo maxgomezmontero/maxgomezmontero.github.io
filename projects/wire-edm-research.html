@@ -21,7 +21,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23e5132f'/></svg>">
 <link rel="preload" href="../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/archivo-expanded-800-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/style.css?v=20261113i">
+<link rel="stylesheet" href="../assets/style.css?v=20261113j">
 </head>
 <body class="case">
 <a class="skip" href="#main">Skip to content</a>
@@ -34,20 +34,22 @@
 <main id="main">
 <header class="case-band">
 <canvas class="field" aria-hidden="true"></canvas>
-<div class="case-hero wrap">
+<div class="case-hero wrap stack">
+ <div class="ch-text">
   <a class="back" href="../index.html#work">← All work</a>
   <span class="label red">Case study · Research · ML</span>
   <h1>Predicting surface roughness in wire EDM, while cutting</h1>
   <p class="case-lead">Surface roughness is usually checked after the part is cut. We predicted it during the cut, from the machine controller’s own signals — published in Neural Computing and Applications (Springer, 2026).</p>
-  <dl class="meta"><div><dt>Role</dt><dd>Co-author · M.S. research</dd></div><div><dt>Authors</dt><dd>Chen, Gomez Montero &amp; Yu</dd></div><div><dt>Published</dt><dd>2026 · Neural Comput. &amp; Applic. 38, 87</dd></div><div><dt>Methods</dt><dd>Full-factorial DOE · ANN (ReLU) · Python</dd></div><div><dt>Result</dt><dd>~95.8% average accuracy</dd></div></dl>
+ </div>
+ <figure class="case-media"><div class="lab-inline" data-lab-inline="research" data-tabs="Neural network"><p class="il-hint">Loading the interactive demo…</p></div><figcaption>A network shaped like the paper’s, trained live in your browser on synthetic data.</figcaption></figure>
 </div>
 </header>
-<figure class="case-media wrap"><div class="lab-inline" data-lab-inline="research" data-tabs="Neural network"><p class="il-hint">Loading the interactive demo…</p></div><figcaption>A network shaped like the paper’s, trained live in your browser on synthetic data.</figcaption></figure>
 <section class="tldr wrap" aria-label="Summary">
   <div><h2>Problem</h2><p>Models built on fixed machine settings assume a steady process. Real wire-EDM cuts drift, so parts still get measured after machining.</p></div>
   <div><h2>What I did</h2><p>Turned the controller’s voltage, current and feed-rate readings into 12 online features and trained a neural network on a designed experiment of 81 cuts.</p></div>
   <div><h2>Result</h2><p>~95.8% average prediction accuracy (published). On the test set the network never accepted an out-of-spec part (0 Type I errors).</p></div>
 </section>
+<div class="case-meta wrap"><dl class="meta"><div><dt>Role</dt><dd>Co-author · M.S. research</dd></div><div><dt>Authors</dt><dd>Chen, Gomez Montero &amp; Yu</dd></div><div><dt>Published</dt><dd>2026 · Neural Comput. &amp; Applic. 38, 87</dd></div><div><dt>Methods</dt><dd>Full-factorial DOE · ANN (ReLU) · Python</dd></div><div><dt>Result</dt><dd>~95.8% average accuracy</dd></div></dl></div>
 <div class="case-grid wrap">
   <nav class="toc" aria-label="On this page"><a href="#design">Study design</a><a href="#role">My role</a><a href="#results">Results</a><a href="#next">Follow-up work</a></nav>
   <div class="case-body">
@@ -67,10 +69,10 @@
   <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR</p>
   <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
 </footer>
-<script src="../assets/labs.js?v=20261113i" defer></script>
-<script src="../assets/labs-plus.js?v=20261113i" defer></script>
-<script src="../assets/field.js?v=20261113i" defer></script>
-<script src="../assets/case.js?v=20261113i" defer></script>
+<script src="../assets/labs.js?v=20261113j" defer></script>
+<script src="../assets/labs-plus.js?v=20261113j" defer></script>
+<script src="../assets/field.js?v=20261113j" defer></script>
+<script src="../assets/case.js?v=20261113j" defer></script>
 
 </body>
 </html>

@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'projects');
 const SITE = 'https://maxgomezmontero.github.io/';
-const V = '20261113i';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
+const V = '20261113j';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
 mkdirSync(OUT, { recursive: true });
 
 const lab = (key, tabs) => `<div class="lab-inline" data-lab-inline="${key}"${tabs ? ` data-tabs="${tabs}"` : ''}><p class="il-hint">Loading the interactive demo…</p></div>`;
@@ -391,18 +391,20 @@ ${nav}
 <main id="main">
 <header class="case-band">
 <canvas class="field" aria-hidden="true"></canvas>
-<div class="case-hero wrap">
+<div class="case-hero wrap${/lab-inline|data-lab-inline/.test(p.hero) ? ' stack' : ''}">
+ <div class="ch-text">
   <a class="back" href="../index.html#work">← All work</a>
   <span class="label red">Case study · ${p.track}</span>
   <h1>${p.title}</h1>
   <p class="case-lead">${p.lead}</p>${p.cta ? `<p class="case-cta"><a class="btn primary" href="${p.cta[0]}" target="_blank" rel="noopener">${p.cta[1]} <span class="arr">↓</span></a>${p.code ? ` <a class="btn" href="${p.code}" target="_blank" rel="noopener">Code on GitHub <span class="arr">↗</span></a>` : ''}</p>` : ''}
-  <dl class="meta">${p.meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+ </div>
+ <figure class="case-media">${p.hero}<figcaption>${p.heroCap}</figcaption></figure>
 </div>
 </header>
-<figure class="case-media wrap">${p.hero}<figcaption>${p.heroCap}</figcaption></figure>
 <section class="tldr wrap" aria-label="Summary">
   ${(p.tldrHeads || ['Problem', 'What I did', 'Result']).map((h, k) => `<div><h2>${h}</h2><p>${p.tldr[k]}</p></div>`).join('\n  ')}
 </section>
+<div class="case-meta wrap"><dl class="meta">${p.meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl></div>
 <div class="case-grid wrap">
   <nav class="toc" aria-label="On this page">${toc}</nav>
   <div class="case-body">
@@ -482,7 +484,7 @@ ${nav}
 <main id="main">
 <header class="case-band">
 <canvas class="field" aria-hidden="true"></canvas>
-<div class="case-hero wrap">
+<div class="case-hero note-hero wrap">
   <a class="back" href="../index.html#think">← How I think</a>
   <span class="label red">Note · ${n.kicker}</span>
   <h1>${n.title}</h1>
