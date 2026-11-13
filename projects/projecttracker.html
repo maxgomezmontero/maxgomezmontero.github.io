@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProjectTracker — Maxi Gomez Montero</title>
+<meta name="description" content="A rules-first desktop co-pilot that files a project engineer’s email, flags milestones, checks drawings and queues ERP updates for approval.">
+<meta property="og:title" content="ProjectTracker — Maxi Gomez Montero">
+<meta property="og:description" content="A rules-first desktop co-pilot that files a project engineer’s email, flags milestones, checks drawings and queues ERP updates for approval.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://maxgomezmontero.github.io/projects/projecttracker.html">
+<meta property="og:image" content="https://maxgomezmontero.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ff2b1c'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="case">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+<nav class="top" aria-label="Main"><div class="wrap">
+  <a class="brand" href="../index.html"><i></i>Maxi Gomez Montero</a>
+  <div class="navlinks"><a href="../index.html#work">All work</a><a href="../index.html#research">Research</a><a href="../index.html#experience">Experience</a><a href="../index.html#contact">Contact</a></div>
+  <div class="cvs"><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Manufacturing</span><span class="short">&nbsp;Mfg</span> ↓</a><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Applied AI</span><span class="short">&nbsp;AI</span> ↓</a></div>
+</div></nav>
+<main id="main">
+<header class="case-hero wrap">
+  <a class="back" href="../index.html#work">← All work</a>
+  <span class="label red">Case study · Applied AI</span>
+  <h1>ProjectTracker</h1>
+  <p class="case-lead">A desktop co-pilot that files a project engineer’s email, flags milestones, checks layout drawings and queues ERP updates for one-click approval. I built it for my own job; I use it every day.</p>
+  <dl class="meta"><div><dt>Role</dt><dd>Sole designer &amp; developer</dd></div><div><dt>Team</dt><dd>Me, building with AI coding agents (Claude Code)</dd></div><div><dt>When</dt><dd>Jun 2026 – present</dd></div><div><dt>Stack</dt><dd>Electron · JavaScript · Outlook · Acumatica ERP · SharePoint</dd></div><div><dt>Status</dt><dd>In daily use</dd></div></dl>
+</header>
+<figure class="case-media wrap"><div class="lab-inline" data-lab-inline="tracker" data-tabs="Replay one email"><p class="il-hint">Loading the interactive demo…</p></div><figcaption>Replay of one sample email going from inbox to ERP note. Sample data; the real tool and its data are private.</figcaption></figure>
+<section class="tldr wrap" aria-label="Summary">
+  <div><h2>Problem</h2><p>Running ~20–25 live projects meant hours each week matching ~145 emails to jobs, updating the ERP by hand and catching drawing errors late.</p></div>
+  <div><h2>What I did</h2><p>A rules-first app: weighted-evidence email matching, 13 milestone detectors, a 44-criteria drawing check and human-approved ERP writes. The LLM only writes one-line summaries.</p></div>
+  <div><h2>Result</h2><p>~7.3 h saved per week (~340 h/year), 94% agreement with my past manual decisions, and real drawing errors caught before release.</p></div>
+</section>
+<div class="case-grid wrap">
+  <nav class="toc" aria-label="On this page"><a href="#context">Context</a><a href="#role">My role</a><a href="#approach">How it works</a><a href="#decisions">Key decisions</a><a href="#results">Results</a><a href="#try">Try it</a><a href="#confidential">Confidentiality</a></nav>
+  <div class="case-body">
+    <section id="context"><h2><span class="num">01</span>Context</h2><p>As a project engineer I lead the engineering on <b>54 opportunities (USD 21M quoted)</b>. The information for each one is spread across Outlook threads, the Acumatica ERP and SharePoint folders full of layouts, vendor drawings and quotes. Keeping the ERP current and catching mismatches between documents was manual, slow and easy to get wrong.</p>
+        <p>Constraints I designed around: mail and ERP are read-only unless I approve a change, nothing may be written silently, and every decision the tool makes has to be explainable to me in one line.</p></section>
+    <section id="role"><h2><span class="num">02</span>My role</h2><div class="role-box"><p><b>Everything, end to end.</b> I scoped the problem from my own workload, designed the matching rules and detectors, built the desktop app with AI coding agents, wired it to Outlook, the ERP and SharePoint, and measured it against my own past decisions.</p></div></section>
+    <section id="approach"><h2><span class="num">03</span>How it works</h2><ol class="steps"><li><b>Ingest.</b> Mail is exported read-only every 2 hours; the ERP is refreshed read-only once a day; project folders and drawings are read from SharePoint.</li><li><b>Match.</b> Each email is scored against every project with 9 evidence signals — project number in the subject (0.97), ERP opportunity ID (0.90), known thread (0.88) … client name in the subject (0.55) — plus 0.12 for each extra kind of evidence. Below 0.45 it is ignored.</li><li><b>Detect.</b> 13 deterministic detectors spot milestones: order accepted, submittals, ship date (read from the vendor PDF), new opportunity, site access and more.</li><li><b>Check drawings.</b> Layout PDFs are scored against 44 criteria in 7 groups and cross-checked against quotes and vendor drawings; near-misses within 2.5% are flagged too.</li><li><b>Explain.</b> An optional LLM writes a ≤160-character factual summary of the thread. It never sets IDs, statuses or decisions.</li><li><b>Approve &amp; write.</b> Proposals land in an inbox (J/K to move, A to approve, X to discard). An approved ERP note is re-read, appended, confirmed, saved, re-read to verify, and backed up.</li></ol></section>
+    <section id="decisions"><h2><span class="num">04</span>Key decisions</h2><div class="decisions"><div><span class="why">Decision</span><h3>Rules decide; the LLM only writes</h3><p>Matching, milestones and drawing checks are rules with weights I can read and test. The LLM is used where language matters — summaries — not where correctness matters.</p></div><div><span class="why">Decision</span><h3>A human approves every ERP write</h3><p>The tool proposes, I decide. Every write is re-read and verified afterwards, with a backup of what was there before.</p></div><div><span class="why">Decision</span><h3>Measure against my own history</h3><p>Accuracy is reported as agreement with decisions I had already made by hand (94%), not as a self-reported model score.</p></div><div><span class="why">Decision</span><h3>Index the past to answer the present</h3><p>1,697 equipment items from 620 archived projects are searchable by size and type, so “have we built this before?” takes seconds.</p></div></div></section>
+    <section id="results"><h2><span class="num">05</span>Results</h2><div class="results"><div><b>~7.3 h</b><span>saved per week (~340 h/year)</span></div><div><b>94%</b><span>agreement with my past manual decisions</span></div><div><b>1,697</b><span>equipment items indexed from 620 projects</span></div><div><b>44</b><span>drawing criteria checked automatically</span></div></div>
+        <p>Errors caught before a drawing was released include an order-number typo, a <b>350 vs 500 lb hook-load</b> mismatch and a ceiling-height mismatch.</p></section>
+    <section id="try"><h2><span class="num">06</span>Try it</h2><div class="lab-inline" data-lab-inline="tracker" data-tabs="Inbox triage,Board,Drawing QA,How it’s built"><p class="il-hint">Loading the interactive demo…</p></div></section>
+    <section id="confidential"><h2><span class="num">07</span>Confidentiality</h2><p class="conf">ProjectTracker is a tool I use at work. Its source code and real project data are private. Everything above runs on invented sample data that mirrors the real logic.</p></section>
+  </div>
+</div>
+<nav class="case-next wrap" aria-label="More projects">
+  <a href="operations-logistics.html"><span class="label">← Previous</span><b>Operations &amp; logistics</b></a>
+  <a class="nx" href="industrial-projects.html"><span class="label">Next →</span><b>Industrial projects</b></a>
+</nav>
+</main>
+<footer class="case-foot wrap">
+  <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR · available January 2027</p>
+  <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+</footer>
+<script src="../assets/labs.js"></script>
+<script src="../assets/labs-plus.js"></script>
+<script src="../assets/case.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restaurant accounting & analytics app — Maxi Gomez Montero</title>
+<meta name="description" content="A Windows desktop app that unifies POS PDFs, three delivery portals and paper receipts into payroll, reconciliation and menu margins. In daily use since Oct 2026.">
+<meta property="og:title" content="Restaurant accounting & analytics app — Maxi Gomez Montero">
+<meta property="og:description" content="A Windows desktop app that unifies POS PDFs, three delivery portals and paper receipts into payroll, reconciliation and menu margins. In daily use since Oct 2026.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://maxgomezmontero.github.io/projects/restaurant-system.html">
+<meta property="og:image" content="https://maxgomezmontero.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ff2b1c'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="case">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+<nav class="top" aria-label="Main"><div class="wrap">
+  <a class="brand" href="../index.html"><i></i>Maxi Gomez Montero</a>
+  <div class="navlinks"><a href="../index.html#work">All work</a><a href="../index.html#research">Research</a><a href="../index.html#experience">Experience</a><a href="../index.html#contact">Contact</a></div>
+  <div class="cvs"><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Manufacturing</span><span class="short">&nbsp;Mfg</span> ↓</a><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Applied AI</span><span class="short">&nbsp;AI</span> ↓</a></div>
+</div></nav>
+<main id="main">
+<header class="case-hero wrap">
+  <a class="back" href="../index.html#work">← All work</a>
+  <span class="label red">Case study · Software</span>
+  <h1>Restaurant accounting &amp; analytics app</h1>
+  <p class="case-lead">A Windows desktop app that turns a restaurant’s scattered sales data — POS ticket PDFs, three delivery portals and paper receipts — into payroll, cash reconciliation, monthly close and menu margins.</p>
+  <dl class="meta"><div><dt>Role</dt><dd>Designer &amp; developer</dd></div><div><dt>Team</dt><dd>Me, building with AI coding agents</dd></div><div><dt>When</dt><dd>Aug 2026 – present</dd></div><div><dt>Stack</dt><dd>Electron · React · TypeScript · SQLite · OCR</dd></div><div><dt>Status</dt><dd>In daily use since Oct 2026</dd></div></dl>
+</header>
+<figure class="case-media wrap"><div class="lab-inline" data-lab-inline="restaurant" data-tabs="Unify sales"><p class="il-hint">Loading the interactive demo…</p></div><figcaption>Import five sample sources into one ledger. Invented menu and orders; the restaurant’s data is private.</figcaption></figure>
+<section class="tldr wrap" aria-label="Summary">
+  <div><h2>Problem</h2><p>Sales lived in POS ticket PDFs, DoorDash, UberEats and GrubHub exports and paper receipts, so monthly close and menu costing were slow and manual.</p></div>
+  <div><h2>What I did</h2><p>Built a desktop app that imports every source into one ledger, OCRs receipts, and runs payroll, cash reconciliation, monthly close and menu analytics, with Excel/PDF reports.</p></div>
+  <div><h2>Result</h2><p>In daily use by the restaurant since October 2026, with auto-updating releases and cloud sync.</p></div>
+</section>
+<div class="case-grid wrap">
+  <nav class="toc" aria-label="On this page"><a href="#approach">How it works</a><a href="#menu">Menu margins</a><a href="#decisions">Key decisions</a><a href="#confidential">Confidentiality</a></nav>
+  <div class="case-body">
+    <section id="approach"><h2><span class="num">01</span>How it works</h2><ol class="steps"><li><b>Import.</b> POS ticket PDFs and DoorDash / UberEats / GrubHub CSVs are parsed; paper receipts are read with OCR.</li><li><b>Normalise.</b> Every source becomes the same transaction format in a local SQLite database with cloud sync.</li><li><b>Operate.</b> Payroll, cash reconciliation and monthly close run on that single ledger.</li><li><b>Analyse.</b> Cost per dish, margin by item and trends; Excel and PDF reports for the owner and the accountant.</li></ol></section>
+    <section id="menu"><h2><span class="num">02</span>Menu margins</h2><div class="lab-inline" data-lab-inline="restaurant" data-tabs="Menu margins"><p class="il-hint">Loading the interactive demo…</p></div></section>
+    <section id="decisions"><h2><span class="num">03</span>Key decisions</h2><div class="decisions"><div><span class="why">Decision</span><h3>One format for every source</h3><p>Five very different inputs are converted once, so every report reads the same ledger.</p></div><div><span class="why">Decision</span><h3>Local-first, synced</h3><p>SQLite on the restaurant’s PC keeps it fast and offline-safe; cloud sync keeps a copy.</p></div><div><span class="why">Decision</span><h3>Ship updates automatically</h3><p>Auto-updating releases mean fixes reach the restaurant without a visit.</p></div></div></section>
+    <section id="confidential"><h2><span class="num">04</span>Confidentiality</h2><p class="conf">The restaurant’s data is private and the repository stays private. The demos use an invented menu and invented orders.</p></section>
+  </div>
+</div>
+<nav class="case-next wrap" aria-label="More projects">
+  <a href="wire-edm-research.html"><span class="label">← Previous</span><b>Wire-EDM research</b></a>
+  <a class="nx" href="operations-logistics.html"><span class="label">Next →</span><b>Operations &amp; logistics</b></a>
+</nav>
+</main>
+<footer class="case-foot wrap">
+  <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR · available January 2027</p>
+  <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+</footer>
+<script src="../assets/labs.js"></script>
+<script src="../assets/labs-plus.js"></script>
+<script src="../assets/case.js"></script>
+
+</body>
+</html>

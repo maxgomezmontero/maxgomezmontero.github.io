@@ -3,292 +3,366 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Maximiliano Gomez Montero — Manufacturing & Applied AI Engineer</title>
-<meta name="description" content="Manufacturing engineer building applied AI for industrial workflows. Portfolio of Maximiliano (Maxi) Gomez Montero.">
-<style>
-  :root {
-    --ink: #1c1f23; --muted: #5b636d; --line: #e3e6ea; --bg: #fbfbf9; --card: #ffffff;
-    --accent: #c4501b; --accent-soft: #fbeee7; --tag: #eef1f4;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; font-family: "Inter", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; font-size: 16px; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
-
-  nav { position: sticky; top: 0; background: rgba(251,251,249,.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); z-index: 10; }
-  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
-  nav .brand { font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
-  nav .links a { color: var(--muted); margin-left: 22px; font-size: 14px; }
-  nav .links a:hover { color: var(--ink); text-decoration: none; }
-
-  header { padding: 88px 0 56px; }
-  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
-  h1 { font-size: clamp(34px, 5vw, 48px); line-height: 1.12; letter-spacing: -.025em; margin: 0 0 20px; }
-  .lead { font-size: 19px; color: var(--muted); max-width: 680px; margin: 0 0 28px; }
-  .status { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; background: var(--accent-soft); color: #8a3511; padding: 6px 12px; border-radius: 999px; margin-bottom: 28px; }
-  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-  .btn { display: inline-block; padding: 10px 18px; border-radius: 8px; font-size: 15px; font-weight: 600; border: 1px solid var(--ink); color: var(--ink); }
-  .btn.primary { background: var(--ink); color: #fff; }
-  .btn:hover { text-decoration: none; opacity: .88; }
-
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin: 8px 0 72px; }
-  .stat { background: var(--card); padding: 20px; }
-  .stat b { display: block; font-size: 26px; letter-spacing: -.02em; }
-  .stat span { font-size: 13px; color: var(--muted); }
-
-  section { padding: 0 0 72px; }
-  h2 { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 24px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
-
-  .project { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px; margin-bottom: 20px; }
-  .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-  .project h3 { font-size: 21px; letter-spacing: -.015em; margin: 0; }
-  .project .when { font-size: 13px; color: var(--muted); white-space: nowrap; }
-  .project .kicker { color: var(--muted); margin: 4px 0 18px; }
-  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .grid3 h4 { font-size: 12px; text-transform: uppercase; letter-spacing: .07em; color: var(--accent); margin: 0 0 6px; }
-  .grid3 p, .grid3 ul { margin: 0; font-size: 15px; }
-  .grid3 ul { padding-left: 18px; }
-  .tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; }
-  .tags span { font-size: 12px; background: var(--tag); padding: 3px 9px; border-radius: 6px; color: #3b434c; }
-  .note { font-size: 13px; color: var(--muted); margin-top: 14px; font-style: italic; }
-
-  .pub { padding: 18px 0; border-bottom: 1px solid var(--line); }
-  .pub:last-child { border-bottom: 0; }
-  .pub .venue { font-style: italic; }
-  .pub .badge { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 2px 8px; border-radius: 5px; margin-right: 8px; }
-  .badge.pub-ok { background: #e6f2ea; color: #23633a; }
-  .badge.review { background: #fff4d6; color: #7a5a00; }
-
-  .timeline .item { display: grid; grid-template-columns: 170px 1fr; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--line); }
-  .timeline .item:last-child { border-bottom: 0; }
-  .timeline .date { color: var(--muted); font-size: 14px; }
-  .timeline b { display: block; }
-  .timeline p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
-
-  .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 32px; }
-  .skills h4 { margin: 0 0 4px; font-size: 15px; }
-  .skills p { margin: 0; color: var(--muted); font-size: 15px; }
-
-  footer { border-top: 1px solid var(--line); padding: 40px 0 56px; }
-  footer h2 { border: 0; padding: 0; }
-  .contact { font-size: 20px; }
-  .contact a { margin-right: 24px; }
-  .small { color: var(--muted); font-size: 13px; margin-top: 28px; }
-
-  @media (max-width: 720px) {
-    nav .links { display: none; }
-    header { padding: 56px 0 40px; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
-    .grid3, .skills { grid-template-columns: 1fr; }
-    .timeline .item { grid-template-columns: 1fr; gap: 2px; }
-  }
-</style>
+<title>Maxi Gomez Montero — Manufacturing Engineer & AI Builder</title>
+<meta name="description" content="Manufacturing engineer who leads industrial equipment projects from sketch to start-up and builds AI software that saves engineering teams hundreds of hours. Toronto/GTA · Canadian PR · available January 2027.">
+<meta property="og:title" content="Maxi Gomez Montero — Manufacturing engineer. AI builder.">
+<meta property="og:description" content="Industrial projects from sketch to start-up, plus AI tools that take the busywork off engineering teams. Interactive project labs inside.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://maxgomezmontero.github.io/">
+<meta property="og:image" content="https://maxgomezmontero.github.io/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ff2b1c'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<a class="skip" href="#hire">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
 
-<nav>
+<nav class="top" aria-label="Main">
   <div class="wrap">
-    <a class="brand" href="#">Maxi Gomez Montero</a>
-    <div class="links">
+    <a class="brand" href="#top"><i></i>Maxi Gomez Montero</a>
+    <div class="navlinks">
+      <a href="#hire">Roles</a>
       <a href="#work">Work</a>
       <a href="#research">Research</a>
       <a href="#experience">Experience</a>
+      <a href="#stage">On stage</a>
       <a href="#contact">Contact</a>
+    </div>
+    <div class="cvs">
+      <a class="chip-btn" href="Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener" aria-label="Manufacturing résumé (PDF)">CV<span class="long">&nbsp;· Manufacturing</span><span class="short">&nbsp;Mfg</span> ↓</a>
+      <a class="chip-btn" href="Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener" aria-label="Applied AI résumé (PDF)">CV<span class="long">&nbsp;· Applied AI</span><span class="short">&nbsp;AI</span> ↓</a>
     </div>
   </div>
 </nav>
 
-<div class="wrap">
-
-<header>
-  <p class="eyebrow">Manufacturing Engineering × Applied AI</p>
-  <h1>I build tools that make industrial engineering teams faster.</h1>
-  <p class="lead">I'm Maximiliano (Maxi) Gomez Montero, a manufacturing engineer who designs industrial finishing systems for EV and heavy-equipment plants and builds AI-assisted software for the people who run them. M.S. in Manufacturing Engineering (GPA 4.0), published ML researcher, trilingual (English, Spanish, French).</p>
-  <div class="status">Canadian Permanent Resident · Toronto/GTA · Available January 2027</div>
-  <div class="actions">
-    <a class="btn primary" href="#work">See my work</a>
-    <a class="btn" href="Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank">Résumé — Applied AI</a>
-    <a class="btn" href="Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank">Résumé — Manufacturing</a>
+<header class="hero" id="top">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="meta fade-up">
+      <span class="label">Manufacturing Engineering <span class="red">×</span> Applied AI</span>
+      <span class="label">43.65° N · 79.38° W — Toronto / GTA</span>
+    </div>
+    <h1 id="headline">Manufacturing engineer.<br><em>AI builder.</em><br>Same person.</h1>
+    <div class="hero-bottom">
+      <p class="lead fade-up">Project Engineer at Dove Equipment / ICAFe: I lead industrial equipment projects from first sketch to start-up — and I build the software that takes the busywork off engineering teams, starting with my own. M.S. in Manufacturing Engineering (4.0 GPA), co-author of a peer-reviewed ML paper, working in English, Spanish and French.</p>
+      <div class="hero-side fade-up">
+        <span class="status">Canadian PR · Toronto/GTA · Available January 2027</span>
+        <div class="actions">
+          <a class="btn primary" href="#work">See the work <span class="arr">→</span></a>
+          <a class="btn ghost" href="#hire">Two ways to hire me</a>
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="scroll-cue" aria-hidden="true"><span class="label">Scroll</span><span class="line"></span></div>
 </header>
 
-<div class="stats">
-  <div class="stat"><b>54</b><span>finishing-system opportunities led (USD 21M quoted)</span></div>
-  <div class="stat"><b>2</b><span>production desktop apps shipped and in daily use</span></div>
-  <div class="stat"><b>~340 h</b><span>per year saved by my workflow tool</span></div>
-  <div class="stat"><b>1</b><span>peer-reviewed ML paper (Springer), 1 under review</span></div>
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Project engineering <b>✱</b></span><span>Applied AI <b>✱</b></span><span>Sketch to start-up <b>✱</b></span><span>LLM tools <b>✱</b></span><span>Commissioning <b>✱</b></span><span>Machine learning <b>✱</b></span><span>Lean <b>✱</b></span><span>Human-in-the-loop <b>✱</b></span>
+    <span>Project engineering <b>✱</b></span><span>Applied AI <b>✱</b></span><span>Sketch to start-up <b>✱</b></span><span>LLM tools <b>✱</b></span><span>Commissioning <b>✱</b></span><span>Machine learning <b>✱</b></span><span>Lean <b>✱</b></span><span>Human-in-the-loop <b>✱</b></span>
+  </div>
 </div>
 
-<section id="work">
-  <h2>Selected work</h2>
+<main>
 
-  <article class="project">
-    <div class="project-head">
-      <h3>ProjectTracker — engineering workflow automation</h3>
-      <span class="when">Jun 2026 – present · Dove Equipment / ICAFe</span>
-    </div>
-    <p class="kicker">A desktop app that runs a project engineer's day: email, ERP, drawings and deadlines in one place.</p>
-    <div class="grid3">
-      <div>
-        <h4>Problem</h4>
-        <p>Managing ~20–25 live projects meant hours each week matching emails to jobs, updating the ERP by hand and catching drawing errors late.</p>
-      </div>
-      <div>
-        <h4>What I built</h4>
-        <ul>
-          <li>Integration with Outlook, Acumatica ERP and SharePoint</li>
-          <li>Email-to-project matching and milestone detection (rules + LLM reading of threads) across ~145 emails/week</li>
-          <li>Automated drawing QA (44-criteria check) and drawing-vs-quote cross-checks</li>
-          <li>Index of 1,697 equipment items from 620 archived projects</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Results</h4>
-        <ul>
-          <li>94% agreement with past manual decisions</li>
-          <li>Caught real errors before release (e.g. 350 vs 500 lb hook load)</li>
-          <li>~7.3 h/week saved (~340 h/year)</li>
-          <li>Every ERP write is human-approved</li>
-        </ul>
-      </div>
-    </div>
-    <div class="tags"><span>Electron</span><span>Node.js</span><span>LLM integration</span><span>Claude Code</span><span>ERP / SharePoint APIs</span><span>Human-in-the-loop</span></div>
-    <p class="note">Internal company tool: source code and real project data are confidential. Screenshots use sample data.</p>
-  </article>
-
-  <article class="project">
-    <div class="project-head">
-      <h3>Restaurant accounting & analytics system</h3>
-      <span class="when">Aug 2026 – present · Independent project</span>
-    </div>
-    <p class="kicker">A Windows app that turns a restaurant's scattered sales data into payroll, reconciliation and menu decisions.</p>
-    <div class="grid3">
-      <div>
-        <h4>Problem</h4>
-        <p>Sales lived in POS ticket PDFs, three delivery portals and paper receipts, so monthly close and menu costing were slow and manual.</p>
-      </div>
-      <div>
-        <h4>What I built</h4>
-        <ul>
-          <li>Import of POS PDFs and DoorDash / UberEats / GrubHub CSVs</li>
-          <li>Receipt OCR, payroll, cash reconciliation, monthly close</li>
-          <li>Menu analytics: cost per dish, margin by item, trends</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Results</h4>
-        <ul>
-          <li>In use by the restaurant since Oct 2026</li>
-          <li>Excel/PDF reporting</li>
-          <li>Auto-updating releases with cloud sync</li>
-        </ul>
-      </div>
-    </div>
-    <div class="tags"><span>Electron</span><span>React</span><span>TypeScript</span><span>SQLite</span><span>OCR</span><span>Claude Code</span></div>
-  </article>
-
-  <article class="project">
-    <div class="project-head">
-      <h3>Industrial finishing systems engineering</h3>
-      <span class="when">Jan 2025 – present · Dove Equipment / ICAFe</span>
-    </div>
-    <p class="kicker">Paint and powder booths, cure ovens, air make-up units, wash systems and conveyors for EV, heavy-equipment and building-products plants.</p>
-    <div class="grid3">
-      <div>
-        <h4>Scope</h4>
-        <p>Engineering lead from first sketch to start-up: process selection, airflow and thermal sizing, layouts, equipment specs and quotes.</p>
-      </div>
-      <div>
-        <h4>How</h4>
-        <ul>
-          <li>Coordinate customers, sales, installers and OEM vendors (GFS, Rohner, Nordson, Clemco)</li>
-          <li>Review drawings and submittals for scope and capacity gaps</li>
-          <li>On-site installations, burner and line start-ups</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Results</h4>
-        <ul>
-          <li>54 opportunities, USD 21M quoted</li>
-          <li>10 of 23 decided projects won (USD 4.85M)</li>
-          <li>5+ installations, incl. a multi-booth paint line for an EV maker</li>
-        </ul>
-      </div>
-    </div>
-    <div class="tags"><span>AutoCAD</span><span>FactoryCAD</span><span>Process design</span><span>Commissioning</span><span>Vendor management</span></div>
-  </article>
-
-  <article class="project">
-    <div class="project-head">
-      <h3>Lean implementation in paint-system assembly</h3>
-      <span class="when">2024 · Bradley University</span>
-    </div>
-    <p class="kicker">Mapped the assembly workflow and its waste (muda), redesigned the layout and designed a dedicated work cell for fluid-system builds.</p>
-    <div class="tags"><span>Lean</span><span>Layout planning</span><span>Process mapping</span></div>
-  </article>
-
-  <article class="project">
-    <div class="project-head">
-      <h3>Industry 4.0 logistics transformation</h3>
-      <span class="when">2023 · National University of Tucumán</span>
-    </div>
-    <p class="kicker">Industrial Engineering final project: led a WMS/TMS digital transformation of order-to-delivery workflows, raising perfect deliveries by 15%.</p>
-    <div class="tags"><span>WMS / TMS</span><span>Process reengineering</span></div>
-  </article>
+<section class="wrap" style="padding-bottom:0" aria-label="Key numbers">
+  <div class="stats reveal">
+    <div class="stat"><b><small class="pre">USD</small><span data-count="21">21</span><small>M</small></b><span>in industrial equipment quoted as engineering lead on 54 opportunities</span></div>
+    <div class="stat"><b>~<span data-count="340">340</span><small>h/yr</small></b><span>of engineering time saved by ProjectTracker, the app I built (estimate)</span></div>
+    <div class="stat"><b><span data-count="94">94</span><small>%</small></b><span>agreement between its email matching and past manual decisions</span></div>
+    <div class="stat"><b><span data-count="3">3</span></b><span>working languages: English (CLB 10), Spanish, French (NCLC 7+)</span></div>
+  </div>
 </section>
 
-<section id="research">
-  <h2>Research</h2>
-  <div class="pub">
-    <span class="badge pub-ok">Published</span>
-    <b>Development of an ANN-based online surface roughness prediction (ANN-OSRP) system in wire electrical discharge machining processes.</b><br>
-    Chen, J., <b>Gomez Montero, M. A.</b>, &amp; Yu, S. (2026). <span class="venue">Neural Computing and Applications</span>, 38(4), 87. Springer.<br>
-    <span style="color:var(--muted)">A neural network that predicts wire-EDM surface roughness in real time from three machine-controller signals, with ~95.8% average accuracy, after Taguchi optimization of cutting parameters.</span>
+<section id="hire">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">01 / Roles</span>
+      <div>
+        <h2>Two ways<br>to hire me.</h2>
+        <p>Same engineer, two angles. Pick the one that matches your opening: each has its own résumé and its own proof below.</p>
+      </div>
+    </div>
+    <div class="roles">
+      <article class="role reveal">
+        <span class="label">Track A</span>
+        <h3>Manufacturing &amp; project engineering</h3>
+        <ul>
+          <li><b>Sketch to start-up.</b> Process selection, airflow and thermal sizing, layouts, equipment specs, vendor coordination, installs and line start-ups.</li>
+          <li><b>Lean and time studies.</b> Value stream mapping and 5 Whys behind a proposed cell + kanban + SOP redesign; staffing models built from warehouse time studies.</li>
+          <li><b>Data on the shop floor.</b> Standardized ERP project data with schedule-overrun alerts; a historical database of 1,697 equipment items from 620 past projects.</li>
+        </ul>
+        <p class="proof"><span class="label">Proof</span> <a href="projects/industrial-projects.html">Industrial projects</a> <a href="projects/lean-2k-assembly.html">Lean proposal</a> <a href="projects/operations-logistics.html">Operations &amp; logistics</a></p>
+        <div class="role-cta">
+          <a class="btn primary" href="Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener">Manufacturing résumé (PDF) <span class="arr">↓</span></a>
+        </div>
+      </article>
+      <article class="role reveal">
+        <span class="label">Track B</span>
+        <h3>Applied AI &amp; automation</h3>
+        <ul>
+          <li><b>Ships real software.</b> Two production desktop apps (Electron, React/TypeScript, SQLite), designed and built with AI coding agents.</li>
+          <li><b>Automation you can audit.</b> Deterministic rules make the decisions, an LLM only writes summaries, and a human approves every write to the ERP.</li>
+          <li><b>ML research.</b> Co-author of a peer-reviewed Springer paper on predicting machining quality in real time with neural networks.</li>
+        </ul>
+        <p class="proof"><span class="label">Proof</span> <a href="projects/projecttracker.html">ProjectTracker</a> <a href="projects/restaurant-system.html">Restaurant app</a> <a href="projects/wire-edm-research.html">Wire-EDM research</a></p>
+        <div class="role-cta">
+          <a class="btn primary" href="Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener">Applied AI résumé (PDF) <span class="arr">↓</span></a>
+        </div>
+      </article>
+    </div>
   </div>
-  <div class="pub">
-    <span class="badge review">Under review</span>
-    <b>Vibration-based prediction of surface roughness and perpendicularity in CNC milling.</b><br>
-    <span class="venue">International Journal on Interactive Design and Manufacturing (IJIDeM)</span>.<br>
-    <span style="color:var(--muted)">Python ML models that estimate part quality from machine vibration data, so quality can be checked during machining instead of after.</span>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">02 / Work</span>
+      <div>
+        <h2>Selected work.<br><span class="red">Go ahead, touch it.</span></h2>
+        <p>Every project has its own case study page: the problem, my role, how I did it, the decisions, the results — and a working demo you can use. Each demo says which data is real and which is sample.</p>
+      </div>
+    </div>
+
+    <div class="labs">
+      <article class="lab-card wide reveal" id="p-tracker">
+        <div class="pv" aria-hidden="true">
+          <div class="pv-scan"></div>
+          <div class="pv-inbox">
+            <div class="pv-row"><span class="av"></span><div><div class="ln"></div><div class="ln s"></div></div><span class="tag">P-1042 · Drawings OK</span></div>
+            <div class="pv-row"><span class="av"></span><div><div class="ln"></div><div class="ln s"></div></div><span class="tag ok">P-1057 · PO received</span></div>
+            <div class="pv-row"><span class="av"></span><div><div class="ln"></div><div class="ln s"></div></div><span class="tag">P-1063 · Install date</span></div>
+            <div class="pv-row"><span class="av"></span><div><div class="ln"></div><div class="ln s"></div></div><span class="tag ok">Needs approval</span></div>
+          </div>
+        </div>
+        <div class="body">
+          <div class="top"><span class="label">Track B · Applied AI · Jun 2026 – present</span><span class="badge-data sample">Lab: sample data</span></div>
+          <h3>ProjectTracker — workflow automation for project engineers</h3>
+          <dl class="facts">
+            <div><dt>My role</dt><dd>Sole designer and developer. I built it on my own, for my own daily work as a project engineer, with AI coding agents (Claude Code).</dd></div>
+            <div><dt>What I did</dt><dd>A desktop app on top of Outlook, the ERP and SharePoint. It files ~145 emails a week to the right project, detects milestones, checks layout drawings against 44 criteria and queues ERP updates for one-click approval. Rules decide; an LLM only writes one-line summaries.</dd></div>
+            <div><dt>Result</dt><dd><b>94% agreement</b> with past manual decisions, <b>~7.3 h a week saved</b> (~340 h/year, estimated), and drawing checks that caught real errors before release, such as a 350 vs 500 lb hook load.</dd></div>
+          </dl>
+          <div class="tags" aria-label="Stack"><span>Electron</span><span>JavaScript</span><span>Rules engine</span><span>LLM summaries</span><span>ERP / SharePoint</span><span>Human-in-the-loop</span></div>
+          <a class="open" href="projects/projecttracker.html">Case study · replay an email, run the checks <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="lab-card reveal" id="p-industrial">
+        <div class="pv" aria-hidden="true">
+          <img class="pv-draw" src="img/drawings/paint-line-layout.webp" alt="" loading="lazy">
+        </div>
+        <div class="body">
+          <div class="top"><span class="label">Track A · Project engineering · Jan 2025 – present</span><span class="badge-data real">Lab: 3D from real drawings</span></div>
+          <h3>Industrial equipment projects, sketch to start-up</h3>
+          <dl class="facts">
+            <div><dt>My role</dt><dd>Project Engineer at Dove Equipment / ICAFe (engineering intern Jan – May 2025); engineering lead on 54 opportunities.</dd></div>
+            <div><dt>What I did</dt><dd>Process selection, airflow and thermal sizing, layouts and specs for booths, ovens, air make-up units, washers and conveyors; then vendors, installers and start-up on site.</dd></div>
+            <div><dt>Result</dt><dd><b>USD 21M quoted</b>; <b>10 of 23</b> decided projects won (USD 4.85M); 5+ installations and start-ups, including a multi-booth paint line for an EV manufacturer.</dd></div>
+          </dl>
+          <div class="tags" aria-label="Tools"><span>Process design</span><span>AutoCAD</span><span>FactoryCAD</span><span>Acumatica ERP</span><span>Commissioning</span></div>
+          <a class="open" href="projects/industrial-projects.html">Case study · drawings, 3D line, simulator <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="lab-card reveal" id="p-restaurant">
+        <div class="pv" aria-hidden="true">
+          <div class="pv-bars">
+            <i style="--h:55%"></i><i style="--h:80%"></i><i style="--h:42%"></i><i style="--h:68%"></i><i style="--h:90%"></i><i style="--h:35%"></i><i style="--h:74%"></i><i style="--h:60%"></i><i style="--h:85%"></i><i style="--h:48%"></i>
+          </div>
+        </div>
+        <div class="body">
+          <div class="top"><span class="label">Track B · Software · Aug 2026 – present</span><span class="badge-data sample">Lab: sample data</span></div>
+          <h3>Restaurant accounting &amp; analytics app</h3>
+          <dl class="facts">
+            <div><dt>My role</dt><dd>Sole developer of an independent project for a restaurant, built with AI coding agents.</dd></div>
+            <div><dt>What I did</dt><dd>A Windows app that imports POS ticket PDFs and DoorDash / UberEats / GrubHub exports, reads paper receipts with OCR, and runs payroll, cash reconciliation, monthly close and cost per dish.</dd></div>
+            <div><dt>Result</dt><dd><b>In daily use at the restaurant since Oct 2026</b>, with Excel/PDF reports and auto-updating releases.</dd></div>
+          </dl>
+          <div class="tags" aria-label="Stack"><span>Electron</span><span>React</span><span>TypeScript</span><span>SQLite</span><span>OCR</span></div>
+          <a class="open" href="projects/restaurant-system.html">Case study · import a day of sales <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="lab-card wide reveal" id="p-lean">
+        <div class="pv" aria-hidden="true">
+          <div class="pv-vsm">
+            <div class="pv-vsm-boxes"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="pv-vsm-line"><b style="--w:4%"></b><span></span><b style="--w:3%"></b><span></span><b style="--w:6%"></b><span></span></div>
+            <div class="pv-vsm-num"><em>2.3%</em> of lead time adds value</div>
+          </div>
+        </div>
+        <div class="body">
+          <div class="top"><span class="label">Track A · Lean · 2025 · Bradley University</span><span class="badge-data real">Lab: team's estimates for the proposal</span></div>
+          <h3>Lean redesign proposal for a paint-mixing system assembly</h3>
+          <dl class="facts">
+            <div><dt>My role</dt><dd>One of a team of 5 (M.S. coursework). My part: mapping the assembly workflow and its waste, redesigning the layout and designing the dedicated work cell.</dd></div>
+            <div><dt>What we did</dt><dd>Time study, value stream map and 5 Whys on the assembly of a two-component paint mixing system. From that we proposed an assembly cell with 5S, kanban + poka-yoke and an SOP.</dd></div>
+            <div><dt>Result</dt><dd>Only <b>15.5 of 666 lead-time hours</b> added value. The redesign was proposed, not implemented: the team estimated <b>~$16.5K/year in savings</b> for a $12.4K investment, a 9-month payback.</dd></div>
+          </dl>
+          <div class="tags" aria-label="Methods"><span>Value stream mapping</span><span>Time study</span><span>5 Whys</span><span>5S</span><span>Kanban</span><span>Poka-yoke</span></div>
+          <a class="open" href="projects/lean-2k-assembly.html">Case study · run the before / after <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="sub-head reveal">Earlier work <a class="label" href="projects/operations-logistics.html">case study + staffing model →</a></h3>
+    <div class="mini">
+      <article class="reveal" id="p-warehouse">
+        <span class="label">Track A · Apr – Dec 2023 · Logistics Analyst, ABC Distributions, Argentina</span>
+        <h3>Warehouse time studies &amp; workforce optimization</h3>
+        <dl class="facts">
+          <div><dt>What I did</dt><dd>Time studies of the warehouse processes, a staffing model by process and weekday, a warehouse KPI dashboard and digital tools for the sales team.</dd></div>
+          <div><dt>Result</dt><dd><b>+15% operational efficiency</b>; digital tools lifted sales productivity 10% per worker.</dd></div>
+        </dl>
+        <div class="tags"><span>Time studies</span><span>Staffing model</span><span>KPI dashboard</span><span>Excel</span><span>Python</span></div>
+      </article>
+      <article class="reveal">
+        <span class="label">Sep 2023 · Industrial Engineering degree, National University of Tucumán</span>
+        <h3>Industry 4.0 logistics final project</h3>
+        <dl class="facts">
+          <div><dt>What I did</dt><dd>Led a WMS/TMS digital transformation of order-to-delivery workflows as my Industrial Engineering final project.</dd></div>
+          <div><dt>Result</dt><dd><b>+15% perfect deliveries.</b></dd></div>
+        </dl>
+        <div class="tags"><span>WMS / TMS</span><span>Process reengineering</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="research" class="paper">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">03 / Research</span>
+      <div>
+        <h2>Machines that<br>predict their own quality.</h2>
+        <p>Machine-learning research on checking part quality while the part is being made, instead of after.</p>
+      </div>
+    </div>
+    <div class="pubs">
+      <article class="pub reveal">
+        <span class="badge pub-ok">Published · Springer · co-author</span>
+        <svg class="nn" viewBox="0 0 400 150" aria-hidden="true" data-nn></svg>
+        <h3>ANN-based online surface roughness prediction (ANN-OSRP) in wire EDM</h3>
+        <p class="cite">Chen, J., <b>Gomez Montero, M. A.</b>, &amp; Yu, S. (2026). <i>Neural Computing and Applications</i>, 38(4), 87. <a class="doi" href="https://doi.org/10.1007/s00521-025-11745-x" target="_blank" rel="noopener">doi.org/10.1007/s00521-025-11745-x ↗</a></p>
+        <p>A neural network that predicts wire-EDM surface roughness while the part is being cut, from 12 online features built from the controller's voltage, current and feed rate. Trained and tested on 81 cuts of 2507 duplex steel on a Sodick VZ-300L.</p>
+        <div><span class="big">~95.8%</span><br><span class="cite">average prediction accuracy</span></div>
+        <a class="btn" href="projects/wire-edm-research.html">Case study · train the network <span class="arr" aria-hidden="true">→</span></a>
+      </article>
+      <article class="pub quiet reveal">
+        <span class="badge review">Under review · IJIDeM</span>
+        <h3>Vibration-based prediction of surface roughness and perpendicularity in CNC milling</h3>
+        <p class="cite"><i>International Journal on Interactive Design and Manufacturing</i></p>
+        <p>Python ML models that estimate part quality from machine vibration data, so quality can be checked during machining instead of after. Submitted; not yet accepted.</p>
+      </article>
+    </div>
   </div>
 </section>
 
 <section id="experience">
-  <h2>Experience & education</h2>
-  <div class="timeline">
-    <div class="item"><div class="date">Jun 2025 – present</div><div><b>Project Engineer — Dove Equipment / ICAFe</b><p>East Peoria, IL · Engineering Intern Jan – May 2025</p></div></div>
-    <div class="item"><div class="date">Jan 2024 – May 2025</div><div><b>Graduate Teaching Assistant — Bradley University</b><p>Machining, injection molding and Excel/Power BI labs</p></div></div>
-    <div class="item"><div class="date">Apr – Dec 2023</div><div><b>Logistics Analyst — ABC Distributions</b><p>Tucumán, Argentina · Time studies and digital sales tools</p></div></div>
-    <div class="item"><div class="date">May 2025</div><div><b>M.S. Manufacturing Engineering — Bradley University</b><p>GPA 4.0 · Graduate Commencement Speaker · Marjorie Reynolds Award</p></div></div>
-    <div class="item"><div class="date">Sep 2023</div><div><b>Industrial Engineering — National University of Tucumán</b><p>Argentina</p></div></div>
-  </div>
-</section>
-
-<section id="skills">
-  <h2>Skills</h2>
-  <div class="skills">
-    <div><h4>AI & software</h4><p>Python, SQL, LLM integration, AI-assisted development (Claude Code), Electron, React/TypeScript, SQLite, Git</p></div>
-    <div><h4>ML & data</h4><p>Neural networks, regression, feature selection, Taguchi DOE, model validation, Power BI, Excel</p></div>
-    <div><h4>Manufacturing</h4><p>Finishing systems, process design, layout planning, lean and time studies, commissioning, CNC, wire-EDM, PLCs</p></div>
-    <div><h4>Languages</h4><p>Spanish (native) · English (CELPIP CLB 10) · French (TEF Canada NCLC 7+)</p></div>
-  </div>
-</section>
-
-</div>
-
-<footer id="contact">
   <div class="wrap">
-    <h2>Contact</h2>
-    <p class="contact">
-      <a href="mailto:maxigmontero@gmail.com">maxigmontero@gmail.com</a>
-      <a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank">LinkedIn</a>
-    </p>
-    <p class="small">Also: assistant soccer coach (US Soccer grassroots license) · 1st place, Latin American Innovation Rally 2021 (provincial level).</p>
+    <div class="sec-head reveal">
+      <span class="num">04 / Experience</span>
+      <div><h2>The path<br>so far.</h2></div>
+    </div>
+    <div class="tl">
+      <span class="fill"></span>
+      <div class="item"><div class="date">Jun 2025 – present</div><div><b>Project Engineer — Dove Equipment / ICAFe</b><p>East Peoria, IL · Engineering lead on industrial finishing systems for EV, heavy-equipment and building-products plants · Engineering Intern Jan – May 2025</p></div></div>
+      <div class="item"><div class="date">May 2025</div><div><b>M.S. Manufacturing Engineering — Bradley University</b><p>Peoria, IL · GPA 4.0 · Graduate Commencement Speaker · Marjorie Reynolds Award for academic excellence</p></div></div>
+      <div class="item"><div class="date">Jan 2024 – May 2025</div><div><b>Graduate Teaching Assistant — Bradley University</b><p>Taught machining, injection molding and Excel/Power BI labs; supported curriculum design and research</p></div></div>
+      <div class="item"><div class="date">Apr – Dec 2023</div><div><b>Logistics Analyst — ABC Distributions</b><p>Tucumán, Argentina · +15% operational efficiency through time studies and workforce optimization</p></div></div>
+      <div class="item"><div class="date">Sep 2023</div><div><b>Industrial Engineering degree — National University of Tucumán</b><p>Argentina · Final project: Industry 4.0 WMS/TMS logistics transformation</p></div></div>
+    </div>
+    <div class="skills reveal" aria-label="Skills">
+      <div><h4>Manufacturing</h4><p>Project engineering, process design, layout planning, lean and time studies, commissioning, CNC, wire-EDM, injection molding, PLCs, SOPs</p></div>
+      <div><h4>Tools</h4><p>AutoCAD, FactoryCAD, Creo, Acumatica ERP, SharePoint, Power BI, Excel</p></div>
+      <div><h4>AI, software &amp; data</h4><p>Python, SQL, LLM integration, AI-assisted development (Claude Code), Electron, React/TypeScript, SQLite, Git; neural networks, regression, Taguchi DOE</p></div>
+      <div><h4>Languages</h4><p>Spanish (native) · English (CELPIP CLB 10) · French (TEF Canada NCLC 7+)</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="stage">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">05 / On stage</span>
+      <div>
+        <h2>I can explain it,<br><span class="red">out loud.</span></h2>
+        <p>Engineers who communicate get projects approved. Commencement speaker at Bradley University and repeat competitor in the Latin American Innovation Rally.</p>
+      </div>
+    </div>
+
+    <div class="feature reveal">
+      <div class="yt" data-yt="m2OsEzYm8Uo" data-start="1376" data-end="1824" data-title="Graduate commencement speech — Bradley University, Spring 2025"></div>
+      <div>
+        <span class="label">May 2025 · Bradley University · in English</span>
+        <h3>Graduate Commencement Speaker</h3>
+        <p>Speaker at Bradley University's Spring 2025 Master's &amp; Doctoral Commencement, graduating with an M.S. in Manufacturing Engineering (GPA 4.0) and the Marjorie Reynolds Award.</p>
+        <p class="label">Plays the speech only · 7 min</p>
+      </div>
+    </div>
+
+    <div class="stage-grid">
+      <div class="reveal">
+        <div class="yt" data-yt="SDo8r4xjVNw" data-title="Latin American Innovation Rally 2026 — Norte Disruptivo — EMPUJÓN"></div>
+        <div class="vcap"><span class="label">2026 · in Spanish</span><h4>Innovation Rally — “Norte Disruptivo · EMPUJÓN”</h4><p>Latin American Innovation Rally</p></div>
+      </div>
+      <div class="reveal">
+        <div class="yt" data-yt="h0UK8pPf_hI" data-title="Latin American Innovation Rally 2021 — Innovación Picante"></div>
+        <div class="vcap"><span class="label">2021 · in Spanish</span><h4>Innovation Rally — “Innovación Picante”</h4><p class="win">1st place, provincial level</p><p>A tech-based solution to address domestic violence.</p></div>
+      </div>
+      <div class="reveal">
+        <div class="yt" data-yt="guIcYbjlHuE" data-title="Latin American Innovation Rally 2020 — Innovación Picante"></div>
+        <div class="vcap"><span class="label">2020 · in Spanish</span><h4>Innovation Rally — “Innovación Picante”</h4><p>Latin American Innovation Rally</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <span class="label">06 / Contact</span>
+    <p class="huge reveal">Let's build<br>something<span>.</span></p>
+    <p class="contact-sub reveal">Canadian Permanent Resident in Toronto/GTA, available from January 2027. Open to manufacturing, project-engineering and applied-AI roles.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:maxigmontero@gmail.com">maxigmontero@gmail.com <span>→</span></a>
+      <a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+    </div>
+    <p class="contact-cvs reveal">Résumés (PDF): <a href="Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener">Manufacturing &amp; project engineering</a> · <a href="Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener">Applied AI</a></p>
+    <div class="foot">
+      <span>Also: assistant soccer coach (US Soccer grassroots license).</span>
+      <span>© 2026 Maxi Gomez Montero · Toronto / GTA</span>
+    </div>
   </div>
 </footer>
 
+<dialog class="lab" id="lab" aria-labelledby="labTitle" aria-describedby="labData">
+  <div class="lab-head">
+    <div>
+      <span class="label">Interactive lab · <span class="lab-data" id="labData"></span></span>
+      <h3 id="labTitle"></h3>
+    </div>
+    <div class="lab-tabs" role="tablist" aria-label="Lab sections"></div>
+    <button class="lab-close" aria-label="Close lab" autofocus>×</button>
+  </div>
+  <p class="lab-hint" aria-live="polite"></p>
+  <div class="lab-body" role="tabpanel" id="labPanel" tabindex="-1"></div>
+  <div class="lab-note"></div>
+</dialog>
+
+<script src="assets/labs.js"></script>
+<script src="assets/labs-plus.js"></script>
+<script src="assets/main.js"></script>
 </body>
 </html>

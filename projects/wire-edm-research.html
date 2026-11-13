@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Predicting surface roughness in wire EDM, while cutting — Maxi Gomez Montero</title>
+<meta name="description" content="Peer-reviewed research (Springer, 2026): a neural network that predicts wire-EDM surface roughness online from 12 machine-controller features.">
+<meta property="og:title" content="Predicting surface roughness in wire EDM, while cutting — Maxi Gomez Montero">
+<meta property="og:description" content="Peer-reviewed research (Springer, 2026): a neural network that predicts wire-EDM surface roughness online from 12 machine-controller features.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://maxgomezmontero.github.io/projects/wire-edm-research.html">
+<meta property="og:image" content="https://maxgomezmontero.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ff2b1c'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="case">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+<nav class="top" aria-label="Main"><div class="wrap">
+  <a class="brand" href="../index.html"><i></i>Maxi Gomez Montero</a>
+  <div class="navlinks"><a href="../index.html#work">All work</a><a href="../index.html#research">Research</a><a href="../index.html#experience">Experience</a><a href="../index.html#contact">Contact</a></div>
+  <div class="cvs"><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_Manufacturing.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Manufacturing</span><span class="short">&nbsp;Mfg</span> ↓</a><a class="chip-btn" href="../Maxi_Gomez_Montero_Resume_AI_Engineer.pdf" target="_blank" rel="noopener">CV<span class="long">&nbsp;· Applied AI</span><span class="short">&nbsp;AI</span> ↓</a></div>
+</div></nav>
+<main id="main">
+<header class="case-hero wrap">
+  <a class="back" href="../index.html#work">← All work</a>
+  <span class="label red">Case study · Research · ML</span>
+  <h1>Predicting surface roughness in wire EDM, while cutting</h1>
+  <p class="case-lead">Surface roughness is usually checked after the part is cut. We predicted it during the cut, from the machine controller’s own signals — published in Neural Computing and Applications (Springer, 2026).</p>
+  <dl class="meta"><div><dt>Role</dt><dd>Co-author · M.S. research</dd></div><div><dt>Authors</dt><dd>Chen, Gomez Montero &amp; Yu</dd></div><div><dt>Published</dt><dd>2026 · Neural Comput. &amp; Applic. 38, 87</dd></div><div><dt>Methods</dt><dd>Full-factorial DOE · ANN (ReLU) · Python</dd></div><div><dt>Result</dt><dd>~95.8% average accuracy</dd></div></dl>
+</header>
+<figure class="case-media wrap"><div class="lab-inline" data-lab-inline="research" data-tabs="Neural network"><p class="il-hint">Loading the interactive demo…</p></div><figcaption>A network shaped like the paper’s, trained live in your browser on synthetic data.</figcaption></figure>
+<section class="tldr wrap" aria-label="Summary">
+  <div><h2>Problem</h2><p>Models built on fixed machine settings assume a steady process. Real wire-EDM cuts drift, so parts still get measured after machining.</p></div>
+  <div><h2>What I did</h2><p>Turned the controller’s voltage, current and feed-rate readings into 12 online features and trained a neural network on a designed experiment of 81 cuts.</p></div>
+  <div><h2>Result</h2><p>~95.8% average prediction accuracy (published). On the test set the network never accepted an out-of-spec part (0 Type I errors).</p></div>
+</section>
+<div class="case-grid wrap">
+  <nav class="toc" aria-label="On this page"><a href="#design">Study design</a><a href="#role">My role</a><a href="#results">Results</a><a href="#next">Follow-up work</a></nav>
+  <div class="case-body">
+    <section id="design"><h2><span class="num">01</span>Study design</h2><ul><li><b>Machine &amp; material:</b> Sodick VZ-300L, 0.25 mm brass wire, 2507 duplex steel; roughness measured on a Mitutoyo SJ-301.</li><li><b>Experiment:</b> 3³ full factorial — wire tension, supply voltage and feed rate at three levels each, three replicates: 81 cuts, split 64 for training and 17 for testing.</li><li><b>Inputs:</b> 12 online features from the controller — maximum, minimum, difference and average of voltage, current and feed rate.</li><li><b>Model:</b> 12 inputs → 4 hidden layers × 8 neurons (ReLU) → 1 output; learning rate 0.001, 20,000 epochs, MSE loss.</li><li><b>Decision rule:</b> accept the part if predicted Ra ≤ 80 µin.</li></ul><div class="lab-inline" data-lab-inline="research" data-tabs="Experiment design"><p class="il-hint">Loading the interactive demo…</p></div></section>
+    <section id="role"><h2><span class="num">02</span>My role</h2><div class="role-box"><p><b>Co-author</b>, as part of my M.S. research at Bradley University with Dr. Joseph Chen.</p></div></section>
+    <section id="results"><h2><span class="num">03</span>Results</h2><div class="results"><div><b>~95.8%</b><span>average prediction accuracy</span></div><div><b>0</b><span>Type I errors on the test set</span></div><div><b>81</b><span>designed cuts</span></div><div><b>12</b><span>online controller features</span></div></div>
+        <p class="case-links"><a href="https://doi.org/10.1007/s00521-025-11745-x" target="_blank" rel="noopener">Read the paper · doi.org/10.1007/s00521-025-11745-x ↗</a></p></section>
+    <section id="next"><h2><span class="num">04</span>Follow-up work</h2><p>A second study, now under review at the <i>International Journal on Interactive Design and Manufacturing</i>, applies the same idea to CNC milling: Python ML models that estimate surface roughness and perpendicularity from machine vibration.</p></section>
+  </div>
+</div>
+<nav class="case-next wrap" aria-label="More projects">
+  <a href="lean-2k-assembly.html"><span class="label">← Previous</span><b>Lean redesign</b></a>
+  <a class="nx" href="restaurant-system.html"><span class="label">Next →</span><b>Restaurant system</b></a>
+</nav>
+</main>
+<footer class="case-foot wrap">
+  <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR · available January 2027</p>
+  <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+</footer>
+<script src="../assets/labs.js"></script>
+<script src="../assets/labs-plus.js"></script>
+<script src="../assets/case.js"></script>
+
+</body>
+</html>
