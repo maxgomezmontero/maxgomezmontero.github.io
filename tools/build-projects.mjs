@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'projects');
 const SITE = 'https://maxgomezmontero.github.io/';
-const V = '20261113k';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
+const V = '20261113l';   // asset version: bump (also in index.html and 404.html) when CSS/JS change, so caches refresh
 mkdirSync(OUT, { recursive: true });
 
 const lab = (key, tabs) => `<div class="lab-inline" data-lab-inline="${key}"${tabs ? ` data-tabs="${tabs}"` : ''}><p class="il-hint">Loading the interactive demo…</p></div>`;
@@ -418,7 +418,7 @@ ${p.sections.map(([id, t, body], j) => `    <section id="${id}"><h2><span class=
 </main>
 <footer class="case-foot wrap">
   <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR</p>
-  <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+  <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/maxgomezmontero" target="_blank" rel="noopener">GitHub ↗</a></div>
 </footer>
 ${/data-lab-inline/.test(p.hero + p.sections.map((s) => s[2]).join('')) ? `<script src="../assets/labs.js?v=${V}" defer></script>
 <script src="../assets/labs-plus.js?v=${V}" defer></script>` : ''}
@@ -501,7 +501,7 @@ ${nav}
 </main>
 <footer class="case-foot wrap">
   <p>Maxi Gomez Montero · Manufacturing engineer &amp; AI builder · Toronto/GTA · Canadian PR</p>
-  <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+  <div class="contact-links"><a href="mailto:maxigmontero@gmail.com">Email →</a><a href="https://www.linkedin.com/in/maxgomezmontero" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/maxgomezmontero" target="_blank" rel="noopener">GitHub ↗</a></div>
 </footer>
 <script src="../assets/field.js?v=${V}" defer></script>
 <script src="../assets/case.js?v=${V}" defer></script>

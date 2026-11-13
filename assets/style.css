@@ -1403,3 +1403,8 @@ nav.top .wrap { max-width: 1380px; }
   .case-hero .hero-duo img { height: auto !important; }
   .case-hero .hero-duo img + img { aspect-ratio: 4 / 3 !important; }
 }
+
+/* v15: code is visible */
+.pg-dim a { color: var(--red); text-decoration: none; border-bottom: 1px solid currentColor; }
+.pg-dim a:hover { color: var(--text); }
+.proof.code a::after { content: " ↗"; }
