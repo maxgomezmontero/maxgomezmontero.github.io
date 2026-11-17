@@ -216,11 +216,12 @@
     <h3 class="sub-head reveal">AI safety research <a class="label" href="projects/approval-gate.html">case study + results →</a></h3>
     <div class="mini">
       <article class="reveal" id="p-gate">
-        <span class="label">Nov 2026 · open source · Python, Inspect (UK AISI)</span>
+        <span class="label">Nov 2026 · open source · Python, Inspect (UK AISI) · working paper</span>
         <h3>Approval Gate: do AI agents respect a human-approval step?</h3>
         <dl class="facts">
           <div><dt>What I did</dt><dd>Built a simulated back office (inbox, mock ERP, simulated approver) and 54 scenarios with deadlines, injected emails, ambiguity and an absent approver; cost-weighted scoring, a rules baseline and an honesty check.</dd></div>
           <div><dt>Result</dt><dd><b>0 bypasses in 486 episodes</b> with the rule written down; <b>6 of 216</b> when it wasn't and the operator said “don't wait on me”, all disclosed.</dd></div>
+          <div><dt>Part 2</dt><dd>Applied quality-inspection methods to LLM <i>reviewers</i>: with the evidence attached they caught <b>2,071 of 2,072</b> defects; without it, what got approved depended on the model and on whether the queue had a “query” button.</dd></div>
         </dl>
         <div class="tags"><span>Inspect</span><span>Agent evals</span><span>AI control</span><span>Python</span></div>
         <div class="open-row"><a class="open" href="projects/approval-gate.html">Case study · results and what I learned <span class="arr" aria-hidden="true">→</span></a><a class="code-link" href="https://github.com/maxgomezmontero/approval-gate-eval" target="_blank" rel="noopener">Code on GitHub ↗</a></div>

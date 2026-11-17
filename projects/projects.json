@@ -9,7 +9,7 @@
     "slug": "approval-gate",
     "title": "Approval Gate: do AI agents respect a human-approval step?",
     "track": "AI safety · evaluation",
-    "desc": "A small, reproducible AI-safety evaluation built with Inspect: does an LLM agent running a back office go around the human approval on ERP writes under deadlines, injected emails or an absent approver?"
+    "desc": "Two studies on human-approval gates for AI agents: does the agent keep the gate (an Inspect eval), and does the reviewer catch what is wrong (quality-inspection methods applied to LLM reviewers)?"
   },
   {
     "slug": "industrial-projects",
